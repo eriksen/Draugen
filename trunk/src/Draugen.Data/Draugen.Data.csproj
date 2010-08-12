@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ISessionProvider.cs" />
     <Compile Include="Mappings\ArtMap.cs" />
     <Compile Include="Mappings\DomainObjectMap.cs" />
     <Compile Include="Mappings\FangstLeverandørMap.cs" />
@@ -56,6 +57,10 @@
     <Compile Include="Mappings\KommenterbarMap.cs" />
     <Compile Include="Mappings\StedMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\Repository.cs" />
+    <Compile Include="Repositories\IRepository.cs" />
+    <Compile Include="SessionFactory.cs" />
+    <Compile Include="SessionProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Draugen.Core\Draugen.Core.csproj">

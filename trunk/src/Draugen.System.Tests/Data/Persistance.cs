@@ -33,5 +33,7 @@ namespace Draugen.System.Tests.Data
             var config = CreateConfiguration();
             new SchemaExport(config).Create(false, true);
         }
+
+
     }
 }
