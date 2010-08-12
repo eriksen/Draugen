@@ -5,6 +5,7 @@
         public KommentarMap()
         {
             Map(x => x.Innhold);
+            References(x => x.Forfatter).ForeignKey();
         }
     }
 }

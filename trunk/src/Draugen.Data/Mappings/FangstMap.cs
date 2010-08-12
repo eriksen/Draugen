@@ -2,7 +2,7 @@
 {
     public class FangstMap : KommenterbarMap<Fangst>
     {
-        public FangstMap() : base("Fangst_Kommentar")
+        public FangstMap()
         {
             //References(x => x.Art);
             //References(x => x.Sted);

@@ -2,7 +2,7 @@
 
 namespace Draugen
 {
-    public class FangstLeverandør : Kommenterbar
+    public abstract class FangstLeverandør : Kommenterbar
     {
         public virtual IList<Fangst> Fangster { get; set; }
 

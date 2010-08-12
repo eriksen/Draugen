@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="Draugen.Art">
-    <Position X="8.5" Y="6.75" Width="1.5" />
+    <Position X="7.75" Y="6.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAA=</HashCode>
       <FileName>Art.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Draugen.DomainObject">
-    <Position X="7.5" Y="0.75" Width="1.5" />
+    <Position X="2.5" Y="4.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>DomainObject.cs</FileName>
@@ -17,40 +17,40 @@
   <Class Name="Draugen.Kommentar">
     <Position X="2.5" Y="6.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAEIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Kommentar.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Draugen.Kommenterbar">
-    <Position X="8.5" Y="2.5" Width="1.5" />
+    <Position X="4.25" Y="4.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Kommenterbar.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Draugen.Fisker">
-    <Position X="10.5" Y="6.75" Width="1.5" />
+    <Position X="9.5" Y="6.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAA=</HashCode>
       <FileName>Fisker.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Draugen.Fangst">
-    <Position X="4.5" Y="6.75" Width="1.5" />
+    <Position X="4.25" Y="6.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>EAAAAgAAAAAAAAAAAAAAAAAAAAAACIACAAAAQAAAAAA=</HashCode>
       <FileName>Fangst.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Draugen.FangstLeverandør">
-    <Position X="8.5" Y="4.5" Width="1.5" />
+    <Position X="7.75" Y="4.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAgAAAAQAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>FangstLeverandør.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Draugen.Sted">
-    <Position X="6.5" Y="6.75" Width="1.5" />
+    <Position X="6" Y="6.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Sted.cs</FileName>

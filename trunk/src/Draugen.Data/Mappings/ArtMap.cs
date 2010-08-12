@@ -2,7 +2,7 @@
 {
     public class ArtMap : FangstLeverandørMap<Art>
     {
-        public ArtMap() : base("Art_Kommentar")
+        public ArtMap()
         {
             Map(x => x.Rekord);
             Map(x => x.Latin);

@@ -2,9 +2,9 @@
 {
     public class KommenterbarMap<T> : DomainObjectMap<T> where T : Kommenterbar
     {
-        protected KommenterbarMap(string entitetKommentarTabellNavn)
+        protected KommenterbarMap()
         {
-            HasManyToMany(x => x.Kommentarer).Table(entitetKommentarTabellNavn);
+            HasManyToMany(x => x.Kommentarer).Table(typeof(T).Name + "_Kommentar");
         }
     }
 }

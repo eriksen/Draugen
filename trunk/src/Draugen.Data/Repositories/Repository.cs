@@ -26,12 +26,14 @@ namespace Draugen.Data.Repositories
             }
         }
 
-        public void Add(T item)
+        public void SaveOrUpdate(T item)
         {
-            using(var session = Session)
-            {
-                session.SaveOrUpdate(item);
-            }
+            throw new NotImplementedException();
+        }
+
+        public void Delete(T item)
+        {
+            throw new NotImplementedException();
         }
     }
 }

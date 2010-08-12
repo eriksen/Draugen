@@ -14,7 +14,7 @@ namespace Draugen.System.Tests.Data
             return Fluently.Configure()
                 .Database(
                     MsSqlConfiguration.MsSql2008.ConnectionString(
-                        "Data Source=KANE;Initial Catalog=Catchbase2;Integrated Security=True"))
+                        "Data Source=KANE;Initial Catalog=Catchbase;Integrated Security=True"))
                 .Mappings(m => m.FluentMappings.AddFromAssemblyOf<FangstMap>());
         }
 

@@ -2,7 +2,7 @@
 {
     public class FiskerMap : FangstLeverandørMap<Fisker>
     {
-        public FiskerMap() : base("Fisker_Kommentarer")
+        public FiskerMap()
         {
             Map(x => x.EPost);
         }

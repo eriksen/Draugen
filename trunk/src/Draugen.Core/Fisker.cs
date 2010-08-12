@@ -2,6 +2,6 @@
 {
     public class Fisker : FangstLeverandør
     {
-        public string EPost { get; set; }
+        public virtual string EPost { get; set; }
     }
 }
