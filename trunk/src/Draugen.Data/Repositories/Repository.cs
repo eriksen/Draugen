@@ -20,10 +20,7 @@ namespace Draugen.Data.Repositories
  
         public IQueryable<T> FindAll()
         {
-            using(var session = Session)
-            {
-                throw new NotImplementedException();
-            }
+            throw new NotImplementedException();
         }
 
         public void SaveOrUpdate(T item)
