@@ -1,36 +1,32 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using NHibernate;
+using NHibernate.Linq;
+
 
 namespace Draugen.Data.Repositories
 {
-    public class Repository<T> : IRepository<T> where T : Kommenterbar
+    public class Repository<T> : IRepository<T> where T : DomainObject
     {
-        private readonly ISessionProvider _sessionProvider;
-
-        public Repository(ISessionProvider sessionProvider)
+        public Repository(ISession session)
         {
-            _sessionProvider = sessionProvider;
+            Session = session;
         }
 
-        private ISession Session
-        {
-            get { return _sessionProvider.Session; }
-        }
- 
+        protected ISession Session { get; set; }
+        
         public IQueryable<T> FindAll()
         {
-            throw new NotImplementedException();
+            return Session.Linq<T>();
         }
 
-        public void SaveOrUpdate(T item)
+        public void Add(T item)
         {
-            throw new NotImplementedException();
+            Session.SaveOrUpdate(item);
         }
 
         public void Delete(T item)
         {
-            throw new NotImplementedException();
+            Session.Delete(item);
         }
     }
 }

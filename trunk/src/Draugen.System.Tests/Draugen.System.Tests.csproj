@@ -55,8 +55,8 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Data\Persistance.cs" />
-    <Compile Include="Data\PersistanceTests.cs" />
+    <Compile Include="Data\DraugenConfigurationTests.cs" />
+    <Compile Include="Data\Repositories\RepositoryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -72,9 +72,6 @@
       <Project>{43BF57B0-D46D-4945-BBA1-8A0BEA87E5E9}</Project>
       <Name>Draugen.Web.Mvc</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

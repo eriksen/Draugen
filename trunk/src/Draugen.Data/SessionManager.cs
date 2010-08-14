@@ -1,62 +1,44 @@
 ﻿using System;
-using Draugen.Data.Mappings;
-using FluentNHibernate.Cfg;
-using FluentNHibernate.Cfg.Db;
 using NHibernate;
-using NHibernate.Context;
 
 namespace Draugen.Data
 {
-    public class SessionManager
+    public class SessionManager : ISessionManager
     {
         private static readonly ISessionFactory SessionFactory;
+        private readonly ISession _session;
+
         static SessionManager()
         {
-            SessionFactory = Configuration().BuildSessionFactory();
+            SessionFactory = DraugenConfiguration.GetSessionFactory();
         }
 
         public SessionManager()
         {
-            var session = SessionFactory.OpenSession();
-            session.BeginTransaction();
-            CurrentSessionContext.Bind(session);
+            _session = SessionFactory.OpenSession();
+            _session.BeginTransaction();
         }
 
-        public static ISession GetCurrentSession()
+        public ISession Session
         {
-            return SessionFactory.GetCurrentSession();
-        }
-
-        private static FluentConfiguration Configuration()
-        {
-            var config = Fluently.Configure();
-            config.Database(MsSqlConfiguration());
-            config.Mappings(m => m.FluentMappings.AddFromAssemblyOf<FangstMap>());
-            return config;
-        }
-
-        private static MsSqlConfiguration MsSqlConfiguration()
-        {
-            return FluentNHibernate.Cfg.Db.MsSqlConfiguration.MsSql2008.ConnectionString(
-                "Data Source=KANE;Initial Catalog=Catchbase;Integrated Security=True");
+            get { return _session; }
         }
 
         public void Dispose()
         {
-            var session = CurrentSessionContext.Unbind(SessionFactory);
-            if (session == null) return;
+            if (_session == null) return;
             try
             {
-                session.Transaction.Commit();
+                _session.Transaction.Commit();
             }
             catch (Exception)
             {
-                session.Transaction.Rollback();
+                _session.Transaction.Rollback();
             }
             finally
             {
-                session.Close();
-                session.Dispose();
+                _session.Close();
+                _session.Dispose();
             }
         }
     }

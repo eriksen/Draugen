@@ -1,11 +1,12 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace Draugen.Data.Repositories
 {
-    public interface IRepository<T> where T : Kommenterbar
+    public interface IRepository<T> where T : DomainObject
     {
         IQueryable<T> FindAll();
-        void SaveOrUpdate(T item);
+        void Add(T item);
         void Delete(T item);
     }
 }
