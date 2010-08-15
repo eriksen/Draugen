@@ -3,17 +3,17 @@ using NHibernate;
 
 namespace Draugen.Data
 {
-    public class SessionManager : ISessionManager
+    public class UnitOfWork : IUnitOfWork
     {
         private static readonly ISessionFactory SessionFactory;
         private readonly ISession _session;
 
-        static SessionManager()
+        static UnitOfWork()
         {
-            SessionFactory = DraugenConfiguration.GetSessionFactory();
+            SessionFactory = new DraugenConfiguration().GetSessionFactory();
         }
 
-        public SessionManager()
+        public UnitOfWork()
         {
             _session = SessionFactory.OpenSession();
             _session.BeginTransaction();

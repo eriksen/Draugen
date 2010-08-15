@@ -9,13 +9,13 @@ namespace Draugen.System.Tests.Data
         [TestMethod, Ignore]
         public void BuildSchema_MustCreateContentOfDatabase_WhenDatabaseExists()
         {
-            DraugenConfiguration.BuildSchema("Data Source=KANE;Initial Catalog=Catchbase;Integrated Security=True");
+            new DraugenConfiguration().BuildSchema("Data Source=KANE;Initial Catalog=Catchbase;Integrated Security=True");
         }
 
         [TestMethod]
         public void GetSessionFactory_MustReturnValidSessionFactory()
         {
-            var factory = DraugenConfiguration.GetSessionFactory();
+            var factory = new DraugenConfiguration().GetSessionFactory();
             Assert.IsNotNull(factory);
         }
     }

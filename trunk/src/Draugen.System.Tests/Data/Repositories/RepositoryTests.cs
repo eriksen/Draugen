@@ -17,14 +17,14 @@ namespace Draugen.System.Tests.Data.Repositories
             var g1 = Guid.NewGuid().ToString();
             var g2 = Guid.NewGuid().ToString();
 
-            using(var manager = new SessionManager())
+            using(var manager = new UnitOfWork())
             {
                 var repository = new Repository<Art>(manager.Session);
                 repository.Add(new Art() { Latin = g1, Navn = "Torsk", Rekord = 37.5 });
                 repository.Add(new Art() { Latin = g2, Navn = "Beltedyr", Rekord = 17.5 });
             }
 
-            using(var manager = new SessionManager())
+            using(var manager = new UnitOfWork())
             {
                 var repository = new Repository<Art>(manager.Session);
                 var arter = repository.FindAll();
@@ -32,7 +32,7 @@ namespace Draugen.System.Tests.Data.Repositories
                 Assert.IsNotNull(arter.Where(a => a.Latin == g1).FirstOrDefault());
             }
 
-            using(var manager = new SessionManager())
+            using(var manager = new UnitOfWork())
             {
                 var repository = new Repository<Art>(manager.Session);
                 var preCount = repository.FindAll().Count();

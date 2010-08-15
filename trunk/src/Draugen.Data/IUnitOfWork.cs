@@ -3,7 +3,7 @@ using NHibernate;
 
 namespace Draugen.Data
 {
-    public interface ISessionManager : IDisposable
+    public interface IUnitOfWork : IDisposable
     {
         ISession Session { get; }
     }

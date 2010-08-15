@@ -8,31 +8,41 @@ namespace Draugen.Data
 {
     public class DraugenConfiguration
     {
-        public static ISessionFactory GetSessionFactory()
+        private static ISessionFactory _sessionFactory;
+        private static FluentConfiguration _configuration;
+
+        public ISessionFactory GetSessionFactory()
         {
-            return Configuration(GetConnectionString()).BuildSessionFactory();
+            if(_sessionFactory == null)
+            {
+                _sessionFactory = Configuration(GetConnectionString()).BuildSessionFactory();
+            }
+            return _sessionFactory;
         }
 
-        public static void BuildSchema(string connectionString)
+        public void BuildSchema(string connectionString)
         {
             var config = Configuration(connectionString).BuildConfiguration();
             new SchemaExport(config).Create(false, true);
         }
 
-        private static string GetConnectionString()
+        private string GetConnectionString()
         {
             return "Data Source=KANE;Initial Catalog=Catchbase;Integrated Security=True";
         }
 
-        private static FluentConfiguration Configuration(string connectionString)
+        private FluentConfiguration Configuration(string connectionString)
         {
-            var config = Fluently.Configure();
-            config.Database(MsSqlConfiguration(connectionString));
-            config.Mappings(m => m.FluentMappings.AddFromAssemblyOf<FangstMap>());
-            return config;
+            if(_configuration == null)
+            {
+                _configuration = Fluently.Configure();
+                _configuration.Database(MsSqlConfiguration(connectionString));
+                _configuration.Mappings(m => m.FluentMappings.AddFromAssemblyOf<FangstMap>());
+            }
+            return _configuration;
         }
 
-        private static MsSqlConfiguration MsSqlConfiguration(string connectionString)
+        private MsSqlConfiguration MsSqlConfiguration(string connectionString)
         {
             return FluentNHibernate.Cfg.Db.MsSqlConfiguration.MsSql2008.ConnectionString(connectionString);
         }
