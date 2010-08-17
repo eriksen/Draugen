@@ -1,44 +1,38 @@
 ﻿using System;
+using System.Diagnostics.Contracts;
 using NHibernate;
 
 namespace Draugen.Data
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private static readonly ISessionFactory SessionFactory;
-        private readonly ISession _session;
-
-        static UnitOfWork()
+        [ContractInvariantMethod]
+        private void ObjectInvariant()
         {
-            SessionFactory = new DraugenConfiguration().GetSessionFactory();
+            Contract.Invariant(Session != null);
         }
 
-        public UnitOfWork()
+        public UnitOfWork(ISessionFactory sessionFactory)
         {
-            _session = SessionFactory.OpenSession();
-            _session.BeginTransaction();
+            Session = sessionFactory.OpenSession();
+            Session.BeginTransaction();
         }
 
-        public ISession Session
-        {
-            get { return _session; }
-        }
+        public ISession Session { get; private set; }
 
         public void Dispose()
         {
-            if (_session == null) return;
             try
             {
-                _session.Transaction.Commit();
+                Session.Transaction.Commit();
             }
             catch (Exception)
             {
-                _session.Transaction.Rollback();
+                Session.Transaction.Rollback();
             }
             finally
             {
-                _session.Close();
-                _session.Dispose();
+                Session.Dispose();
             }
         }
     }

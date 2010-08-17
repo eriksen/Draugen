@@ -68,10 +68,6 @@
       <Project>{9E66D512-A067-4FFE-9B58-E573D9FB9E4D}</Project>
       <Name>Draugen.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Draugen.Web.Mvc\Draugen.Web.Mvc.csproj">
-      <Project>{43BF57B0-D46D-4945-BBA1-8A0BEA87E5E9}</Project>
-      <Name>Draugen.Web.Mvc</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

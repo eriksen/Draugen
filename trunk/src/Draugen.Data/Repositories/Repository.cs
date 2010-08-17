@@ -7,24 +7,20 @@ namespace Draugen.Data.Repositories
 {
     public class Repository<T> : IRepository<T> where T : DomainObject
     {
-        public Repository(ISession session)
-        {
-            Session = session;
-        }
 
-        protected ISession Session { get; set; }
+        public virtual ISession Session { get; set; }
         
-        public IQueryable<T> FindAll()
+        public virtual IQueryable<T> FindAll()
         {
             return Session.Linq<T>();
         }
 
-        public void Add(T item)
+        public virtual void Add(T item)
         {
             Session.SaveOrUpdate(item);
         }
 
-        public void Delete(T item)
+        public virtual void Delete(T item)
         {
             Session.Delete(item);
         }
