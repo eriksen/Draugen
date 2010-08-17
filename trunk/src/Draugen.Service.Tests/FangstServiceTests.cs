@@ -32,13 +32,6 @@ namespace Draugen.Service.Tests
         }
 
         [TestMethod]
-        public void Dispose_MustCallDisposeOnUnitOfWorkFactory()
-        {
-            _service.Dispose();
-            _unitOfWorkFactoryMock.Verify(u => u.Dispose());
-        }
-
-        [TestMethod]
         public void GetFangster_MustSetFangstRepositorySessionFromUnitOfWork()
         {
             _service.GetFangster();

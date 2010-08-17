@@ -12,6 +12,7 @@ namespace Draugen.Data.Repositories
         
         public virtual IQueryable<T> FindAll()
         {
+            
             return Session.Linq<T>();
         }
 

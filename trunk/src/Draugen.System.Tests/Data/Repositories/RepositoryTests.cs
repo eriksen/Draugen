@@ -9,12 +9,12 @@ namespace Draugen.System.Tests.Data.Repositories
     [TestClass]
     public class RepositoryTests
     {
-        private const string ConnectionString = "Data Source=KANE;Initial Catalog=CatchbaseTest;Integrated Security=True";
+        private const string ConnectionString = "Data Source=KANE;Initial Catalog=Catchbase;Integrated Security=True";
 
         [TestMethod]
         public void Add_MustAddItem()
         {
-            var unitOfWorkFactory = new UnitOfWorkFactory(new DraugenConfiguration().GetSessionFactory());
+            var unitOfWorkFactory = new UnitOfWorkFactory(new DraugenConfiguration(ConnectionString).GetSessionFactory());
             var g1 = Guid.NewGuid().ToString();
             var g2 = Guid.NewGuid().ToString();
 

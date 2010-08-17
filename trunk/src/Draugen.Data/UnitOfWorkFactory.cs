@@ -15,6 +15,7 @@ namespace Draugen.Data
         
         public UnitOfWorkFactory(ISessionFactory sessionFactory)
         {
+            Contract.Requires(sessionFactory != null);
             _sessionFactory = sessionFactory;
         }
 

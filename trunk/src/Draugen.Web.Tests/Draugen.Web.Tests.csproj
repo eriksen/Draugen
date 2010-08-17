@@ -33,7 +33,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Practices.Unity, Version=2.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Moq">
+      <HintPath>..\..\lib\Moq\NET40\Moq.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate, Version=2.1.2.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -54,6 +59,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Setup\DraugenControllerFactoryTest.cs" />
+    <Compile Include="Setup\DraugenUnityContainerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -61,6 +68,24 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Draugen.Core\Draugen.Core.csproj">
+      <Project>{3B92FD2D-B32B-436D-9635-B44B64AD3589}</Project>
+      <Name>Draugen.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Draugen.Data\Draugen.Data.csproj">
+      <Project>{9E66D512-A067-4FFE-9B58-E573D9FB9E4D}</Project>
+      <Name>Draugen.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Draugen.Services\Draugen.Services.csproj">
+      <Project>{021C1168-C56F-4BBC-9708-042E13F862F8}</Project>
+      <Name>Draugen.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Draugen.Web\Draugen.Web.csproj">
+      <Project>{4FC88155-7082-4112-A3B8-651D078392EA}</Project>
+      <Name>Draugen.Web</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

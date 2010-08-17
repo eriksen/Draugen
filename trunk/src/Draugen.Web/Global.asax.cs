@@ -1,5 +1,8 @@
 ﻿using System.Web.Mvc;
 using System.Web.Routing;
+using Draugen.Data;
+using Draugen.Web.Setup;
+using Microsoft.Practices.Unity;
 
 namespace Draugen.Web
 {
@@ -25,8 +28,15 @@ namespace Draugen.Web
             AreaRegistration.RegisterAllAreas();
             RegisterRoutes(RouteTable.Routes);
 
-            //Controlling Unity
-            ControllerBuilder.Current.SetControllerFactory(new DraugenControllerFactory());
+            RegisterControllerFactory();
         }
-   }
+
+        private static void RegisterControllerFactory()
+        {
+            var configuration = new DraugenConfiguration("Data Source=KANE;Initial Catalog=Catchbase;Integrated Security=True");
+            var container = new DraugenUnityContainer(configuration.GetSessionFactory());
+            var controllerFactory = container.Resolve<DraugenControllerFactory>();
+            ControllerBuilder.Current.SetControllerFactory(controllerFactory);
+        }
+    }
 }

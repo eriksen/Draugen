@@ -1,4 +1,5 @@
-﻿using Draugen.Data.Mappings;
+﻿using System.Diagnostics.Contracts;
+using Draugen.Data.Mappings;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using NHibernate;
@@ -6,43 +7,39 @@ using NHibernate.Tool.hbm2ddl;
 
 namespace Draugen.Data
 {
-    public class DraugenConfiguration
+    public class DraugenConfiguration : IDraugenConfiguration
     {
+        [ContractInvariantMethod]
+        private void ObjectInvariant()
+        {
+            Contract.Invariant(_sessionFactory != null);
+            Contract.Invariant(_configuration != null);
+        }
         private static ISessionFactory _sessionFactory;
         private static FluentConfiguration _configuration;
 
+        public DraugenConfiguration(string connectionString)
+        {
+            Contract.Requires(!string.IsNullOrWhiteSpace(connectionString));
+            _configuration = Fluently.Configure();
+            _configuration.Database(MsSqlConfiguration(connectionString));
+            _configuration.Mappings(m => m.FluentMappings.AddFromAssemblyOf<FangstMap>());
+            _sessionFactory = _configuration.BuildSessionFactory();
+        }
+
         public ISessionFactory GetSessionFactory()
         {
-            if(_sessionFactory == null)
-            {
-                _sessionFactory = Configuration(GetConnectionString()).BuildSessionFactory();
-            }
+            Contract.Ensures(Contract.Result<ISessionFactory>() != null);
             return _sessionFactory;
         }
 
-        public void BuildSchema(string connectionString)
+        public void BuildSchema()
         {
-            var config = Configuration(connectionString).BuildConfiguration();
+            var config = _configuration.BuildConfiguration();
             new SchemaExport(config).Create(false, true);
         }
 
-        private string GetConnectionString()
-        {
-            return "Data Source=KANE;Initial Catalog=Catchbase;Integrated Security=True";
-        }
-
-        private FluentConfiguration Configuration(string connectionString)
-        {
-            if(_configuration == null)
-            {
-                _configuration = Fluently.Configure();
-                _configuration.Database(MsSqlConfiguration(connectionString));
-                _configuration.Mappings(m => m.FluentMappings.AddFromAssemblyOf<FangstMap>());
-            }
-            return _configuration;
-        }
-
-        private MsSqlConfiguration MsSqlConfiguration(string connectionString)
+        private static MsSqlConfiguration MsSqlConfiguration(string connectionString)
         {
             return FluentNHibernate.Cfg.Db.MsSqlConfiguration.MsSql2008.ConnectionString(connectionString);
         }

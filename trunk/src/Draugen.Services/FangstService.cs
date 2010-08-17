@@ -7,7 +7,7 @@ using Draugen.Data.Repositories;
 
 namespace Draugen.Services
 {
-    public class FangstService : IDisposable
+    public class FangstService : IFangstService
     {
         [ContractInvariantMethod]
         private void ObjectInvariant()
@@ -21,6 +21,8 @@ namespace Draugen.Services
 
         public FangstService(IUnitOfWorkFactory unitOfWorkFactory, IRepository<Fangst> fangstRepository)
         {
+            Contract.Requires(fangstRepository != null);
+            Contract.Requires(unitOfWorkFactory != null);
             _unitOfWorkFactory = unitOfWorkFactory;
             _fangstRepository = fangstRepository;
         }
@@ -34,11 +36,6 @@ namespace Draugen.Services
                 _fangstRepository.Session = unitOfWork.Session;
                 return _fangstRepository.FindAll().ToList();
             }
-        }
-
-        public void Dispose()
-        {
-            _unitOfWorkFactory.Dispose(); 
         }
     }
 }

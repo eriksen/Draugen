@@ -6,16 +6,16 @@ namespace Draugen.System.Tests.Data
     [TestClass]
     public class DraugenConfigurationTests
     {
-        [TestMethod, Ignore]
+        [TestMethod]
         public void BuildSchema_MustCreateContentOfDatabase_WhenDatabaseExists()
         {
-            new DraugenConfiguration().BuildSchema("Data Source=KANE;Initial Catalog=Catchbase;Integrated Security=True");
+            new DraugenConfiguration("Data Source=KANE;Initial Catalog=Catchbase;Integrated Security=True").BuildSchema();
         }
 
         [TestMethod]
         public void GetSessionFactory_MustReturnValidSessionFactory()
         {
-            var factory = new DraugenConfiguration().GetSessionFactory();
+            var factory = new DraugenConfiguration("Data Source=KANE;Initial Catalog=Catchbase;Integrated Security=True").GetSessionFactory();
             Assert.IsNotNull(factory);
         }
     }
