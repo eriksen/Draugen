@@ -7,7 +7,7 @@ namespace Draugen.System.Tests.Data
     public class DraugenConfigurationTests
     {
         [TestMethod]
-        public void BuildSchema_MustCreateContentOfDatabase_WhenDatabaseExists()
+        public void BuildSchema_MustCreateContentOfDatabase_WhenDatabaseExistss()
         {
             new DraugenConfiguration("Data Source=KANE;Initial Catalog=Catchbase;Integrated Security=True").BuildSchema();
         }

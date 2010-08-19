@@ -1,7 +1,10 @@
-﻿namespace Draugen
+﻿using System;
+
+namespace Draugen
 { 
     public class Fangst : Kommenterbar
     {
+        public virtual DateTime Dato { get; set; }
         public virtual Art Art { get; set; }
         public virtual Sted Sted { get; set; }
         public virtual Fisker Fisker { get; set; }
