@@ -44,7 +44,7 @@
     <CodeContractsExtraAnalysisOptions />
     <CodeContractsBaseLineFile />
     <CodeContractsRuntimeCheckingLevel>Full</CodeContractsRuntimeCheckingLevel>
-    <CodeContractsReferenceAssembly>%28none%29</CodeContractsReferenceAssembly>
+    <CodeContractsReferenceAssembly>DoNotBuild</CodeContractsReferenceAssembly>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -67,8 +67,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FangstService.cs" />
-    <Compile Include="IFangstService.cs" />
+    <Compile Include="Assemblers\FangstAssembler.cs" />
+    <Compile Include="Assemblers\IAssembler.cs" />
+    <Compile Include="Assemblers\KommentarAssembler.cs" />
+    <Compile Include="ViewModels\DtoBase.cs" />
+    <Compile Include="ViewModels\DtoFangstLeverandør.cs" />
+    <Compile Include="ViewModels\DtoKommenterbar.cs" />
+    <Compile Include="ViewModels\Dtos\ArtDto.cs" />
+    <Compile Include="ViewModels\Dtos\Fangst.cs" />
+    <Compile Include="ViewModels\Dtos\FiskerDto.cs" />
+    <Compile Include="ViewModels\Dtos\KommentarDto.cs" />
+    <Compile Include="ViewModels\Dtos\StedDto.cs" />
+    <Compile Include="ViewModels\Dtos\TeamDto.cs" />
+    <Compile Include="PageBuilders\HomeBuilder.cs" />
+    <Compile Include="PageDataService.cs" />
+    <Compile Include="IPageDataService.cs" />
+    <Compile Include="ViewModels\Pages\HomeData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -81,6 +95,7 @@
       <Name>Draugen.Data</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -1,4 +1,5 @@
-﻿using System.Diagnostics.Contracts;
+﻿using System;
+using System.Diagnostics.Contracts;
 using Draugen.Data.Mappings;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
@@ -7,7 +8,7 @@ using NHibernate.Tool.hbm2ddl;
 
 namespace Draugen.Data
 {
-    public class DraugenConfiguration : IDraugenConfiguration
+    public class DraugenConfiguration : IDisposable
     {
         [ContractInvariantMethod]
         private void ObjectInvariant()
@@ -44,5 +45,11 @@ namespace Draugen.Data
             return FluentNHibernate.Cfg.Db.MsSqlConfiguration.MsSql2008.ConnectionString(connectionString);
         }
 
+        public void Dispose()
+        {
+            _sessionFactory.Dispose();
+            _sessionFactory = null;
+            _configuration = null;
+        }
     }
 }

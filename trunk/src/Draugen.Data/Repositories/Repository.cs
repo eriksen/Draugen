@@ -5,7 +5,7 @@ using NHibernate.Linq;
 
 namespace Draugen.Data.Repositories
 {
-    public class Repository<T> : IRepository<T> where T : DomainObject
+    public class Repository<T> : IRepository<T> where T : Kommenterbar
     {
 
         public virtual ISession Session { get; set; }
@@ -18,6 +18,10 @@ namespace Draugen.Data.Repositories
 
         public virtual void Add(T item)
         {
+            foreach (var kommentar in item.Kommentarer)
+            {
+                Session.SaveOrUpdate(kommentar);
+            }
             Session.SaveOrUpdate(item);
         }
 

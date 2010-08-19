@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Draugen
 {
-    public class Team : Kommenterbar
+    public class Team : FangstLeverandør
     {
         public Team()
         {

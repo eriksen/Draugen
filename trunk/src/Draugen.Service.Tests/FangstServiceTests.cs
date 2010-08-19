@@ -4,6 +4,8 @@ using System.Linq;
 using Draugen.Data;
 using Draugen.Data.Repositories;
 using Draugen.Services;
+using Draugen.Services.Assemblers;
+using Draugen.Services.PageBuilders;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using NHibernate;
@@ -13,7 +15,7 @@ namespace Draugen.Service.Tests
     [TestClass]
     public class FangstServiceTests
     {
-        private FangstService _service;
+        private PageDataService _service;
         private Mock<IUnitOfWorkFactory> _unitOfWorkFactoryMock;
         private Mock<Repository<Fangst>> _fangstRepositoryMock;
         private Mock<ISession> _sessionMock;
@@ -28,31 +30,8 @@ namespace Draugen.Service.Tests
             _fangstRepositoryMock = new Mock<Repository<Fangst>>();
             _unitOfWorkFactoryMock = new Mock<IUnitOfWorkFactory>();
             _unitOfWorkFactoryMock.Setup(u => u.Create()).Returns(_unitOfWorkMock.Object);
-            _service = new FangstService(_unitOfWorkFactoryMock.Object, _fangstRepositoryMock.Object);
-        }
-
-        [TestMethod]
-        public void GetFangster_MustSetFangstRepositorySessionFromUnitOfWork()
-        {
-            _service.GetFangster();
-            _fangstRepositoryMock.VerifySet(r => r.Session = _sessionMock.Object);
-        }
-
-        [TestMethod]
-        public void GetFangster_MustReturnAListOfEnumerableReturnedFromRepository_WhenListContainsZeroElements()
-        {
-            _fangstRepositoryMock.Setup(f => f.FindAll()).Returns(new List<Fangst>().AsQueryable());
-            var result = _service.GetFangster();
-            Assert.AreEqual(0, result.Count());
-        }
-
-        [TestMethod]
-        public void GetFangster_MustReturnAListOfEnumerableReturnedFromRepository_WhenListContainsMoreElements()
-        {
-            var list = new List<Fangst> {new Fangst(), new Fangst()};
-            _fangstRepositoryMock.Setup(f => f.FindAll()).Returns(list.AsQueryable());
-            var result = _service.GetFangster();
-            Assert.AreEqual(2, result.Count());
+            
+            _service = new PageDataService(_unitOfWorkFactoryMock.Object, _fangstRepositoryMock.Object, new HomeBuilder(new FangstAssembler(new KommentarAssembler())));
         }
     }
 }

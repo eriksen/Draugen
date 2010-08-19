@@ -17,7 +17,7 @@ namespace Draugen.Web.Setup
             this.RegisterType<IUnitOfWork, UnitOfWork>();
             this.RegisterType<IUnitOfWorkFactory, UnitOfWorkFactory>();
             this.RegisterType<IRepository<Fangst>, Repository<Fangst>>();
-            this.RegisterType<IFangstService, FangstService>();
+            this.RegisterType<IPageDataService, PageDataService>();
         }
     }
 }

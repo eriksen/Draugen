@@ -1,0 +1,93 @@
+﻿using System;
+using System.Linq;
+using System.Reflection;
+using Draugen.Data;
+using Draugen.Data.Repositories;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NHibernate;
+
+namespace Draugen.System.Tests.Data
+{
+    [TestClass]
+    public class PersistenceTests
+    {
+        private static DraugenConfiguration _configuration;
+        private static UnitOfWorkFactory _unitOfWorkFactory;
+
+        [ClassInitialize]
+        public static void Initialize(TestContext context)
+        {
+            _configuration = new DraugenConfiguration("Data Source=localhost;Initial Catalog=CatchbaseTest;Integrated Security=True");
+            _unitOfWorkFactory = new UnitOfWorkFactory(_configuration.GetSessionFactory());
+        }
+
+        [ClassCleanup]
+        public static void Cleanup()
+        {
+            _configuration.Dispose();
+            _unitOfWorkFactory = null;
+            _configuration = null;
+        }
+
+        [TestMethod]
+        public void Test()
+        {
+            _configuration.BuildSchema();
+            var team = new Team() {Grunnlagt = DateTime.Now, Navn = "Draugen"};
+            var fisker = new Fisker() {EPost = "simen.eriksen@draugen.org", Navn = "Simen", Team = team};
+            var kommentar = new Kommentar() {Forfatter = fisker, Innhold = "En liten kommentar"};
+            var sted = new Sted {Navn = "Grønøy"};
+            var art = new Art() {Latin = "Gadhus Morhua", Navn = "Torsk", Rekord = 37.5 };
+            var fangst = new Fangst()
+                             {
+                                 Art = art,
+                                 Dato = DateTime.Now,
+                                 Fisker = fisker,
+                                 Lengde = 108.5,
+                                 Sted = sted,
+                                 Vekt = 13.75
+                             };
+            fangst.Kommentarer.Add(kommentar);
+
+            using(var unitOfWork = _unitOfWorkFactory.Create())
+            {
+                Persist(team, unitOfWork.Session);
+                Persist(fisker, unitOfWork.Session);
+                Persist(sted, unitOfWork.Session);
+                Persist(art, unitOfWork.Session);
+                Persist(fangst, unitOfWork.Session);
+            }
+            Test(team);
+
+        }
+
+        private void Test<T>(T item) where T : Kommenterbar
+        {
+            var result = Load<T>(item.Id);
+            foreach(var property in typeof(T).GetProperties(BindingFlags.Public))
+            {
+                var resultValue = property.GetValue(result, null);
+                var originalValue = property.GetValue(item, null);
+                Assert.AreEqual(originalValue, resultValue, "PersistanceError" + typeof(T).Name + ":" + property.Name);
+            }
+        }
+
+        private T Load<T>(int id) where T : Kommenterbar
+        {
+            using(var unitOfWork = _unitOfWorkFactory.Create())
+            {
+                var repository = new Repository<T> { Session = unitOfWork.Session };
+                return repository.FindAll().Single(x => x.Id == id);
+            }
+        }
+
+        private void Persist<T>(T item, ISession session) where T : Kommenterbar
+        {
+            
+                var repository = new Repository<T> { Session = session };
+                repository.Add(item);
+            
+        }
+
+    }
+}

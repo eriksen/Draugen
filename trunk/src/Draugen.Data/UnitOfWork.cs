@@ -22,18 +22,20 @@ namespace Draugen.Data
 
         public void Dispose()
         {
-            try
-            {
-                Session.Transaction.Commit();
-            }
-            catch (Exception)
-            {
-                Session.Transaction.Rollback();
-            }
-            finally
-            {
-                Session.Dispose();
-            }
+            Session.Transaction.Commit();
+            Session.Dispose();
+            //try
+            //{
+            //    Session.Transaction.Commit();
+            //}
+            //catch (Exception)
+            //{
+            //    Session.Transaction.Rollback();
+            //}
+            //finally
+            //{
+            //    Session.Dispose();
+            //}
         }
     }
 }

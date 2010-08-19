@@ -41,7 +41,7 @@ namespace Draugen.Web.Tests.Setup
             Assert.IsInstanceOfType(_container.Resolve<IUnitOfWork>(), typeof(UnitOfWork));
             Assert.IsInstanceOfType(_container.Resolve<IUnitOfWorkFactory>(), typeof(UnitOfWorkFactory));
             Assert.IsInstanceOfType(_container.Resolve<IRepository<Fangst>>(), typeof(Repository<Fangst>));
-            Assert.IsInstanceOfType(_container.Resolve<IFangstService>(), typeof(FangstService));
+            Assert.IsInstanceOfType(_container.Resolve<IPageDataService>(), typeof(PageDataService));
         }
     }
 }

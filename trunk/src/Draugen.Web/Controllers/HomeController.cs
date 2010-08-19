@@ -8,51 +8,26 @@ namespace Draugen.Web.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly FangsterAssembler _fangsterAssembler;
-        private readonly FangstService _fangstService;
-
-        public HomeController(FangstService fangstService, FangsterAssembler fangsterAssembler)
+        [ContractInvariantMethod]
+        private void ObjectInvariant()
         {
-            _fangstService = fangstService;
-            _fangsterAssembler = fangsterAssembler;
+            Contract.Invariant(_pageDataService != null);
+        }
+        private readonly PageDataService _pageDataService;
+
+        public HomeController(PageDataService pageDataService)
+        {
+            Contract.Requires(pageDataService != null);
+            _pageDataService = pageDataService;
         }
 
         public ActionResult Index()
         {
-            var fangster = _fangstService.GetFangster();
-            var fangsterModel = _fangsterAssembler.WriteModel(fangster);
-            return View(fangsterModel);
+            var pageModel = _pageDataService.HomePage();
+            return View(pageModel);
         }
 
     }
 
-    public class FangsterAssembler
-    {
-        private readonly FangstAssembler _fangstAssembler;
-
-        public FangsterAssembler(FangstAssembler fangstAssembler)
-        {
-            Contract.Requires(fangstAssembler != null);
-            _fangstAssembler = fangstAssembler;
-        }
-
-        public Models.Fangster WriteModel(IEnumerable<Fangst> fangster)
-        {
-            return new Models.Fangster
-                                    {
-                                        List = fangster.Select(f => _fangstAssembler.WriteModel(f))
-                                    };
-        }
-    }
-
-    public class FangstAssembler
-    {
-        public Models.Fangst WriteModel(Fangst fangst)
-        {
-            return new Models.Fangst()
-                       {
-                           Vekt = fangst.Vekt.ToString()
-                       };
-        }
-    }
+   
 }

@@ -33,8 +33,9 @@ namespace Draugen.Web
 
         private static void RegisterControllerFactory()
         {
-            var configuration = new DraugenConfiguration("Data Source=KANE;Initial Catalog=Catchbase;Integrated Security=True");
-            var container = new DraugenUnityContainer(configuration.GetSessionFactory());
+            var configuration = new DraugenConfiguration("Data Source=KANE;Initial Catalog=CatchbaseTest;Integrated Security=True");
+            var sessionFactory = configuration.GetSessionFactory();
+            var container = new DraugenUnityContainer(sessionFactory);
             var controllerFactory = container.Resolve<DraugenControllerFactory>();
             ControllerBuilder.Current.SetControllerFactory(controllerFactory);
         }
