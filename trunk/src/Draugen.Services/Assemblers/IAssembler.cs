@@ -1,8 +1,8 @@
 ﻿namespace Draugen.Services.Assemblers
 {
-    public interface IAssembler<TDto, TDomain>
+    public interface IAssembler<TModel, TDomain>
     {
-        TDto CreateDto(TDomain domain);
-        TDomain Create(TDto dto);
+        TModel Create(TDomain domain);
+        TDomain Create(TModel model);
     }
 }

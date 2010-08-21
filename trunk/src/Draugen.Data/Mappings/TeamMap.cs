@@ -5,7 +5,7 @@
         public TeamMap()
         {
             Map(t => t.Grunnlagt);
-            HasMany(t => t.Medlemmer).Inverse();
+            HasMany(t => t.Medlemmer);
         }
     }
 }

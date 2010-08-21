@@ -16,12 +16,13 @@ namespace Draugen.Data.Tests
         [TestInitialize]
         public void InitializeTest()
         {
+            var unitOfWorkFactory = new Mock<IUnitOfWorkFactory>();
             _transaction = new Mock<ITransaction>();
             _session = new Mock<ISession>();
             _session.Setup(s => s.Transaction).Returns(_transaction.Object);
             _sessionFactory = new Mock<ISessionFactory>();
             _sessionFactory.Setup(s => s.OpenSession()).Returns(_session.Object);
-            _unitOfWork = new UnitOfWork(_sessionFactory.Object);
+            _unitOfWork = new UnitOfWork(unitOfWorkFactory.Object, _sessionFactory.Object);
         }
 
         [TestMethod]

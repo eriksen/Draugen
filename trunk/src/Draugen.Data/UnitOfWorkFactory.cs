@@ -5,27 +5,33 @@ namespace Draugen.Data
 {
     public class UnitOfWorkFactory : IUnitOfWorkFactory
     {
+        private readonly ISessionFactory _sessionFactory;
+        private IUnitOfWork _current;
+
         [ContractInvariantMethod]
         private void ObjectInvariant()
         {
             Contract.Invariant(_sessionFactory != null);
         }
 
-        private readonly ISessionFactory _sessionFactory;
-        
         public UnitOfWorkFactory(ISessionFactory sessionFactory)
         {
             Contract.Requires(sessionFactory != null);
             _sessionFactory = sessionFactory;
         }
 
-        public virtual IUnitOfWork Create()
+        public IUnitOfWork Create()
         {
             Contract.Ensures(Contract.Result<IUnitOfWork>() != null);
-            return new UnitOfWork(_sessionFactory);
+            return _current ?? (_current = new UnitOfWork(this, _sessionFactory));
         }
 
-        public virtual void Dispose()
+        public void Destroy()
+        {
+            _current = null;
+        }
+
+        public void Dispose()
         {
             _sessionFactory.Dispose();
         }

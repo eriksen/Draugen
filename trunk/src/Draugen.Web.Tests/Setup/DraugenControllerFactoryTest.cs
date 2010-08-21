@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Web.Mvc;
 using System.Web.Routing;
-using Draugen.Web.Setup;
+using Draugen.Setup;
 using Microsoft.Practices.Unity;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 

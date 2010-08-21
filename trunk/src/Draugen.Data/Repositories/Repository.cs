@@ -7,27 +7,31 @@ namespace Draugen.Data.Repositories
 {
     public class Repository<T> : IRepository<T> where T : Kommenterbar
     {
+        private readonly ISession _session;
 
-        public virtual ISession Session { get; set; }
-        
+        public Repository(IUnitOfWorkFactory unitOfWorkFactory)
+        {
+            _session = unitOfWorkFactory.Create().Session;
+        }
+
         public virtual IQueryable<T> FindAll()
         {
-            
-            return Session.Linq<T>();
+
+            return _session.Linq<T>();
         }
 
         public virtual void Add(T item)
         {
             foreach (var kommentar in item.Kommentarer)
             {
-                Session.SaveOrUpdate(kommentar);
+                _session.SaveOrUpdate(kommentar);
             }
-            Session.SaveOrUpdate(item);
+            _session.SaveOrUpdate(item);
         }
 
         public virtual void Delete(T item)
         {
-            Session.Delete(item);
+            _session.Delete(item);
         }
     }
 }

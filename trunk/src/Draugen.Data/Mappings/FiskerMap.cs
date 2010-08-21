@@ -5,7 +5,7 @@
         public FiskerMap()
         {
             Map(x => x.EPost);
-            HasOne(f => f.Team);
+            References(x => x.Team);
         }
     }
 }

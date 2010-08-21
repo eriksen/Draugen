@@ -4,9 +4,9 @@
     {
         public FangstMap()
         {
-            //References(x => x.Art);
-            //References(x => x.Sted);
-            //References(x => x.Fisker);
+            References(x => x.Art);
+            References(x => x.Sted);
+            References(x => x.Fisker);
             Map(x => x.Lengde);
             Map(x => x.Vekt);
         }

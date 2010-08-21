@@ -49,13 +49,13 @@ namespace Draugen.System.Tests.Data
                              };
             fangst.Kommentarer.Add(kommentar);
 
-            using(var unitOfWork = _unitOfWorkFactory.Create())
+            using( _unitOfWorkFactory.Create())
             {
-                Persist(team, unitOfWork.Session);
-                Persist(fisker, unitOfWork.Session);
-                Persist(sted, unitOfWork.Session);
-                Persist(art, unitOfWork.Session);
-                Persist(fangst, unitOfWork.Session);
+                Persist(team);
+                Persist(fisker);
+                Persist(sted);
+                Persist(art);
+                Persist(fangst);
             }
             Test(team);
 
@@ -63,7 +63,11 @@ namespace Draugen.System.Tests.Data
 
         private void Test<T>(T item) where T : Kommenterbar
         {
-            var result = Load<T>(item.Id);
+            T result;
+            using(_unitOfWorkFactory.Create())
+            {
+                result = Load<T>(item.Id);
+            }
             foreach(var property in typeof(T).GetProperties(BindingFlags.Public))
             {
                 var resultValue = property.GetValue(result, null);
@@ -74,17 +78,14 @@ namespace Draugen.System.Tests.Data
 
         private T Load<T>(int id) where T : Kommenterbar
         {
-            using(var unitOfWork = _unitOfWorkFactory.Create())
-            {
-                var repository = new Repository<T> { Session = unitOfWork.Session };
-                return repository.FindAll().Single(x => x.Id == id);
-            }
+            var repository = new Repository<T>(_unitOfWorkFactory);
+            return repository.FindAll().Single(x => x.Id == id);
         }
 
-        private void Persist<T>(T item, ISession session) where T : Kommenterbar
+        private void Persist<T>(T item) where T : Kommenterbar
         {
-            
-                var repository = new Repository<T> { Session = session };
+
+            var repository = new Repository<T>(_unitOfWorkFactory);
                 repository.Add(item);
             
         }

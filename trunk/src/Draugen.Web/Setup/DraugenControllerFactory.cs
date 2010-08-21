@@ -4,7 +4,7 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using Microsoft.Practices.Unity;
 
-namespace Draugen.Web.Setup
+namespace Draugen.Setup
 {
     public class DraugenControllerFactory : DefaultControllerFactory
     {

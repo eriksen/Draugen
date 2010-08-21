@@ -1,33 +1,21 @@
-﻿using System.Collections.Generic;
-using System.Diagnostics.Contracts;
-using System.Linq;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using Draugen.Services;
 
-namespace Draugen.Web.Controllers
+namespace Draugen.Controllers
 {
     public class HomeController : Controller
     {
-        [ContractInvariantMethod]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(_pageDataService != null);
-        }
-        private readonly PageDataService _pageDataService;
+        private readonly IPageService _pageService;
 
-        public HomeController(PageDataService pageDataService)
+        public HomeController(IPageService pageService)
         {
-            Contract.Requires(pageDataService != null);
-            _pageDataService = pageDataService;
+            _pageService = pageService;
         }
 
         public ActionResult Index()
         {
-            var pageModel = _pageDataService.HomePage();
-            return View(pageModel);
+            return View("", _pageService.GetHomePageData());
         }
 
     }
-
-   
 }

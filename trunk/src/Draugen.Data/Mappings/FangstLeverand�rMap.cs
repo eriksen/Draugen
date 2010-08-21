@@ -5,7 +5,7 @@
         public FangstLeverandørMap()
         {
             Map(x => x.Navn);
-            HasMany(x => x.Fangster).Inverse();
+            HasMany(x => x.Fangster);
         }
     }
 }

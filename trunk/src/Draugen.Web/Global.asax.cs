@@ -1,16 +1,16 @@
 ﻿using System.Web.Mvc;
 using System.Web.Routing;
-using Draugen.Data;
-using Draugen.Web.Setup;
+using Draugen.Setup;
 using Microsoft.Practices.Unity;
 
-namespace Draugen.Web
+namespace Draugen
 {
     // Note: For instructions on enabling IIS6 or IIS7 classic mode, 
     // visit http://go.microsoft.com/?LinkId=9394801
 
     public class MvcApplication : System.Web.HttpApplication
     {
+        public static IUnityContainer Container;
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
@@ -28,16 +28,15 @@ namespace Draugen.Web
             AreaRegistration.RegisterAllAreas();
             RegisterRoutes(RouteTable.Routes);
 
+            Container = UnityContainerFactory.Create();
             RegisterControllerFactory();
         }
 
         private static void RegisterControllerFactory()
         {
-            var configuration = new DraugenConfiguration("Data Source=KANE;Initial Catalog=CatchbaseTest;Integrated Security=True");
-            var sessionFactory = configuration.GetSessionFactory();
-            var container = new DraugenUnityContainer(sessionFactory);
-            var controllerFactory = container.Resolve<DraugenControllerFactory>();
+            var controllerFactory = Container.Resolve<DraugenControllerFactory>();
             ControllerBuilder.Current.SetControllerFactory(controllerFactory);
         }
+
     }
 }
