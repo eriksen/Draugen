@@ -9,5 +9,6 @@
         public string Vekt { get; set; }
         public string Lengde { get; set; }
         public string Poeng { get; set; }
+        public string Team { get; set; }
     }
 }

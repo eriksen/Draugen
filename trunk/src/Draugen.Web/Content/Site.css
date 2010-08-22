@@ -26,3 +26,25 @@
 {
     display: none;
 }
+
+.fangstCard {
+background:#ccc;
+color:#fff;
+margin:0 15px 5px;
+}
+
+.rtop, .rbottom{
+display:block;
+background:#fff;
+}
+ .rtop *, .rbottom *{
+display: block;
+height: 1px;
+overflow: hidden;
+background:#ccc;
+}
+
+.r1{margin: 0 5px}
+ .r2{margin: 0 3px}
+ .r3{margin: 0 2px}
+ .r4{margin: 0 1px; height: 2px}

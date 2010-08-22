@@ -7,7 +7,7 @@ namespace Draugen.Setup
     {
         public static IUnityContainer Create()
         {
-            var configuration = new DraugenConfiguration("Data Source=KANE;Initial Catalog=CatchbaseTest;Integrated Security=True");
+            var configuration = new DraugenConfiguration("Data Source=KANE;Initial Catalog=Catchbase;Integrated Security=True");
             var sessionFactory = configuration.GetSessionFactory();
             return new DraugenUnityContainer(sessionFactory);
         }

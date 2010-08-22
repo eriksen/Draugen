@@ -1,11 +1,11 @@
 ﻿namespace Draugen.Data.Mappings
 {
-    public class TeamMap : KommenterbarMap<Team>
+    public class TeamMap : FangstLeverandørMap<Team>
     {
         public TeamMap()
         {
-            Map(t => t.Grunnlagt);
-            HasMany(t => t.Medlemmer);
+            Map(x => x.Grunnlagt);
+            HasMany(x => x.Medlemmer);
         }
     }
 }

@@ -16,7 +16,7 @@ namespace Draugen.Services.Assemblers.Cards
                            Poeng = domain.Poeng().ToString(),
                            Sted = domain.Sted.Navn,
                            Vekt = domain.Vekt.ToString()
-                       };
+                      };
         }
 
         public Fangst Create(FangstCard model)
