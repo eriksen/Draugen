@@ -3,7 +3,7 @@
 <b class="rtop"><b class="r1"></b> <b class="r2"></b> <b class="r3"></b> <b class="r4"></b></b>
 <table>
     <tr>
-        <td rowspan="4">img</td>
+        <td rowspan="4"><img src="<%= Model.Image %>" /></td>
         <td>Art:</td><td><%= Model.Art %></td>
         <td>Poeng:</td><td><%= Model.Poeng %></td>
     </tr>

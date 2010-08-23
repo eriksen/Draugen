@@ -10,5 +10,6 @@
         public string Lengde { get; set; }
         public string Poeng { get; set; }
         public string Team { get; set; }
+        public string Image { get; set;  }
     }
 }

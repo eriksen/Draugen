@@ -15,7 +15,9 @@ namespace Draugen.Services.Assemblers.Cards
                            Lengde = domain.Lengde.ToString(),
                            Poeng = domain.Poeng().ToString(),
                            Sted = domain.Sted.Navn,
-                           Vekt = domain.Vekt.ToString()
+                           Vekt = domain.Vekt.ToString(),
+                           Team = domain.Fisker.Team.Navn,
+                           Image = domain.Thumbnail()
                       };
         }
 

@@ -14,5 +14,9 @@ namespace Draugen
         {
             return Vekt*100/Art.Rekord;
         }
+        public virtual string Thumbnail()
+        {
+            return "http://www.draugen.org/img/fangstbilder_thumb/draug442.jpg";
+        }
     }
 }
