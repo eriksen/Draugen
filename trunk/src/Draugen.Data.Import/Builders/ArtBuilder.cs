@@ -23,7 +23,8 @@ namespace Draugen.Data.Import.Builders
                           {
                               Latin = "",
                               Navn = match.Groups["name"].AsString(),
-                              Rekord = match.Groups["record"].AsKilo()
+                              Rekord = match.Groups["record"].AsKilo(),
+                              LegacyId = match.Groups["id"].AsInt()
                           };
             art.Kommentarer.Add(new Kommentar() { Forfatter = _forfatter, Innhold = match.Groups["comment"].AsString()});
             return art;

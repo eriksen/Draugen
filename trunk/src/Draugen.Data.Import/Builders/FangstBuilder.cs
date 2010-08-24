@@ -33,7 +33,8 @@ namespace Draugen.Data.Import.Builders
                                  Fisker = _fiskere[match.Groups["fiskerid"].AsInt()],
                                  Lengde = match.Groups["lengde"].AsCentimeters(),
                                  Sted = _steder[match.Groups["stedid"].AsInt()],
-                                 Vekt = match.Groups["vekt"].AsKilo()
+                                 Vekt = match.Groups["vekt"].AsKilo(),
+                                 LegacyId = match.Groups["id"].AsInt()
                              };
             fangst.Kommentarer.Add(new Kommentar() { Forfatter = fangst.Fisker, Innhold = match.Groups["comment"].AsString()});
             return fangst;

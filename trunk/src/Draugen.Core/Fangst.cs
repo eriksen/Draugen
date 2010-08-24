@@ -16,7 +16,7 @@ namespace Draugen
         }
         public virtual string Thumbnail()
         {
-            return "http://www.draugen.org/img/fangstbilder_thumb/draug442.jpg";
+            return string.Format("http://www.draugen.org/img/fangstbilder_thumb/draug{0}.jpg", LegacyId);
         }
     }
 }

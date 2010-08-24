@@ -10,7 +10,7 @@ namespace Draugen.Services.Assemblers.Cards
             return new FangstCard()
                        {
                            Art = domain.Art.Navn,
-                           Dato = domain.Dato.Date.ToString(),
+                           Dato = domain.Dato.ToShortDateString(),
                            Fisker = domain.Fisker.Navn,
                            Lengde = domain.Lengde.ToString(),
                            Poeng = domain.Poeng().ToString(),

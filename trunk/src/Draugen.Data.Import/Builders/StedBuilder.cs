@@ -21,7 +21,8 @@ namespace Draugen.Data.Import.Builders
         {
             var sted =  new Sted()
                        {
-                           Navn = match.Groups["name"].AsString()
+                           Navn = match.Groups["name"].AsString(),
+                           LegacyId = match.Groups["id"].AsInt()
                        };
             sted.Kommentarer.Add(new Kommentar() { Forfatter = _forfatter, Innhold = match.Groups["comment"].AsString() });
             return sted;

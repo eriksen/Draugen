@@ -4,6 +4,7 @@
     {
         protected KommenterbarMap()
         {
+            Map(x => x.LegacyId);
             HasManyToMany(x => x.Kommentarer).Table(typeof(T).Name + "_Kommentar");
         }
     }

@@ -10,5 +10,7 @@ namespace Draugen
         }
 
         public virtual IList<Kommentar> Kommentarer { get; set; }
+
+        public virtual int LegacyId { get; set; }
     }
 }

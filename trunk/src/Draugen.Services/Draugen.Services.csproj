@@ -79,6 +79,7 @@
     <Compile Include="PageService.cs" />
     <Compile Include="IPageService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\Cards\TocCard.cs" />
     <Compile Include="ViewModels\Decks\FangstDeck.cs" />
     <Compile Include="ViewModels\Pages\HomePage.cs" />
   </ItemGroup>

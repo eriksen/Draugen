@@ -27,7 +27,8 @@ namespace Draugen.Data.Import.Builders
                            EPost = match.Groups["email"].AsString(),
                            Navn = match.Groups["name"].AsString(),
                            Tittel = match.Groups["status"].AsStatus(),
-                           Team = _team
+                           Team = _team,
+                           LegacyId = match.Groups["id"].AsInt()
                        };
         }
     }

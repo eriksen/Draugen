@@ -108,8 +108,10 @@
   <ItemGroup>
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="OldDraguen.htm" />
+    <Content Include="Views\Shared\FangstDeck.ascx" />
     <Content Include="Views\Home\Index.aspx" />
-    <Content Include="Views\Shared\FangstCard.ascx" />
+    <Content Include="Views\Shared\TocCard.ascx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

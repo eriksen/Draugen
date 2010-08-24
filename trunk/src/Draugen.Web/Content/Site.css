@@ -27,24 +27,221 @@
     display: none;
 }
 
-.fangstCard {
-background:#ccc;
-color:#fff;
-margin:0 15px 5px;
+
+body {
+	margin: 2px;
+	padding: 0;
+	background-color: black;
+	font-family: Helvetica, Verdana, sans-serif;
+	color: #ABABAB;	
 }
 
-.rtop, .rbottom{
-display:block;
-background:#fff;
+a:link {color: #A16B00;text-decoration: none;}     /* unvisited link */
+a:visited {color: #A16B00;text-decoration: none;}  /* visited link */
+a:hover {color: #543200;text-decoration: underline;}   /* mouse over link */
+a:active {color: #A16B00}   /* selected link */ 
+
+#main th {
+	border-right-width: 1px;
+	border-right-style: solid;
+	border-right-color: #A12B00;
+	border-bottom-width: 2px;
+	border-bottom-style: solid;
+	border-bottom-color: #A12B00;
+	color: #ABABAB;
 }
- .rtop *, .rbottom *{
-display: block;
-height: 1px;
-overflow: hidden;
-background:#ccc;
+#main td {
+	color: #ABABAB;
+	vertical-align: top;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-right-style: solid;
+	border-right-color: #A12B00;
+	border-bottom-style: solid;
+	border-bottom-color: #A12B00;
 }
 
-.r1{margin: 0 5px}
- .r2{margin: 0 3px}
- .r3{margin: 0 2px}
- .r4{margin: 0 1px; height: 2px}
+.subtext a:link {color:#ABABAB; text-decoration: none;}     /* unvisited link */
+.subtext a:visited {color:#ABABAB; text-decoration: none;}  /* visited link */
+.subtext a:hover {color: black; text-decoration: none;}   /* mouse over link */
+.subtext a:active {color:#ABABAB; text-decoration: none;}   /* selected link */ 
+
+.subtext {
+	font-size: xx-small;
+	color: #ABABAB;
+}
+img {
+	border: 0;
+}
+img.thumbs {
+	max-width:120px;
+	max-height:120px;
+}
+
+#main table {
+	border-right-width: 0px;
+	border-bottom-width: 0px;
+	border-left-width: 1px;
+	border-top-width: 1px;
+	border-left-style: solid;
+	border-left-color: #A12B00;
+	border-top-style: solid;
+	border-top-color: #A12B00;
+}
+#l2 {
+	display: none;
+}
+
+label{
+	font-size: xx-small;
+	padding:0px; margin:0px;
+}
+
+input.btn
+{
+	height: 12px;
+	font-size: xx-small;
+	width: 75px;
+	padding:0px; margin:0px;
+}
+input.txt
+{
+	height: 10px;
+	font-size: xx-small;
+	width: 70px;
+	background-color: transparent;
+	color: #ABABAB;
+	margin: 0px; padding: 0px;
+}
+
+#logo {
+	width: 120px;
+	height: 100px;
+	position: absolute;
+	top: 2px;
+	left: 2px;
+	margin: 0; padding: 0;
+	vertical-align: middle;
+}
+#logo h2 {
+	text-align: center;
+	margin: 0; padding: 0;
+}
+
+
+#title h1 {
+	margin: 0px; padding: 3px; padding-bottom: 6px;
+}
+#title p {
+	font-style: italic;
+	margin: 0; padding: 0;
+}
+
+#login {
+	width: 120px;
+	height: 100px;
+	position: absolute;
+	top: 2px;
+	left: 680px;
+	font-size: x-small;
+	margin: 0; padding: 0;
+	text-align: right;
+}
+
+div.ad {
+
+}
+div.ad span{
+	display: none;
+}
+
+#search {
+	position: absolute;
+	margin: 0; padding: 0;
+	width: 268px;
+	top: 115px;
+	left: 703px;
+	text-align: right;
+	overflow: visible;
+}
+
+#mainsearch {
+	width: 848px;
+	position: absolute;
+	top: 100px;
+	left: 122px;
+	margin: 0; padding: 0;
+	overflow: visible;	
+}
+
+#toc {
+	width: 120px;
+	position: absolute;
+	top: 102px;
+	left: 2px;
+	margin: 0; padding: 0;
+	font-size: small;
+}
+
+#main {
+	width: 728px;
+	position: absolute;
+	top: 100px;
+	left: 122px;
+	margin: 0; padding: 0;
+	overflow: visible;	
+}
+#topleftads {
+	position: absolute;
+	top: 2px;
+	left: 852px;
+	width: 120px;
+	margin: 0; padding: 0;
+}
+#sideads {
+	position: absolute;
+	top: 148px;
+	left: 852px;
+	width: 120px;
+	margin: 0; padding: 0;
+}
+#bottomads {
+	margin: 0; padding: 0;
+}
+#title {
+	height: 100px;
+	width: 728px;
+	position: absolute;
+	top: 2px;
+	left: 122px;
+	margin: 0; padding: 0;
+	text-align: center;
+}
+#sistefangster td, th{
+
+}
+#sistefangster td.numeric {
+	text-align: right;
+}
+#sistefangster table {
+	width: 100%;
+	margin: 0; padding: 0;
+}
+div.guest {
+	border-style: solid;
+	border-color: black;
+	border-width: 5px;
+	right: 0px;
+}
+div.guest p {
+	margin: 0; padding: 0;
+}
+p.header {
+	background-color: #A12B00;
+}
+p.header span{
+	text-align: right;
+	left: 200px;
+	color: black;
+	font-weight: bold;
+}
