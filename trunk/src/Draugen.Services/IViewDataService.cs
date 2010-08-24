@@ -2,8 +2,8 @@
 
 namespace Draugen.Services
 {
-    public interface IPageService
+    public interface IViewDataService
     {
-        HomePageData GetHomePageData();
+        IndexData GetHomePageData();
     }
 }

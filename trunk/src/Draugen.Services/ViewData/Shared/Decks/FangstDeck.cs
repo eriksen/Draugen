@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Draugen.Services.ViewModels.Cards;
+using Draugen.Services.ViewData.Shared.Cards;
 
 namespace Draugen.Services.ViewModels.Decks
 {

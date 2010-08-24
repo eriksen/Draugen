@@ -35,6 +35,8 @@
             </CodeCoverage>
           </Configuration>
         </DataCollector>
+        <DataCollector uri="datacollector://microsoft/AspNetProfiler/1.0" assemblyQualifiedName="Microsoft.VisualStudio.PerformanceTools.DataCollection.AspNetProfileDataCollector, Microsoft.VisualStudio.PerformanceTools.DataCollection, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" friendlyName="ASP.NET Profiler">
+        </DataCollector>
       </DataCollectors>
     </AgentRule>
   </Execution>

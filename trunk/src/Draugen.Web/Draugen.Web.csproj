@@ -98,18 +98,17 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Setup\DraugenControllerFactory.cs" />
-    <Compile Include="Setup\DraugenUnityContainer.cs" />
-    <Compile Include="Setup\UnityContainerFactory.cs" />
+    <Compile Include="Initialize\DraugenControllerFactory.cs" />
+    <Compile Include="Initialize\DraugenUnityContainer.cs" />
+    <Compile Include="Initialize\DraugenWebFormViewEngine.cs" />
+    <Compile Include="Initialize\UnityContainerFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="OldDraguen.htm" />
-    <Content Include="Views\Home\ViewPage1.aspx" />
-    <Content Include="Views\Shared\FangstDeck.ascx" />
+    <Content Include="Views\Shared\Decks\FangstDeck.ascx" />
     <Content Include="Views\Home\Index.aspx" />
-    <Content Include="Views\Shared\TocCard.ascx" />
+    <Content Include="Views\Shared\TocData.ascx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -132,7 +131,7 @@
     <Content Include="Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Services\" />
+    <Folder Include="Views\Shared\Cards\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Draugen.Core\Draugen.Core.csproj">

@@ -1,4 +1,4 @@
-﻿namespace Draugen.Services.ViewModels.Cards
+﻿namespace Draugen.Services.ViewData.Shared.Cards
 {
     public class FangstCard
     {
@@ -10,6 +10,6 @@
         public string Lengde { get; set; }
         public string Poeng { get; set; }
         public string Team { get; set; }
-        public string Image { get; set;  }
+        public BildeCard Bilde { get; set;  }
     }
 }

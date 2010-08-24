@@ -1,8 +1,7 @@
-﻿using System.IO;
-using Draugen.Data;
+﻿using Draugen.Data;
 using Microsoft.Practices.Unity;
 
-namespace Draugen.Setup
+namespace Draugen.Initialize
 {
     public class UnityContainerFactory
     {

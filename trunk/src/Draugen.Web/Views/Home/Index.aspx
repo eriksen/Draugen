@@ -1,4 +1,4 @@
-<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Draugen.Master" Inherits="System.Web.Mvc.ViewPage<Draugen.Services.ViewModels.Pages.HomePageData>" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Draugen.Master" Inherits="System.Web.Mvc.ViewPage<Draugen.Services.ViewModels.Pages.IndexData>" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="server">
     <title>Draugen</title>

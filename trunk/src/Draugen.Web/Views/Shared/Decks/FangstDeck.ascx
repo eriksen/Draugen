@@ -10,7 +10,7 @@
     </tr>
     <% foreach (var fangst in Model) { %>
     <tr>
-        <td><img src="<%= fangst.Image %>" alt="bilde" /></td>
+        <td><img src="<%= fangst.Bilde.Src %>" alt="<%= fangst.Bilde.Alt %>" /></td>
         <td><%= fangst.Art %></td>
         <td class="numeric"><%= fangst.Vekt %></td>
         <td><%= fangst.Fisker %></td>

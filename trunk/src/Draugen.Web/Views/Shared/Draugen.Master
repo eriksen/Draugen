@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage<Draugen.Services.ViewModels.Pages.MasterPageData>" %>
+﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage<Draugen.Services.ViewData.Shared.MasterData>" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -7,7 +7,7 @@
         <title></title>
         <asp:ContentPlaceHolder ID="head" runat="server">
         </asp:ContentPlaceHolder>
-        <link type="text/css"  href="http://www.draguen.org/css/tradisjonell.css"/>
+        <link type="text/css"  href="/Content/Site.css"/>
     </head>
     <body>
         <div id="title">

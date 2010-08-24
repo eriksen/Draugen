@@ -1,7 +1,7 @@
 ﻿using Draugen.Data;
 using Draugen.Data.Repositories;
+using Draugen.Initialize;
 using Draugen.Services;
-using Draugen.Setup;
 using Microsoft.Practices.Unity;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
@@ -41,7 +41,7 @@ namespace Draugen.Web.Setup
             Assert.IsInstanceOfType(_container.Resolve<IUnitOfWork>(), typeof(UnitOfWork));
             Assert.IsInstanceOfType(_container.Resolve<IUnitOfWorkFactory>(), typeof(UnitOfWorkFactory));
             Assert.IsInstanceOfType(_container.Resolve<IRepository<Fangst>>(), typeof(Repository<Fangst>));
-            Assert.IsInstanceOfType(_container.Resolve<IPageService>(), typeof(PageService));
+            Assert.IsInstanceOfType(_container.Resolve<IViewDataService>(), typeof(ViewDataService));
         }
     }
 }

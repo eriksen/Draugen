@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 using System.Web.Routing;
-using Draugen.Setup;
+using Draugen.Initialize;
 using Microsoft.Practices.Unity;
 
 namespace Draugen
@@ -11,6 +11,7 @@ namespace Draugen
     public class MvcApplication : System.Web.HttpApplication
     {
         public static IUnityContainer Container;
+
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
@@ -25,10 +26,14 @@ namespace Draugen
 
         protected void Application_Start()
         {
+            Container = UnityContainerFactory.Create();
+
             AreaRegistration.RegisterAllAreas();
             RegisterRoutes(RouteTable.Routes);
 
-            Container = UnityContainerFactory.Create();
+            ViewEngines.Engines.Clear();
+            ViewEngines.Engines.Add(new DraugenWebFormViewEngine());
+
             RegisterControllerFactory();
         }
 

@@ -20,6 +20,6 @@ namespace Draugen
             return Vekt*100/Art.Rekord;
         }
 
-        public virtual Bilde Bilde { get; set; }
+        public virtual Bilde Bilde { get; private set; }
     }
 }

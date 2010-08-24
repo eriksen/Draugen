@@ -5,16 +5,16 @@ namespace Draugen.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IPageService _pageService;
+        private readonly IViewDataService _viewDataService;
 
-        public HomeController(IPageService pageService)
+        public HomeController(IViewDataService viewDataService)
         {
-            _pageService = pageService;
+            _viewDataService = viewDataService;
         }
 
         public ActionResult Index()
         {
-            return View("", _pageService.GetHomePageData());
+            return View(_viewDataService.GetHomePageData());
         }
 
     }

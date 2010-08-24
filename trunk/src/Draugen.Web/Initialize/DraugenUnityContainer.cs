@@ -6,14 +6,16 @@ using Draugen.Services;
 using Draugen.Services.Assemblers;
 using Draugen.Services.Assemblers.Cards;
 using Draugen.Services.Assemblers.Decks;
-using Draugen.Services.Builders.Pages;
-using Draugen.Services.ViewModels.Cards;
+using Draugen.Services.DataBuilders;
+using Draugen.Services.DataBuilders.Home;
+using Draugen.Services.DataBuilders.Shared;
+using Draugen.Services.ViewData.Shared.Cards;
 using Draugen.Services.ViewModels.Decks;
 using Draugen.Services.ViewModels.Pages;
 using Microsoft.Practices.Unity;
 using NHibernate;
 
-namespace Draugen.Setup
+namespace Draugen.Initialize
 {
     public class DraugenUnityContainer : UnityContainer
     {
@@ -25,13 +27,13 @@ namespace Draugen.Setup
             this.RegisterInstance(sessionFactory);
             this.RegisterType<IUnitOfWork, UnitOfWork>();
             this.RegisterType<IUnitOfWorkFactory, UnitOfWorkFactory>();
-
             this.RegisterType<IRepository<Fangst>, Repository<Fangst>>();
-            this.RegisterType<IBuilder<HomePageData>, HomePageDataBuilder>();
-            this.RegisterType<IPageService, PageService>();
 
-            this.RegisterType<IAssembler<FangstCard, Fangst>, FangstCardAssembler>();
-            this.RegisterType<IAssembler<FangstDeck, IEnumerable<Fangst>>, FangstDeckAssembler>();
+            this.RegisterType<IViewDataService, ViewDataService>();
+            this.RegisterType<IMasterBuilder, MasterBuilder>();
+            this.RegisterType<IBuilder<IndexData>, IndexBuilder>();
+            this.RegisterType<IAssembler<FangstCard, Fangst>, FangstAssembler>();
+            this.RegisterType<IAssembler<FangstDeck, IEnumerable<Fangst>>, FangsterAssembler>();
         }
     }
 }
