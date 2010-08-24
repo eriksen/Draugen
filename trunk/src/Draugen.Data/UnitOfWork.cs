@@ -16,6 +16,8 @@ namespace Draugen.Data
 
         public UnitOfWork(IUnitOfWorkFactory unitOfWorkFactory, ISessionFactory sessionFactory)
         {
+            Contract.Requires(unitOfWorkFactory != null);
+            Contract.Requires(sessionFactory != null);
             _unitOfWorkFactory = unitOfWorkFactory;
             Session = sessionFactory.OpenSession();
             Session.BeginTransaction();
@@ -25,21 +27,26 @@ namespace Draugen.Data
 
         public void Dispose()
         {
-            Session.Transaction.Commit();
-            Session.Dispose();
-            _unitOfWorkFactory.Destroy();
-            //try
-            //{
-            //    Session.Transaction.Commit();
-            //}
-            //catch (Exception)
-            //{
-            //    Session.Transaction.Rollback();
-            //}
-            //finally
-            //{
-            //    Session.Dispose();
-            //}
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected void Dispose(bool disposing)
+        {
+            if(!disposing){ return; }
+            try
+            {
+                Session.Transaction.Commit();
+            }
+            catch (Exception)
+            {
+                Session.Transaction.Rollback();
+            }
+            finally
+            {
+                Session.Dispose();
+                _unitOfWorkFactory.DestroyCurrentUnitOfWork();
+            }
         }
     }
 }

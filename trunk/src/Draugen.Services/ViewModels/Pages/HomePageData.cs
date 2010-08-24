@@ -2,7 +2,7 @@
 
 namespace Draugen.Services.ViewModels.Pages
 {
-    public class HomePage
+    public class HomePageData : MasterPageData
     {
         public FangstDeck Fangster { get; set; }
     }

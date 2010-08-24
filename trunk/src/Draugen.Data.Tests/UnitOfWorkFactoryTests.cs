@@ -2,7 +2,7 @@
 using Moq;
 using NHibernate;
 
-namespace Draugen.Data.Tests
+namespace Draugen.Data
 {
     [TestClass]
     public class UnitOfWorkFactoryTests
@@ -38,6 +38,21 @@ namespace Draugen.Data.Tests
         {
             _factory.Dispose();
             _sessionFactory.Verify(s => s.Dispose());
+        }
+
+        [TestMethod]
+        public void Create_MustNotCreate_WhenUnitOfWorkInstanceIsAlreadyCreated()
+        {
+            var uof = _factory.Create();
+            Assert.AreSame(uof, _factory.Create());
+        }
+
+        [TestMethod]
+        public void DestoryCurrentUnitOfWork()
+        {
+            var uow = _factory.Create();
+            _factory.DestroyCurrentUnitOfWork();
+            Assert.AreNotSame(uow, _factory.Create());
         }
     }
 }

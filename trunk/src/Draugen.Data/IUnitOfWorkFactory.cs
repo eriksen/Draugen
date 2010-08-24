@@ -5,6 +5,6 @@ namespace Draugen.Data
     public interface IUnitOfWorkFactory : IDisposable
     {
         IUnitOfWork Create();
-        void Destroy();
+        void DestroyCurrentUnitOfWork();
     }
 }

@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Linq;
 using System.Reflection;
-using Draugen.Data;
 using Draugen.Data.Repositories;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using NHibernate;
 
-namespace Draugen.System.Tests.Data
+namespace Draugen.Data
 {
+    /// <summary>
+    /// Requires database localhost\CathbaseTest is created
+    /// </summary>
     [TestClass]
-    public class PersistenceTests
+    public class DraguenConfigurationTests
     {
         private static DraugenConfiguration _configuration;
         private static UnitOfWorkFactory _unitOfWorkFactory;
@@ -24,9 +25,11 @@ namespace Draugen.System.Tests.Data
         [ClassCleanup]
         public static void Cleanup()
         {
-            _configuration.Dispose();
+            _unitOfWorkFactory.Dispose();
             _unitOfWorkFactory = null;
+            _configuration.Dispose();
             _configuration = null;
+            _unitOfWorkFactory = null;
         }
 
         [TestMethod]
@@ -59,6 +62,8 @@ namespace Draugen.System.Tests.Data
             }
             Test(team);
 
+            _unitOfWorkFactory.Dispose();
+            _configuration.Dispose();
         }
 
         private void Test<T>(T item) where T : Kommenterbar

@@ -9,12 +9,12 @@ namespace Draugen.Services
     {
         public PageService(IUnityContainer container) : base(container){}
 
-        public HomePage GetHomePageData()
+        public HomePageData GetHomePageData()
         {
-            Contract.Ensures(Contract.Result<HomePage>() != null);
+            Contract.Ensures(Contract.Result<HomePageData>() != null);
             using(UnitOfWorkFactory.Create())
             {
-                return Container.Resolve<IBuilder<HomePage>>().Build();
+                return Container.Resolve<IBuilder<HomePageData>>().Build();
             }
         }
 

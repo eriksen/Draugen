@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Draugen.Tests
+namespace Draugen.Core
 {
     [TestClass]
     public class FangstTests

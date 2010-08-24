@@ -9,7 +9,7 @@
     <ProjectGuid>{4F9D8E7A-7F4D-4AAE-A2D4-303FD53603D8}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Draugen.System.Tests</RootNamespace>
+    <RootNamespace>Draugen</RootNamespace>
     <AssemblyName>Draugen.System.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -72,7 +72,7 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Data\PersistenceTests.cs" />
+    <Compile Include="Data\DraguenConfigurationTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\PageServiceTests.cs" />
   </ItemGroup>

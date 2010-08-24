@@ -1,4 +1,5 @@
-﻿using System.Diagnostics.Contracts;
+﻿using System;
+using System.Diagnostics.Contracts;
 using NHibernate;
 
 namespace Draugen.Data
@@ -26,13 +27,20 @@ namespace Draugen.Data
             return _current ?? (_current = new UnitOfWork(this, _sessionFactory));
         }
 
-        public void Destroy()
+        public void DestroyCurrentUnitOfWork()
         {
             _current = null;
         }
 
         public void Dispose()
         {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected void Dispose(bool disposing)
+        {
+            if(!disposing){ return; }
             _sessionFactory.Dispose();
         }
     }

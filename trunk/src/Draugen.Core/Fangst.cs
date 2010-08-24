@@ -4,6 +4,11 @@ namespace Draugen
 { 
     public class Fangst : Kommenterbar
     {
+        public Fangst()
+        {
+            Bilde = new Bilde(this);   
+        }
+
         public virtual DateTime Dato { get; set; }
         public virtual Art Art { get; set; }
         public virtual Sted Sted { get; set; }
@@ -14,9 +19,7 @@ namespace Draugen
         {
             return Vekt*100/Art.Rekord;
         }
-        public virtual string Thumbnail()
-        {
-            return string.Format("http://www.draugen.org/img/fangstbilder_thumb/draug{0}.jpg", LegacyId);
-        }
+
+        public virtual Bilde Bilde { get; set; }
     }
 }

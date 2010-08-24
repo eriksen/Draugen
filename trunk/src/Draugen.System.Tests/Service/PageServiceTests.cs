@@ -3,7 +3,7 @@ using Draugen.Setup;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Practices.Unity;
 
-namespace Draugen.System.Tests.Service
+namespace Draugen.Service
 {
     [TestClass]
     public class PageServiceTests

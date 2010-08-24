@@ -68,6 +68,7 @@
     <Compile Include="Fangst.cs" />
     <Compile Include="Abstracts\FangstLeverandør.cs" />
     <Compile Include="Fisker.cs" />
+    <Compile Include="Bilde.cs" />
     <Compile Include="Kommentar.cs" />
     <Compile Include="Abstracts\Kommenterbar.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

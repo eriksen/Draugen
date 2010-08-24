@@ -1,68 +1,47 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Draugen.master.cs" Inherits="Draugen.Views.Shared.Draugen" %>
+﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage<Draugen.Services.ViewModels.Pages.MasterPageData>" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
-    <head runat="server">
+    <head id="Head1" runat="server">
         <title></title>
         <asp:ContentPlaceHolder ID="head" runat="server">
         </asp:ContentPlaceHolder>
-        <link type="text/css"  href="/Content/site.css"/>
+        <link type="text/css"  href="http://www.draguen.org/css/tradisjonell.css"/>
     </head>
     <body>
         <div id="title">
-	        <h1><strong><span>Draugen</span></strong></h1>
+	        <h1><strong><span><%= Model.Tittel %></span></strong></h1>
 	        <p>For å fremme fiskeglede blant slekt og venner</p>
         </div>
-        <div id="topleftads">&nbsp;</div>
         <div id="login">&nbsp;</div>
         <div id="main">
             <asp:ContentPlaceHolder ID="mainContent" runat="server">
         
             </asp:ContentPlaceHolder>
         </div>
+        
         <div id="toc">
             <a href="/" title="Draugens siste fangster">Fangster</a><br />
-            <a href="forum/index.php" title="Draugens forum">Draugprat</a><br />
-            <a href="rekorder.php" title="Draugens rekorder">Rekorder</a><br />
-            <a href="fiskere.php" title="Draugens resultatlister">Sammendraug</a><br />
-            <a href="http://www.draugen.org/forum/login.php" title="Logg inn og vis hvem du er">Logg inn</a>
+            <a href="#" title="Draugens forum">Draugprat</a><br />
+            <a href="#" title="Draugens rekorder">Rekorder</a><br />
+            <a href="#" title="Draugens resultatlister">Sammendraug</a><br />
+            <a href="#" title="Logg inn og vis hvem du er">Logg inn</a>
             <br />
             <br />
             <br />
             <strong>Fiskerne våre:</strong><br />
-            <a href="rekorder.php?fiskerID=36" title="Draugling Joakims personlige rekorder(1)">Joakim</a><br />
-            <a href="rekorder.php?fiskerID=28" title="Draug Kim-frodes personlige rekorder(2)">Kim-frode</a><br />
+            <a href="#" title="Draugling Joakims personlige rekorder(1)">Joakim</a><br />
+            <a href="#" title="Draug Kim-frodes personlige rekorder(2)">Kim-frode</a><br />
             <br /><strong>Artene våre:</strong><br />
-            <a href="art.php?showall=true&amp;artID=10" title="Abbor fisket av Draugen">Abbor</a><br />
-            <a href="art.php?showall=true&amp;artID=130" title="asp fisket av Draugen">Asp</a><br />
+            <a href="#" title="Abbor fisket av Draugen">Abbor</a><br />
+            <a href="#" title="asp fisket av Draugen">Asp</a><br />
             <strong>Fiskeplasser:</strong><br />
-            <a href="sted.php?showall=true&amp;stedID=43" title="Akerselva har gitt disse draugenfangstene">Akerselva</a><br />
-            <a href="sted.php?showall=true&amp;stedID=23" title="Belteren har gitt disse draugenfangstene">Belteren</a><br />
+            <a href="#" title="Akerselva har gitt disse draugenfangstene">Akerselva</a><br />
+            <a href="#" title="Belteren har gitt disse draugenfangstene">Belteren</a><br />
         </div>
         <div id="logo">
             <a href="http://www.draugen.org/"><img src="http://www.draugen.org/img/draugen.jpg" alt="Draugen" /></a>
-        </div>	
-        <div id="sideads">&nbsp;</div>
-        <div id="search">
-            <style type="text/css">@import url(http://www.google.com/cse/api/branding.css);</style>
-            <div class="cse-branding-right" style="background-color:#000000;color:#FFFFFF">
-                <div class="cse-branding-form">
-                    <form action="http://www.draugen.org/search.php" id="cse-search-box">
-                        <div>
-                            <input type="hidden" name="cx" value="partner-pub-2000569211665405:xg9s89maxm4" />
-                            <input type="hidden" name="cof" value="FORID:10" />
-                            <input type="hidden" name="ie" value="ISO-8859-1" />
-                            <input type="text" name="q" size="20" />
-                            <input type="submit" name="sa" value="S&#248;k" />
-                        </div>
-                    </form>
-                </div>
-                <div class="cse-branding-logo">
-                    <img src="http://www.google.com/images/poweredby_transparent/poweredby_000000.gif" alt="Google" />
-                </div>
-                <div class="cse-branding-text">Tilpasset s&#248;k</div>
-            </div>
         </div>	
     </body>
 </html>

@@ -7,7 +7,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using NHibernate;
 
-namespace Draugen.Web.Tests.Setup
+namespace Draugen.Web.Setup
 {
     [TestClass]
     public class DraugenUnityContainerTests

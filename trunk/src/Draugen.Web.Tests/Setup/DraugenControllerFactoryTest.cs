@@ -5,7 +5,7 @@ using Draugen.Setup;
 using Microsoft.Practices.Unity;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Draugen.Web.Tests.Setup
+namespace Draugen.Web.Setup
 {
     [TestClass]
     public class DraugenControllerFactoryTest

@@ -27,7 +27,7 @@ namespace Draugen.Setup
             this.RegisterType<IUnitOfWorkFactory, UnitOfWorkFactory>();
 
             this.RegisterType<IRepository<Fangst>, Repository<Fangst>>();
-            this.RegisterType<IBuilder<HomePage>, HomePageBuilder>();
+            this.RegisterType<IBuilder<HomePageData>, HomePageDataBuilder>();
             this.RegisterType<IPageService, PageService>();
 
             this.RegisterType<IAssembler<FangstCard, Fangst>, FangstCardAssembler>();

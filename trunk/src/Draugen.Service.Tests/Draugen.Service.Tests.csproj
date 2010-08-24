@@ -9,7 +9,7 @@
     <ProjectGuid>{E3DA7DC6-42E2-498E-9543-5673F11B36A0}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Draugen.Service.Tests</RootNamespace>
+    <RootNamespace>Draugen.Services</RootNamespace>
     <AssemblyName>Draugen.Service.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

@@ -15,8 +15,7 @@ namespace Draugen.Setup
 
         private static string ReadConnectionString()
         {
-            return File.ReadAllText(@"c:\projects\Draugen\ConnectionString.txt");
-            //return "Data Source=KANE;Initial Catalog=Catchbase;Integrated Security=True";
+            return "Data Source=localhost;Initial Catalog=Catchbase;Integrated Security=True";
         }
     }
 }

@@ -17,8 +17,7 @@ namespace Draugen.Services.Assemblers.Cards
                            Sted = domain.Sted.Navn,
                            Vekt = domain.Vekt.ToString(),
                            Team = domain.Fisker.Team.Navn,
-                           Image = domain.Thumbnail()
-                      };
+                           Image = domain.Bilde.Thumb                      };
         }
 
         public Fangst Create(FangstCard model)

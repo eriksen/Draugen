@@ -9,7 +9,7 @@
     <ProjectGuid>{E777404C-0F38-4AD5-B5EA-AC85AF89244F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Draugen.Web.Tests</RootNamespace>
+    <RootNamespace>Draugen.Web</RootNamespace>
     <AssemblyName>Draugen.Web.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

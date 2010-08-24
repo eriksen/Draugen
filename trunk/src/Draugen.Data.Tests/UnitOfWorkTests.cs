@@ -3,7 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using NHibernate;
 
-namespace Draugen.Data.Tests
+namespace Draugen.Data
 {
     [TestClass]
     public class UnitOfWorkTests

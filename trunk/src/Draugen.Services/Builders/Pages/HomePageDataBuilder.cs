@@ -11,23 +11,22 @@ namespace Draugen.Services.Builders.Pages
         T Build();
     }
 
-    public class HomePageBuilder : IBuilder<HomePage>
+    public class HomePageDataBuilder : MasterPageDataBuilder, IBuilder<HomePageData>
     {
         private readonly IRepository<Fangst> _fangstRepository;
         private readonly IAssembler<FangstDeck, IEnumerable<Fangst>> _fangstDeckAssembler;
 
-        public HomePageBuilder(IRepository<Fangst> fangstRepository, IAssembler<FangstDeck, IEnumerable<Fangst>> fangstDeckAssembler)
+        public HomePageDataBuilder(IRepository<Fangst> fangstRepository, IAssembler<FangstDeck, IEnumerable<Fangst>> fangstDeckAssembler)
         {
             _fangstRepository = fangstRepository;
             _fangstDeckAssembler = fangstDeckAssembler;
         }
 
-        public HomePage Build()
+        public HomePageData Build()
         {
-            return new HomePage
-            {
-                Fangster = _fangstDeckAssembler.Create(_fangstRepository.FindAll())
-            };
+            var page = Create<HomePageData>();
+            page.Fangster = _fangstDeckAssembler.Create(_fangstRepository.FindAll());
+            return page;
         }
 
     }

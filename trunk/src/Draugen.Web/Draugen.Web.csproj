@@ -42,6 +42,10 @@
     <Reference Include="Castle.DynamicProxy2">
       <HintPath>..\..\lib\fluentnhibernate-1.1\Castle.DynamicProxy2.dll</HintPath>
     </Reference>
+    <Reference Include="FluentNHibernate, Version=1.1.0.685, Culture=neutral, PublicKeyToken=8aa435e3cb308880, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\fluentnhibernate-1.1\FluentNHibernate.dll</HintPath>
+    </Reference>
     <Reference Include="log4net">
       <HintPath>..\..\lib\fluentnhibernate-1.1\log4net.dll</HintPath>
     </Reference>
@@ -97,18 +101,12 @@
     <Compile Include="Setup\DraugenControllerFactory.cs" />
     <Compile Include="Setup\DraugenUnityContainer.cs" />
     <Compile Include="Setup\UnityContainerFactory.cs" />
-    <Compile Include="Views\Shared\Draugen.Master.cs">
-      <DependentUpon>Draugen.Master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Shared\Draugen.Master.designer.cs">
-      <DependentUpon>Draugen.Master</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="OldDraguen.htm" />
+    <Content Include="Views\Home\ViewPage1.aspx" />
     <Content Include="Views\Shared\FangstDeck.ascx" />
     <Content Include="Views\Home\Index.aspx" />
     <Content Include="Views\Shared\TocCard.ascx" />
