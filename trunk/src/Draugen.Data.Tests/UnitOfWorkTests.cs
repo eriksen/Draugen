@@ -67,6 +67,5 @@ namespace Draugen.Data
             _unitOfWork.Dispose();
             _session.Verify(s => s.Dispose());
         }
-
     }
 }

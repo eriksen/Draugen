@@ -24,14 +24,14 @@ namespace Draugen.Data.Repositories
 
         public virtual IQueryable<T> FindAll()
         {
-            Contract.Ensures(Contract.Result<T>() != null);
+            Contract.Ensures(Contract.Result<IQueryable<T>>() != null);
             return _session.Linq<T>();
         }
 
         public virtual void Add(T item)
         {
-            Contract.Requires(item != null);
-            Contract.Requires(item.Kommentarer != null);
+            //Contract.Requires<T>(item != null);
+            //Contract.Requires(item.Kommentarer != null);
             foreach (var kommentar in item.Kommentarer)
             {
                 _session.SaveOrUpdate(kommentar);
@@ -41,7 +41,7 @@ namespace Draugen.Data.Repositories
 
         public virtual void Delete(T item)
         {
-            Contract.Requires(item != null);
+            //Contract.Requires(item != null);
             _session.Delete(item);
         }
     }

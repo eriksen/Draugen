@@ -33,7 +33,7 @@ namespace Draugen.Data
         }
 
         [TestMethod]
-        public void Test()
+        public void PersistenceTest()
         {
             _configuration.BuildSchema();
             var team = new Team() {Grunnlagt = DateTime.Now, Navn = "Draugen"};

@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.Diagnostics.Contracts;
+using System.Web.Mvc;
 using Draugen.Services;
 
 namespace Draugen.Controllers
@@ -9,13 +10,21 @@ namespace Draugen.Controllers
 
         public HomeController(IViewDataService viewDataService)
         {
+            Contract.Requires(viewDataService != null);
             _viewDataService = viewDataService;
         }
 
-        public ActionResult Index()
+        [ContractInvariantMethod]
+        private void ObjectInvariant()
         {
-            return View(_viewDataService.GetHomePageData());
+            Contract.Invariant(_viewDataService != null);
         }
 
+
+        public ActionResult Index()
+        {
+            Contract.Ensures(Contract.Result<ActionResult>() != null);
+            return View(_viewDataService.GetHomePageData());
+        }
     }
 }

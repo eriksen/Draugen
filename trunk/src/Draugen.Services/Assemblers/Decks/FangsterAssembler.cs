@@ -21,10 +21,5 @@ namespace Draugen.Services.Assemblers.Decks
             fangstDeck.AddRange(domain.Select(d => _fangstAssembler.Create(d)));    
             return fangstDeck;
         }
-
-        public IEnumerable<Fangst> Create(FangstDeck model)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
