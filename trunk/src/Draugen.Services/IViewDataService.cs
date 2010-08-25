@@ -1,4 +1,4 @@
-﻿using Draugen.Services.ViewModels.Pages;
+﻿using Draugen.Services.ViewData.Home;
 
 namespace Draugen.Services
 {

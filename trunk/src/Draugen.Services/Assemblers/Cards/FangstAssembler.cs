@@ -18,7 +18,7 @@ namespace Draugen.Services.Assemblers.Cards
             Contract.Requires(domain.Sted != null);
             Contract.Requires(domain.Sted.Navn != null);
             Contract.Requires(domain.Bilde != null);
-            Contract.Requires(domain.Bilde.Thumb != null);
+            Contract.Requires(domain.Bilde.Navn != null);
             Contract.Ensures(Contract.Result<FangstCard>() != null);
             return new FangstCard()
                        {
@@ -30,7 +30,7 @@ namespace Draugen.Services.Assemblers.Cards
                            Sted = domain.Sted.Navn,
                            Vekt = domain.Vekt.ToString(),
                            Team = domain.Fisker.Team.Navn,
-                           Bilde = new BildeCard{ Alt = domain.Art.Navn, Src = domain.Bilde.Thumb }                     
+                           Bilde = new BildeCard{ Alt = domain.Art.Navn, Navn = domain.Bilde.Navn }                     
                        };
         }
 

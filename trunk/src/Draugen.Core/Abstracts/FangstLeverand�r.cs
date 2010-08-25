@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace Draugen
 {
@@ -6,7 +7,7 @@ namespace Draugen
     {
         protected FangstLeverandør()
         {
-            Fangster = new List<Fangst>();    
+            Fangster = new List<Fangst>();
         }
 
         public virtual IList<Fangst> Fangster { get; set; }

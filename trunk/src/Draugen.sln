@@ -34,6 +34,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Setup", "Setup", "{34E38C02
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Draugen.Data.Import", "Draugen.Data.Import\Draugen.Data.Import.csproj", "{495952F0-A0D9-4241-8E4C-04BDC7F8E9C4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Draugen.Test.Common", "Draugen.Test.Common\Draugen.Test.Common.csproj", "{061CF6CA-F917-4B10-8876-C4DE9AC11544}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = Draugen.vsmdi
@@ -157,6 +159,16 @@ Global
 		{495952F0-A0D9-4241-8E4C-04BDC7F8E9C4}.Release|Mixed Platforms.Build.0 = Release|x86
 		{495952F0-A0D9-4241-8E4C-04BDC7F8E9C4}.Release|x86.ActiveCfg = Release|x86
 		{495952F0-A0D9-4241-8E4C-04BDC7F8E9C4}.Release|x86.Build.0 = Release|x86
+		{061CF6CA-F917-4B10-8876-C4DE9AC11544}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{061CF6CA-F917-4B10-8876-C4DE9AC11544}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{061CF6CA-F917-4B10-8876-C4DE9AC11544}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{061CF6CA-F917-4B10-8876-C4DE9AC11544}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{061CF6CA-F917-4B10-8876-C4DE9AC11544}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{061CF6CA-F917-4B10-8876-C4DE9AC11544}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{061CF6CA-F917-4B10-8876-C4DE9AC11544}.Release|Any CPU.Build.0 = Release|Any CPU
+		{061CF6CA-F917-4B10-8876-C4DE9AC11544}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{061CF6CA-F917-4B10-8876-C4DE9AC11544}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{061CF6CA-F917-4B10-8876-C4DE9AC11544}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -168,6 +180,7 @@ Global
 		{E777404C-0F38-4AD5-B5EA-AC85AF89244F} = {1F9D97E3-CE3E-404E-A011-6739501A75D2}
 		{A4953887-787B-4D2B-A1A9-57E66C591657} = {1F9D97E3-CE3E-404E-A011-6739501A75D2}
 		{E3DA7DC6-42E2-498E-9543-5673F11B36A0} = {1F9D97E3-CE3E-404E-A011-6739501A75D2}
+		{061CF6CA-F917-4B10-8876-C4DE9AC11544} = {1F9D97E3-CE3E-404E-A011-6739501A75D2}
 		{495952F0-A0D9-4241-8E4C-04BDC7F8E9C4} = {34E38C02-1F14-4756-B8B5-0168C9510F5D}
 	EndGlobalSection
 EndGlobal

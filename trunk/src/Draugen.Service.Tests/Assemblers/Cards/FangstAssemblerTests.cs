@@ -43,7 +43,7 @@ namespace Draugen.Services.Assemblers.Cards
         {
             var result = _fangstAssembler.Create(_domain).Bilde;
             Assert.AreEqual("artsnavn", result.Alt);
-            Assert.AreEqual("http://www.draugen.org/img/fangstbilder_thumb/draug2.jpg", result.Src);
+            Assert.AreEqual("draug2.jpg", result.Navn);
         }
     }
 }

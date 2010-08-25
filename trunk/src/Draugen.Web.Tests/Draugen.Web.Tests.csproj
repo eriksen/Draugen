@@ -9,7 +9,7 @@
     <ProjectGuid>{E777404C-0F38-4AD5-B5EA-AC85AF89244F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Draugen.Web</RootNamespace>
+    <RootNamespace>Draugen</RootNamespace>
     <AssemblyName>Draugen.Web.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -83,6 +83,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Helpers\ImageHelpersTests.cs" />
     <Compile Include="Setup\DraugenControllerFactoryTest.cs" />
     <Compile Include="Setup\DraugenUnityContainerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

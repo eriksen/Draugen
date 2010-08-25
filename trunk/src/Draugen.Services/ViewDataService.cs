@@ -1,8 +1,6 @@
 ﻿using System.Diagnostics.Contracts;
 using Draugen.Services.DataBuilders;
-using Draugen.Services.DataBuilders.Home;
-using Draugen.Services.DataBuilders.Shared;
-using Draugen.Services.ViewModels.Pages;
+using Draugen.Services.ViewData.Home;
 using Microsoft.Practices.Unity;
 
 namespace Draugen.Services

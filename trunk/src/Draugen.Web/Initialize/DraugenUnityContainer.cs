@@ -9,9 +9,9 @@ using Draugen.Services.Assemblers.Decks;
 using Draugen.Services.DataBuilders;
 using Draugen.Services.DataBuilders.Home;
 using Draugen.Services.DataBuilders.Shared;
+using Draugen.Services.ViewData.Home;
 using Draugen.Services.ViewData.Shared.Cards;
-using Draugen.Services.ViewModels.Decks;
-using Draugen.Services.ViewModels.Pages;
+using Draugen.Services.ViewData.Shared.Decks;
 using Microsoft.Practices.Unity;
 using NHibernate;
 

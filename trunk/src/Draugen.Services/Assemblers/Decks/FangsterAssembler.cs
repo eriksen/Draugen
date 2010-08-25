@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Draugen.Services.Assemblers.Cards;
-using Draugen.Services.ViewModels.Decks;
+using Draugen.Services.ViewData.Shared.Cards;
+using Draugen.Services.ViewData.Shared.Decks;
 
 namespace Draugen.Services.Assemblers.Decks
 {
     public class FangsterAssembler : IAssembler<FangstDeck, IEnumerable<Fangst>>
     {
-        private readonly FangstAssembler _fangstAssembler;
+        private readonly IAssembler<FangstCard, Fangst> _fangstAssembler;
 
-        public FangsterAssembler(FangstAssembler fangstAssembler)
+        public FangsterAssembler(IAssembler<FangstCard, Fangst> fangstAssembler)
         {
             _fangstAssembler = fangstAssembler;
         }
@@ -18,7 +18,7 @@ namespace Draugen.Services.Assemblers.Decks
         public FangstDeck Create(IEnumerable<Fangst> domain)
         {
             var fangstDeck = new FangstDeck();
-            fangstDeck.AddRange(domain.Select(d => _fangstAssembler.Create(d)));
+            fangstDeck.AddRange(domain.Select(d => _fangstAssembler.Create(d)));    
             return fangstDeck;
         }
 

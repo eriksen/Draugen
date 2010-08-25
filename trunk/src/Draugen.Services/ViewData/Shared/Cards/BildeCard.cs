@@ -2,7 +2,7 @@
 {
     public class BildeCard
     {
-        public string Src { get; set; }
+        public string Navn   { get; set; }
         public string Alt { get; set; }
     }
 }

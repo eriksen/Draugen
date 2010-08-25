@@ -7,7 +7,7 @@
         <title></title>
         <asp:ContentPlaceHolder ID="head" runat="server">
         </asp:ContentPlaceHolder>
-        <link type="text/css"  href="/Content/Site.css"/>
+        <link type="text/css"  href="~/Content/Site.css"/>
     </head>
     <body>
         <div id="title">

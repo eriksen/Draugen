@@ -4,7 +4,7 @@ using Microsoft.Practices.Unity;
 
 namespace Draugen.Services
 {
-    public class ServiceBase
+    public abstract class ServiceBase
     {
         protected IUnityContainer Container;
         protected IUnitOfWorkFactory UnitOfWorkFactory;
