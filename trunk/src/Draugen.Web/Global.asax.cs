@@ -1,7 +1,9 @@
 ﻿using System.Web.Mvc;
 using System.Web.Routing;
-using Draugen.Initialize;
+using Draugen.Configuration;
+using Draugen.Data;
 using Microsoft.Practices.Unity;
+using NHibernate;
 
 namespace Draugen
 {
@@ -10,7 +12,7 @@ namespace Draugen
 
     public class MvcApplication : System.Web.HttpApplication
     {
-        public static IUnityContainer Container;
+        protected static IUnityContainer Container;
 
         public static void RegisterRoutes(RouteCollection routes)
         {
@@ -25,22 +27,26 @@ namespace Draugen
 
         protected void Application_Start()
         {
-            Container = UnityContainerFactory.Create();
-
             AreaRegistration.RegisterAllAreas();
             RegisterRoutes(RouteTable.Routes);
+
+            ConfigureDraugen();
+        }
+
+        protected static void ConfigureDraugen()
+        {
+            var configuration = new DraugenConfiguration(GetConnectionString());
+            Container = new DraugenContainer(configuration.GetSessionFactory());
 
             ViewEngines.Engines.Clear();
             ViewEngines.Engines.Add(new DraugenWebFormViewEngine());
 
-            RegisterControllerFactory();
+            ControllerBuilder.Current.SetControllerFactory(new DraugenControllerFactory(Container));
         }
 
-        private static void RegisterControllerFactory()
+        protected static string GetConnectionString()
         {
-            var controllerFactory = Container.Resolve<DraugenControllerFactory>();
-            ControllerBuilder.Current.SetControllerFactory(controllerFactory);
+            return "Data Source=localhost;Initial Catalog=Catchbase;Integrated Security=True";
         }
-
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace Draugen.Initialize
+namespace Draugen.Configuration
 {
     public class DraugenWebFormViewEngine : WebFormViewEngine
     {

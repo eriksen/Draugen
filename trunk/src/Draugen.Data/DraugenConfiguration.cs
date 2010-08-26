@@ -8,7 +8,7 @@ using NHibernate.Tool.hbm2ddl;
 
 namespace Draugen.Data
 {
-    public class DraugenConfiguration : IDisposable
+    public class DraugenConfiguration : IDraugenConfiguration
     {
         [ContractInvariantMethod]
         private void ObjectInvariant()

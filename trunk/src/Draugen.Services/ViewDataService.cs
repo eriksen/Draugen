@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics.Contracts;
+using Draugen.Services.Configuration;
 using Draugen.Services.DataBuilders;
 using Draugen.Services.ViewData.Home;
 using Microsoft.Practices.Unity;
@@ -12,9 +13,9 @@ namespace Draugen.Services
         public IndexData GetHomePageData()
         {
             Contract.Ensures(Contract.Result<IndexData>() != null);
-            using(UnitOfWorkFactory.Create())
+            using(var localContainer = Container.Resolve<ILocalContainer>())
             {
-                return Container.Resolve<IBuilder<IndexData>>().Build();
+                return localContainer.Resolve<IBuilder<IndexData>>().Build();
             }
         }
 

@@ -10,16 +10,16 @@ namespace Draugen.Data.Repositories
     {
         private readonly ISession _session;
 
-        public Repository(IUnitOfWorkFactory unitOfWorkFactory)
+        public Repository(ISession session)
         {
-            Contract.Requires(unitOfWorkFactory != null);
-            _session = unitOfWorkFactory.Create().Session;
+            Contract.Requires(session.Transaction.IsActive == true);
+            _session = session;
         }
 
         [ContractInvariantMethod]
         private void ObjectInvariant()
         {
-            Contract.Invariant(_session != null);
+            Contract.Invariant(_session.Transaction.IsActive == true);
         }
 
         public virtual IQueryable<T> FindAll()

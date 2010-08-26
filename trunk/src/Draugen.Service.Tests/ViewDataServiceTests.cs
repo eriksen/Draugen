@@ -16,9 +16,7 @@ namespace Draugen.Services
         [TestInitialize]
         public void InitializeTest()
         {
-            var unitOfWorkFactoryMock = new Mock<IUnitOfWorkFactory>();
             _container = new UnityContainer();
-            _container.RegisterInstance(unitOfWorkFactoryMock.Object);
             _service = new ViewDataService(_container);
         }
 

@@ -86,8 +86,9 @@
     <Compile Include="Controllers\HomeControllerTests.cs" />
     <Compile Include="Helpers\ImageHelpersTests.cs" />
     <Compile Include="Initialize\DraugenControllerFactoryTest.cs" />
-    <Compile Include="Initialize\DraugenUnityContainerTests.cs" />
+    <Compile Include="Initialize\DraugenContainerTests.cs" />
     <Compile Include="Initialize\DraugenWebFormViewEngineTests.cs" />
+    <Compile Include="MvcApplicationTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

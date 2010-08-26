@@ -6,19 +6,15 @@ namespace Draugen.Data
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private readonly IUnitOfWorkFactory _unitOfWorkFactory;
-
         [ContractInvariantMethod]
         private void ObjectInvariant()
         {
             Contract.Invariant(Session != null);
         }
 
-        public UnitOfWork(IUnitOfWorkFactory unitOfWorkFactory, ISessionFactory sessionFactory)
+        public UnitOfWork(ISessionFactory sessionFactory)
         {
-            Contract.Requires(unitOfWorkFactory != null);
             Contract.Requires(sessionFactory != null);
-            _unitOfWorkFactory = unitOfWorkFactory;
             Session = sessionFactory.OpenSession();
             Session.BeginTransaction();
         }
@@ -45,7 +41,6 @@ namespace Draugen.Data
             finally
             {
                 Session.Dispose();
-                _unitOfWorkFactory.DestroyCurrentUnitOfWork();
             }
         }
     }

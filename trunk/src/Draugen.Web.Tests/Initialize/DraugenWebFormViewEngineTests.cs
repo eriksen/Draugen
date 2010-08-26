@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Draugen.Configuration;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Draugen.Initialize
 {

@@ -1,8 +1,9 @@
+using System;
 using NHibernate;
 
 namespace Draugen.Data
 {
-    public interface IDraugenConfiguration
+    public interface IDraugenConfiguration : IDisposable
     {
         ISessionFactory GetSessionFactory();
     }

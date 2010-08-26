@@ -81,6 +81,9 @@
     <Compile Include="DataBuilders\Home\IndexBuilder.cs" />
     <Compile Include="DataBuilders\IMasterBuilder.cs" />
     <Compile Include="DataBuilders\Shared\MasterBuilder.cs" />
+    <Compile Include="Filters\FangstFilter.cs" />
+    <Compile Include="Configuration\ILocalContainer.cs" />
+    <Compile Include="Configuration\LocalContainer.cs" />
     <Compile Include="ServiceBase.cs" />
     <Compile Include="ViewData\Shared\Cards\BildeCard.cs" />
     <Compile Include="ViewData\Shared\Cards\FangstCard.cs" />

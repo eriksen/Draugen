@@ -122,10 +122,9 @@
     </Compile>
     <Compile Include="Helpers\ImageHelpers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Initialize\DraugenControllerFactory.cs" />
-    <Compile Include="Initialize\DraugenUnityContainer.cs" />
-    <Compile Include="Initialize\DraugenWebFormViewEngine.cs" />
-    <Compile Include="Initialize\UnityContainerFactory.cs" />
+    <Compile Include="Configuration\DraugenControllerFactory.cs" />
+    <Compile Include="Configuration\DraugenContainer.cs" />
+    <Compile Include="Configuration\DraugenWebFormViewEngine.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
