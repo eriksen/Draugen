@@ -1,6 +1,6 @@
 ﻿using System.Linq.Expressions;
 
-namespace Draugen.Data.QueryObjects.DynamicLinq
+namespace System.Linq.Dynamic
 {
     internal class DynamicOrdering
     {

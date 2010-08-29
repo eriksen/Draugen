@@ -3,6 +3,7 @@ using System.IO;
 using System.Text;
 using Draugen.Data.Import.Builders;
 using Draugen.Data.Repositories;
+using NHibernate;
 
 namespace Draugen.Data.Import
 {
@@ -25,7 +26,7 @@ namespace Draugen.Data.Import
             _fangster = new FangstBuilder(_steder, _fiskere, _arter).Build(content);
         }
 
-        public void Save(IUnitOfWorkFactory unitOfWorkFactory)
+        public void Save(ISession unitOfWorkFactory)
         {
             SaveEntities(_teams, unitOfWorkFactory);
             SaveEntities(_fiskere, unitOfWorkFactory);
@@ -34,7 +35,7 @@ namespace Draugen.Data.Import
             SaveEntities(_fangster, unitOfWorkFactory);
         }
 
-        private static void SaveEntities<T>(IDictionary<int, T> entities, IUnitOfWorkFactory unitOfWorkFactory) where T : Kommenterbar
+        private static void SaveEntities<T>(IDictionary<int, T> entities, ISession unitOfWorkFactory) where T : Kommenterbar
         {
             var repository = new Repository<T>(unitOfWorkFactory);
             foreach(var entity in entities)

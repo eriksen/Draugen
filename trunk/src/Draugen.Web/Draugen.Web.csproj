@@ -129,7 +129,7 @@
   <ItemGroup>
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Views\Shared\Decks\FangstDeck.ascx" />
+    <Content Include="Views\Shared\FangstDeck.ascx" />
     <Content Include="Views\Home\Index.aspx" />
     <Content Include="Views\Shared\TocData.ascx" />
     <Content Include="Web.config" />
@@ -155,6 +155,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Shared\Cards\" />
+    <Folder Include="Views\Shared\Decks\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Draugen.Core\Draugen.Core.csproj">

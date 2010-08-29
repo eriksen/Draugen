@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
+﻿using System.Collections.Generic;
 
 namespace Draugen
 {
@@ -12,7 +9,7 @@ namespace Draugen
             Fangster = new List<Fangst>();
         }
 
-        public virtual IList<Fangst> Fangster { get; set; }
+        public virtual List<Fangst> Fangster { get; set; }
 
         public virtual string Navn { get; set; }
     }

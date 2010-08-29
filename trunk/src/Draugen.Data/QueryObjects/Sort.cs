@@ -1,30 +1,24 @@
 ﻿using System.Diagnostics.Contracts;
 using System.Linq;
-using Draugen.Data.QueryObjects.DynamicLinq;
+using System.Linq.Dynamic;
+
 
 namespace Draugen.Data.QueryObjects
 {
-    public class Sort : IQueryObject
+    public class Sort : PropertyQueryObject, IQueryObject
     {
-        private readonly string _propertyName;
         private readonly SortDirection _direction;
 
-        public Sort(string propertyName, SortDirection direction)
+        public Sort(string propertyName, SortDirection direction) : base(propertyName)
         {
             Contract.Requires(!string.IsNullOrWhiteSpace(propertyName));
-            _propertyName = propertyName;
             _direction = direction;
         }
 
-        [ContractInvariantMethod]
-        private void ObjectInvariant()
+        public IQueryable<T> Refine<T>(IQueryable<T> queryable) where T : class
         {
-            Contract.Invariant(!string.IsNullOrWhiteSpace(_propertyName));
-        }
-
-        public IQueryable<T> Refine<T>(IQueryable<T> query) where T : class
-        {
-            return query.OrderBy(_propertyName + ParseDirection());
+            ValidateProperties<T>();
+            return queryable.OrderBy(PropertyName + ParseDirection());
         }
 
         private string ParseDirection()

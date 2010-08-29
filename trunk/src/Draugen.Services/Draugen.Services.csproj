@@ -76,6 +76,7 @@
   <ItemGroup>
     <Compile Include="Assemblers\FangstAssembler.cs" />
     <Compile Include="Assemblers\IAssembler.cs" />
+    <Compile Include="Builders\FangstListDtoBuilder.cs" />
     <Compile Include="Configuration\ILocalContainer.cs" />
     <Compile Include="Configuration\LocalContainer.cs" />
     <Compile Include="Dtos\FangstDto.cs" />
@@ -93,7 +94,9 @@
       <Name>Draugen.Data</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Factories\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -1,26 +1,29 @@
 ﻿using System.Diagnostics.Contracts;
 using System.Linq;
-using Draugen.Data.QueryObjects.DynamicLinq;
+using System.Linq.Dynamic;
+
 
 namespace Draugen.Data.QueryObjects
 {
-    public class Filter : IQueryObject
+    public class Filter : PropertyQueryObject, IQueryObject
     {
-        private readonly string _propertyName;
         private readonly FilterOperator _filterOperator;
         private readonly object _value;
 
-        public Filter(string propertyName, FilterOperator filterOperator, object value)
+        public Filter(string propertyName, FilterOperator filterOperator, object value) : base(propertyName)
         {
             Contract.Requires(!string.IsNullOrWhiteSpace(propertyName));
-            _propertyName = propertyName;
             _filterOperator = filterOperator;
             _value = value;
         }
 
-        public IQueryable<T> Refine<T>(IQueryable<T> query) where T : class
+        public IQueryable<T> Refine<T>(IQueryable<T> queryable) where T : class
         {
-            return query.Where(Clause(), _value);
+            ValidateProperties<T>();
+            var result = queryable.Where(Clause(), _value);
+            if (result != null)
+                return result;
+            return null;
         }
 
         private string ParseOperator()
@@ -29,15 +32,9 @@ namespace Draugen.Data.QueryObjects
             return _filterOperator == FilterOperator.GreaterThan ? ">" : "<";
         }
 
-        public string Clause()
+        private string Clause()
         {
-            return string.Format("{0} {1} @0", _propertyName, ParseOperator());
-        }
-
-        [ContractInvariantMethod]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(!string.IsNullOrWhiteSpace(_propertyName));
+            return string.Format("{0} {1} @0", PropertyName, ParseOperator());
         }
     }
 }

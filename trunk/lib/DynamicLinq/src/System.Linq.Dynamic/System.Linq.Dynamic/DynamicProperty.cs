@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Draugen.Data.QueryObjects.DynamicLinq
+namespace System.Linq.Dynamic
 {
     public class DynamicProperty
     {

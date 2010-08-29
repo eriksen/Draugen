@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using Draugen.Data;
 using Draugen.Data.Repositories;
+using Draugen.Services.Assemblers;
+using Draugen.Services.Dtos;
 using Microsoft.Practices.Unity;
     
 namespace Draugen.Services.Configuration
@@ -15,6 +17,7 @@ namespace Draugen.Services.Configuration
             this.RegisterInstance(_unitOfWork.Session);
 
             this.RegisterType<IRepository<Fangst>,FangstRepository>();
+            this.RegisterType<IAssembler<FangstDto, Fangst>, FangstAssembler>();
         }
 
         protected override void Dispose(bool disposing)

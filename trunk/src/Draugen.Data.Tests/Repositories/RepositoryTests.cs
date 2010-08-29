@@ -1,4 +1,6 @@
-﻿using Draugen.Data.QueryObjects;
+﻿using System.Linq;
+using Draugen.Data.QueryObjects;
+using Draugen.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using NHibernate;
@@ -15,12 +17,7 @@ namespace Draugen.Data.Repositories
         [TestInitialize]
         public void Initialize()
         {
-            var unitOfWorkMock = new Mock<IUnitOfWork>();
-            _sessionMock = new Mock<ISession>();
-            var transactionMock = new Mock<ITransaction>();
-            transactionMock.Setup(t => t.IsActive).Returns(true);
-            _sessionMock.Setup(s => s.Transaction).Returns(transactionMock.Object);
-            unitOfWorkMock.Setup(u => u.Session).Returns(_sessionMock.Object);
+            _sessionMock = MyMocks.Session();
             _repository = new Repository<Sted>(_sessionMock.Object);
 
         }
@@ -28,7 +25,7 @@ namespace Draugen.Data.Repositories
         [TestMethod]
         public void FindAll_MustCallSessionLinq()
         {
-            var result =  _repository.FindAll(new Query());
+            var result =  _repository.FindAll(new IQueryObject[]{});
             Assert.IsInstanceOfType(result, typeof(Query<Sted>));
         }
 
@@ -37,7 +34,7 @@ namespace Draugen.Data.Repositories
         {
             var kommentar1 = new Kommentar();
             var kommentar2 = new Kommentar();
-            var sted = new Sted {Kommentarer = new[] {kommentar1, kommentar2}};
+            var sted = new Sted { Kommentarer = new[] { kommentar1, kommentar2 }.ToList() };
             _repository.Add(sted);
             _sessionMock.Verify(s => s.SaveOrUpdate(kommentar1));
             _sessionMock.Verify(s => s.SaveOrUpdate(kommentar2));

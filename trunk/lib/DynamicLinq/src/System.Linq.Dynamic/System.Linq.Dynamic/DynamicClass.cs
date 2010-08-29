@@ -1,7 +1,7 @@
 ﻿using System.Reflection;
 using System.Text;
 
-namespace Draugen.Data.QueryObjects.DynamicLinq
+namespace System.Linq.Dynamic
 {
     public abstract class DynamicClass
     {

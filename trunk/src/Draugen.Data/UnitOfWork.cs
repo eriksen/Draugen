@@ -17,13 +17,13 @@ namespace Draugen.Data
 
         public void Dispose()
         {
-            Contract.Ensures(Session == null);
             Dispose(true);
             GC.SuppressFinalize(this);
         }
 
         protected void Dispose(bool disposing)
         {
+            Contract.Ensures(Session == null);
             if(!disposing){ return; }
             try
             {

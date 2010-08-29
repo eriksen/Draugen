@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using Draugen.Data.QueryObjects;
 using NHibernate;
 
@@ -10,6 +11,7 @@ namespace Draugen.Data.Repositories
 
         public FangstRepository(ISession session) : base(session)
         {
+            Contract.Requires(session.Transaction.IsActive == true);
             _hack = new Filter("Art.Id", FilterOperator.GreaterThan, 0);
         }
 

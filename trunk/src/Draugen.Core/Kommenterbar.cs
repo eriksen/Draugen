@@ -9,7 +9,7 @@ namespace Draugen
             Kommentarer = new List<Kommentar>();
         }
 
-        public virtual IList<Kommentar> Kommentarer { get; set; }
+        public virtual List<Kommentar> Kommentarer { get; set; }
 
         public virtual int LegacyId { get; set; }
     }

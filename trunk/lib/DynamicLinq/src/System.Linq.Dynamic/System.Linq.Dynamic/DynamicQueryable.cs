@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace Draugen.Data.QueryObjects.DynamicLinq
+namespace System.Linq.Dynamic
 {
     public static class DynamicQueryable
     {

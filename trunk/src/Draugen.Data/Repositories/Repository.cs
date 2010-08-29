@@ -13,6 +13,8 @@ namespace Draugen.Data.Repositories
 
         public Repository(ISession session)
         {
+            Contract.Requires(session != null);
+            Contract.Requires(session.Transaction != null);
             Contract.Requires(session.Transaction.IsActive == true);
             Session = session;
         }
@@ -20,18 +22,18 @@ namespace Draugen.Data.Repositories
         [ContractInvariantMethod]
         private void ObjectInvariant()
         {
+            Contract.Invariant(Session != null);
+            Contract.Invariant(Session.Transaction != null);
             Contract.Invariant(Session.Transaction.IsActive == true);
         }
 
         public virtual IEnumerable<T> FindAll(IQueryObject[] queryObjects)
         {
-            return Session.Linq<T>().Query<T>(queryObjects);
+            return Session.Linq<T>().Query(queryObjects);
         }
 
         public virtual void Add(T item)
         {
-            //Contract.Requires<T>(item != null);
-            //Contract.Requires(item.Kommentarer != null);
             foreach (var kommentar in item.Kommentarer)
             {
                 Session.SaveOrUpdate(kommentar);
@@ -41,8 +43,9 @@ namespace Draugen.Data.Repositories
 
         public virtual void Delete(T item)
         {
-            //Contract.Requires(item != null);
             Session.Delete(item);
         }
+
+
     }
 }

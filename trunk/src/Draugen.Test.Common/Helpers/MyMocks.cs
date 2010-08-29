@@ -1,4 +1,5 @@
-﻿using Moq;
+﻿using System.Linq;
+using Moq;
 using NHibernate;
 
 namespace Draugen.Helpers
@@ -34,6 +35,11 @@ namespace Draugen.Helpers
             var mock = new Mock<ISessionFactory>();
             mock.Setup(m => m.OpenSession()).Returns(session.Object);
             return mock;
+        }
+
+        public static Mock<IQueryable<T>> Queryable<T>() 
+        {
+            return new Mock<IQueryable<T>>();
         }
     }
 }

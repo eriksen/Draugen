@@ -70,6 +70,7 @@
     <Compile Include="Fisker.cs" />
     <Compile Include="Bilde.cs" />
     <Compile Include="Kommentar.cs" />
+    <Compile Include="KommentarList.cs" />
     <Compile Include="Kommenterbar.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sted.cs" />

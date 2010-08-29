@@ -9,13 +9,10 @@ namespace Draugen.Data.Import
             var configuration =
                 new DraugenConfiguration("Data Source=localhost;Initial Catalog=Catchbase;Integrated Security=True");
             configuration.BuildSchema();
-            var unitOfWorkFactory = new UnitOfWorkFactory(configuration.GetSessionFactory());
-            
             var composer = new Composer(@"C:\Projects\Draugen\trunk\src\Draugen.Data.Import\draugen_org_data");
-
-            using(unitOfWorkFactory.Create())
+            using (var unitOfWork = new UnitOfWork(configuration.GetSessionFactory()))
             {
-                composer.Save(unitOfWorkFactory);
+                composer.Save(unitOfWork.Session);
             }
         }
     }

@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using Draugen.Data.QueryObjects;
+
 using Draugen.Services.Configuration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Draugen.Configuration;
@@ -36,25 +37,18 @@ namespace Draugen.Data
         [TestMethod]
         public void TestPaging()
         {
+            var list = new IQueryObject[] {new Page(1, 10)};
 
-            var query = new Query
-                            {
-                                Page = new Page(1, 10)
-                            };
-            var result = _session.Linq<Fangst>().Query(query);
+            var result = _session.Linq<Fangst>().Query<Fangst>(list);
             Assert.AreEqual(10, result.ToArray().Count());
         }
 
         [TestMethod]
         public void TestOrder_Vekt()
         {
+            var list = new IQueryObject[] { new Page(1, 10), new Sort("Vekt", SortDirection.Descending) };
 
-            var query = new Query
-            {
-                Sort = new Sort("Vekt", SortDirection.Descending),
-                Page = new Page(1, 10)
-            };
-            var result = _session.Linq<Fangst>().Query(query);
+            var result = _session.Linq<Fangst>().Query(list);
             Assert.IsTrue(result.First().Vekt > 10);
         }
 
@@ -62,10 +56,10 @@ namespace Draugen.Data
         public void TestOrder_Art()
         {
 
-            var query = new Query
+            var query = new IQueryObject[] 
             {
-                Sort = new Sort("Art.Navn", SortDirection.Ascending),
-                Page = new Page(1, 10)
+                new Sort("Art.Navn", SortDirection.Ascending),
+                new Page(1, 10)
             };
             var result = _session.Linq<Fangst>().Query(query).ToArray();
             Assert.AreEqual("Abbor", result.First().Art.Navn);
@@ -74,12 +68,12 @@ namespace Draugen.Data
         [TestMethod]
         public void TestOrder_Poeng()
         {
-            var query = new Query
+            var query = new IQueryObject[] 
             {
-                Sort = new Sort("Poeng", SortDirection.Descending),
-                Page = new Page(1, 10)
+                new Sort("Poeng", SortDirection.Descending),
+                new Page(1, 10),
+                new Filter("Art.Id", FilterOperator.GreaterThan, 0)
             };
-            query.AddFilter(new Filter("Art.Id", FilterOperator.GreaterThan, 0));
             var result = _session.Linq<Fangst>().Query(query).ToArray();
             Assert.AreEqual("Småflekket rødhai", result.First().Art.Navn);
             Assert.AreEqual(10, result.Length);
@@ -88,12 +82,12 @@ namespace Draugen.Data
         [TestMethod]
         public void TestOrder_Poeng_Page5()
         {
-            var query = new Query
+            var query = new IQueryObject[] 
             {
-                Sort = new Sort("Poeng", SortDirection.Descending),
-                Page = new Page(10, 10)
+                new Sort("Poeng", SortDirection.Descending),
+                new Page(10, 10),
+                new Filter("Art.Id", FilterOperator.GreaterThan, 0)
             };
-            query.AddFilter(new Filter("Art.Id", FilterOperator.GreaterThan, 0));
             var result = _session.Linq<Fangst>().Query(query).ToArray();
             Assert.AreEqual(10, result.Length);
         }
@@ -101,7 +95,7 @@ namespace Draugen.Data
         [TestMethod]
         public void TestOrder_WithOrderOfQueries()
         {
-            var queries = new QueryObjects.IQueryObject[]
+            var queries = new IQueryObject[]
                               {
                                   new Sort("Poeng", SortDirection.Descending),
                                   new Sort("Art.Navn", SortDirection.Descending),
@@ -110,11 +104,8 @@ namespace Draugen.Data
                                   
                               };
             IQueryable<Fangst> result = _session.Linq<Fangst>();
-            
-            foreach (var query in queries)
-            {
-                result = result.Query(query);    
-            }
+            result = result.Query(queries); 
+
             var list = result.ToArray();
             
             Assert.AreEqual(5, list.Length);

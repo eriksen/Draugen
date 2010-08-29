@@ -10,7 +10,7 @@ namespace Draugen.Data.QueryObjects
     }
 
     [ContractClassFor(typeof(IQueryObject))]
-    internal sealed class QueryObjectContracts : IQueryObject 
+    internal abstract class QueryObjectContracts : IQueryObject 
     {
         public IQueryable<T> Refine<T>(IQueryable<T> queryable) where T : class
         {

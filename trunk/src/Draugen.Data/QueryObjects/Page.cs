@@ -16,9 +16,9 @@ namespace Draugen.Data.QueryObjects
             _size = size;
         }
 
-        public IQueryable<T> Refine<T>(IQueryable<T> query) where T : class
+        public IQueryable<T> Refine<T>(IQueryable<T> queryable) where T : class
         {
-            return query.Skip((_number - 1) * _size).Take(_size);
+            return queryable.Skip((_number - 1) * _size).Take(_size);
         }
 
     }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 
-namespace Draugen.Data.QueryObjects.DynamicLinq
+namespace System.Linq.Dynamic
 {
     internal class ExpressionParser
     {
