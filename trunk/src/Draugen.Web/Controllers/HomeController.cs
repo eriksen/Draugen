@@ -24,7 +24,8 @@ namespace Draugen.Controllers
         public ActionResult Index()
         {
             Contract.Ensures(Contract.Result<ActionResult>() != null);
-            return View();
+            var fangster = _fangstService.GetFangster();
+            return View(fangster);
         }
     }
 }

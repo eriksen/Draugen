@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<Draugen.Services.ViewData.Shared.Decks.FangstDeck>" %>
+﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<Draugen.Services.Dtos.FangstDto[]>" %>
 <%@ Import Namespace="Draugen.Helpers" %>
 <table cellspacing="0">
     <tr>
@@ -11,7 +11,6 @@
     </tr>
     <% foreach (var fangst in Model) { %>
     <tr>
-        <td><%= Html.Image(fangst.Bilde) %></td>
         <td><%= fangst.Art %></td>
         <td class="numeric"><%= fangst.Vekt %></td>
         <td><%= fangst.Fisker %></td>

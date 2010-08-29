@@ -1,17 +1,16 @@
 ﻿using System.Diagnostics.Contracts;
 using System.Linq;
-using Draugen.Data.Repositories;
 
 namespace Draugen.Data.QueryObjects
 {
-    [ContractClass(typeof(QueryContracts))]
-    public interface IQuery
+    [ContractClass(typeof(QueryObjectContracts))]
+    public interface IQueryObject
     {
         IQueryable<T> Refine<T>(IQueryable<T> queryable) where T : class;
     }
 
-    [ContractClassFor(typeof(IQuery))]
-    internal sealed class QueryContracts : IQuery 
+    [ContractClassFor(typeof(IQueryObject))]
+    internal sealed class QueryObjectContracts : IQueryObject 
     {
         public IQueryable<T> Refine<T>(IQueryable<T> queryable) where T : class
         {

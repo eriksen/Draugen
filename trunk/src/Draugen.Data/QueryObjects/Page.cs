@@ -3,23 +3,22 @@ using System.Linq;
 
 namespace Draugen.Data.QueryObjects
 {
-    public class Page : IQuery
+    public class Page : IQueryObject
     {
+        private readonly int _number;
+        private readonly int _size;
+
         public Page(int number, int size)
         {
             Contract.Requires(number > 0);
             Contract.Requires(size > 0);
-            Number = number;
-            Size = size;
+            _number = number;
+            _size = size;
         }
-
-        public int Number { get; private set; }
-        public int Size { get; private set; }
 
         public IQueryable<T> Refine<T>(IQueryable<T> query) where T : class
         {
-            Contract.Requires(query != null);
-            return query.Skip((Number - 1) * Size).Take(Size);
+            return query.Skip((_number - 1) * _size).Take(_size);
         }
 
     }

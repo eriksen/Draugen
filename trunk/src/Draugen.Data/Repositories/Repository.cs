@@ -1,32 +1,31 @@
-﻿using System.Diagnostics.Contracts;
-using System.Linq;
+﻿using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using Draugen.Data.QueryObjects;
 using NHibernate;
 using NHibernate.Linq;
-using IQuery = Draugen.Data.QueryObjects.IQuery;
 
 
 namespace Draugen.Data.Repositories
 {
     public class Repository<T> : IRepository<T> where T : Kommenterbar
     {
-        private readonly ISession _session;
+        protected readonly ISession Session;
 
         public Repository(ISession session)
         {
             Contract.Requires(session.Transaction.IsActive == true);
-            _session = session;
+            Session = session;
         }
 
         [ContractInvariantMethod]
         private void ObjectInvariant()
         {
-            Contract.Invariant(_session.Transaction.IsActive == true);
+            Contract.Invariant(Session.Transaction.IsActive == true);
         }
 
-        public virtual IQueryable<T> FindAll(IQuery query)
+        public virtual IEnumerable<T> FindAll(IQueryObject[] queryObjects)
         {
-            return _session.Linq<T>().Query<T>(query);
+            return Session.Linq<T>().Query<T>(queryObjects);
         }
 
         public virtual void Add(T item)
@@ -35,15 +34,15 @@ namespace Draugen.Data.Repositories
             //Contract.Requires(item.Kommentarer != null);
             foreach (var kommentar in item.Kommentarer)
             {
-                _session.SaveOrUpdate(kommentar);
+                Session.SaveOrUpdate(kommentar);
             }
-            _session.SaveOrUpdate(item);
+            Session.SaveOrUpdate(item);
         }
 
         public virtual void Delete(T item)
         {
             //Contract.Requires(item != null);
-            _session.Delete(item);
+            Session.Delete(item);
         }
     }
 }

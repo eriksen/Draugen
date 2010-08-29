@@ -1,7 +1,9 @@
 ﻿using System.Diagnostics.Contracts;
 using Draugen.Data;
 using Draugen.Services;
+using Draugen.Services.Assemblers;
 using Draugen.Services.Configuration;
+using Draugen.Services.Dtos;
 using Microsoft.Practices.Unity;
 using NHibernate;
 
@@ -17,6 +19,7 @@ namespace Draugen.Configuration
             this.RegisterType<ILocalContainer, LocalContainer>();
             this.RegisterType<IFangstService, FangstService>();
             this.RegisterType<IUnitOfWork, UnitOfWork>();
+            this.RegisterType<IAssembler<FangstDto, Fangst>>();
         }
     }
 }

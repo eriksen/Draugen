@@ -14,8 +14,7 @@ namespace Draugen.Services.Configuration
             _unitOfWork = unitOfWork;
             this.RegisterInstance(_unitOfWork.Session);
 
-            this.RegisterType<IFangstService,FangstService>();
-            this.RegisterType<IRepository<Fangst>,Repository<Fangst>>();
+            this.RegisterType<IRepository<Fangst>,FangstRepository>();
         }
 
         protected override void Dispose(bool disposing)

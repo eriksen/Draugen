@@ -74,14 +74,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assemblers\FangstAssembler.cs" />
+    <Compile Include="Assemblers\IAssembler.cs" />
     <Compile Include="Configuration\ILocalContainer.cs" />
     <Compile Include="Configuration\LocalContainer.cs" />
     <Compile Include="Dtos\FangstDto.cs" />
     <Compile Include="ServiceBase.cs" />
-    <Compile Include="Dtos\Sorting\SortBy.cs" />
-    <Compile Include="Dtos\Sorting\SortOrder.cs" />
     <Compile Include="FangstService.cs" />
-    <Compile Include="IFangstService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

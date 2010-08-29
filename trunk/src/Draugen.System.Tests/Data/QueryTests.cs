@@ -6,7 +6,6 @@ using Draugen.Configuration;
 using Microsoft.Practices.Unity;
 using NHibernate;
 using NHibernate.Linq;
-using Order = Draugen.Data.QueryObjects.Order;
 
 namespace Draugen.Data
 {
@@ -52,7 +51,7 @@ namespace Draugen.Data
 
             var query = new Query
             {
-                Order = new Order("Vekt", SortDirection.Descending),
+                Sort = new Sort("Vekt", SortDirection.Descending),
                 Page = new Page(1, 10)
             };
             var result = _session.Linq<Fangst>().Query(query);
@@ -65,11 +64,11 @@ namespace Draugen.Data
 
             var query = new Query
             {
-                Order = new Order("Art.Navn", SortDirection.Ascending),
+                Sort = new Sort("Art.Navn", SortDirection.Ascending),
                 Page = new Page(1, 10)
             };
             var result = _session.Linq<Fangst>().Query(query).ToArray();
-            Assert.AreEqual("Abbor", result);
+            Assert.AreEqual("Abbor", result.First().Art.Navn);
         }
 
         [TestMethod]
@@ -77,11 +76,11 @@ namespace Draugen.Data
         {
             var query = new Query
             {
-                Order = new Order("Poeng", SortDirection.Descending),
+                Sort = new Sort("Poeng", SortDirection.Descending),
                 Page = new Page(1, 10)
             };
-            _session.CreateCriteria<Fangst>();
-            var result = _session.Linq<Fangst>().Query(query).Where(f => f.Art.Navn != null).ToArray();
+            query.AddFilter(new Filter("Art.Id", FilterOperator.GreaterThan, 0));
+            var result = _session.Linq<Fangst>().Query(query).ToArray();
             Assert.AreEqual("Småflekket rødhai", result.First().Art.Navn);
             Assert.AreEqual(10, result.Length);
         }
@@ -91,13 +90,34 @@ namespace Draugen.Data
         {
             var query = new Query
             {
-                Order = new Order("Poeng", SortDirection.Descending),
+                Sort = new Sort("Poeng", SortDirection.Descending),
                 Page = new Page(10, 10)
             };
-            _session.CreateCriteria<Fangst>();
-            var result = _session.Linq<Fangst>().Query(query).Where(f => f.Art.Navn != null).ToArray();
+            query.AddFilter(new Filter("Art.Id", FilterOperator.GreaterThan, 0));
+            var result = _session.Linq<Fangst>().Query(query).ToArray();
             Assert.AreEqual(10, result.Length);
         }
 
+        [TestMethod]
+        public void TestOrder_WithOrderOfQueries()
+        {
+            var queries = new QueryObjects.IQueryObject[]
+                              {
+                                  new Sort("Poeng", SortDirection.Descending),
+                                  new Sort("Art.Navn", SortDirection.Descending),
+                                  new Filter("Vekt", FilterOperator.GreaterThan, 2),
+                                  new Filter("Art.Id", FilterOperator.GreaterThan, 0),
+                                  
+                              };
+            IQueryable<Fangst> result = _session.Linq<Fangst>();
+            
+            foreach (var query in queries)
+            {
+                result = result.Query(query);    
+            }
+            var list = result.ToArray();
+            
+            Assert.AreEqual(5, list.Length);
+        }
     }
 }

@@ -4,10 +4,9 @@ namespace Draugen.Data.QueryObjects
 {
     public static class QueryableExtenstions
     {
-        public static IQueryable<T> Query<T>(this IQueryable<T> queryable, IQuery query) where T : class
-
+        public static IQueryable<T> Query<T>(this IQueryable<T> queryable, IQueryObject[] queryObjects) where T : class
         {
-            return query.Refine(queryable);
+            return queryObjects.Aggregate(queryable, (current, query) => query.Refine(current));
         }
     }
 }

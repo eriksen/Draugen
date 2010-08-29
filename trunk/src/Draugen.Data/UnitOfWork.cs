@@ -6,12 +6,6 @@ namespace Draugen.Data
 {
     public class UnitOfWork : IUnitOfWork
     {
-        [ContractInvariantMethod]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(Session.Transaction.IsActive == true);
-        }
-
         public UnitOfWork(ISessionFactory sessionFactory)
         {
             Contract.Requires(sessionFactory != null);
@@ -45,5 +39,12 @@ namespace Draugen.Data
                 Session = null;
             }
         }
+
+        [ContractInvariantMethod]
+        private void ObjectInvariant()
+        {
+            Contract.Invariant(Session.Transaction.IsActive == true);
+        }
+
     }
 }
