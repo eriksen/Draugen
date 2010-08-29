@@ -84,9 +84,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\HomeControllerTests.cs" />
-    <Compile Include="Helpers\ImageHelpersTests.cs" />
     <Compile Include="Initialize\DraugenControllerFactoryTest.cs" />
-    <Compile Include="Initialize\DraugenContainerTests.cs" />
+    <Compile Include="Initialize\GlobalContainerTests.cs" />
     <Compile Include="Initialize\DraugenWebFormViewEngineTests.cs" />
     <Compile Include="MvcApplicationTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -94,7 +93,9 @@
   <ItemGroup>
     <Content Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Helpers\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Draugen.Core\Draugen.Core.csproj">
       <Project>{3B92FD2D-B32B-436D-9635-B44B64AD3589}</Project>
@@ -107,6 +108,10 @@
     <ProjectReference Include="..\Draugen.Services\Draugen.Services.csproj">
       <Project>{021C1168-C56F-4BBC-9708-042E13F862F8}</Project>
       <Name>Draugen.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Draugen.Test.Common\Draugen.Test.Common.csproj">
+      <Project>{061CF6CA-F917-4B10-8876-C4DE9AC11544}</Project>
+      <Name>Draugen.Test.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\Draugen.Web\Draugen.Web.csproj">
       <Project>{9B6C20B0-7C95-452F-83F7-6FFE5B6E0C95}</Project>

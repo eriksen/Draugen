@@ -6,25 +6,25 @@ namespace Draugen.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IViewDataService _viewDataService;
+        private readonly IFangstService _fangstService;
 
-        public HomeController(IViewDataService viewDataService)
+        public HomeController(IFangstService fangstService)
         {
-            Contract.Requires(viewDataService != null);
-            _viewDataService = viewDataService;
+            Contract.Requires(fangstService != null);
+            _fangstService = fangstService;
         }
 
         [ContractInvariantMethod]
         private void ObjectInvariant()
         {
-            Contract.Invariant(_viewDataService != null);
+            Contract.Invariant(_fangstService != null);
         }
 
 
         public ActionResult Index()
         {
             Contract.Ensures(Contract.Result<ActionResult>() != null);
-            return View(_viewDataService.GetHomePageData());
+            return View();
         }
     }
 }

@@ -82,6 +82,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DraugenConfiguration.cs" />
+    <Compile Include="QueryObjects\DynamicLinq\ClassFactory.cs" />
     <Compile Include="IDraugenConfiguration.cs" />
     <Compile Include="IUnitOfWork.cs" />
     <Compile Include="Mappings\ArtMap.cs" />
@@ -94,6 +95,23 @@
     <Compile Include="Mappings\StedMap.cs" />
     <Compile Include="Mappings\TeamMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QueryObjects\DynamicLinq\DynamicClass.cs" />
+    <Compile Include="QueryObjects\DynamicLinq\DynamicExpression.cs" />
+    <Compile Include="QueryObjects\DynamicLinq\DynamicOrdering.cs" />
+    <Compile Include="QueryObjects\DynamicLinq\DynamicProperty.cs" />
+    <Compile Include="QueryObjects\DynamicLinq\DynamicQueryable.cs" />
+    <Compile Include="QueryObjects\DynamicLinq\ExpressionParser.cs" />
+    <Compile Include="QueryObjects\DynamicLinq\ParseException.cs" />
+    <Compile Include="QueryObjects\DynamicLinq\Res.cs" />
+    <Compile Include="QueryObjects\DynamicLinq\Signature.cs" />
+    <Compile Include="QueryObjects\Filter.cs" />
+    <Compile Include="QueryObjects\IQuery.cs" />
+    <Compile Include="QueryObjects\Page.cs" />
+    <Compile Include="QueryObjects\QueryableExtenstions.cs" />
+    <Compile Include="QueryObjects\FilterOperator.cs" />
+    <Compile Include="QueryObjects\Order.cs" />
+    <Compile Include="QueryObjects\Query.cs" />
+    <Compile Include="QueryObjects\SortDirection.cs" />
     <Compile Include="Repositories\Repository.cs" />
     <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="UnitOfWork.cs" />

@@ -36,7 +36,7 @@ namespace Draugen
         protected static void ConfigureDraugen()
         {
             var configuration = new DraugenConfiguration(GetConnectionString());
-            Container = new DraugenContainer(configuration.GetSessionFactory());
+            Container = new GlobalContainer(configuration.GetSessionFactory());
 
             ViewEngines.Engines.Clear();
             ViewEngines.Engines.Add(new DraugenWebFormViewEngine());

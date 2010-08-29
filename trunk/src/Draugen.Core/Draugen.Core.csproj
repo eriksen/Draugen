@@ -64,19 +64,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Art.cs" />
-    <Compile Include="Abstracts\DomainObject.cs" />
+    <Compile Include="DomainObject.cs" />
     <Compile Include="Fangst.cs" />
-    <Compile Include="Abstracts\FangstLeverandør.cs" />
+    <Compile Include="FangstLeverandør.cs" />
     <Compile Include="Fisker.cs" />
     <Compile Include="Bilde.cs" />
     <Compile Include="Kommentar.cs" />
-    <Compile Include="Abstracts\Kommenterbar.cs" />
+    <Compile Include="Kommenterbar.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sted.cs" />
     <Compile Include="Team.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Abstracts\DomainModel.cd" />
+    <None Include="DomainModel.cd" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

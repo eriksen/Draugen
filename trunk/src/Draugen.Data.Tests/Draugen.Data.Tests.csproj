@@ -56,7 +56,6 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\RepositoryTests.cs" />
-    <Compile Include="UnitOfWorkFactoryTests.cs" />
     <Compile Include="UnitOfWorkTests.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -67,6 +66,10 @@
     <ProjectReference Include="..\Draugen.Data\Draugen.Data.csproj">
       <Project>{9E66D512-A067-4FFE-9B58-E573D9FB9E4D}</Project>
       <Name>Draugen.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Draugen.Test.Common\Draugen.Test.Common.csproj">
+      <Project>{061CF6CA-F917-4B10-8876-C4DE9AC11544}</Project>
+      <Name>Draugen.Test.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

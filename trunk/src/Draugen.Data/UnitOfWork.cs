@@ -9,7 +9,7 @@ namespace Draugen.Data
         [ContractInvariantMethod]
         private void ObjectInvariant()
         {
-            Contract.Invariant(Session != null);
+            Contract.Invariant(Session.Transaction.IsActive == true);
         }
 
         public UnitOfWork(ISessionFactory sessionFactory)
@@ -23,6 +23,7 @@ namespace Draugen.Data
 
         public void Dispose()
         {
+            Contract.Ensures(Session == null);
             Dispose(true);
             GC.SuppressFinalize(this);
         }
@@ -41,6 +42,7 @@ namespace Draugen.Data
             finally
             {
                 Session.Dispose();
+                Session = null;
             }
         }
     }

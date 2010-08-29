@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Reflection;
+using Draugen.Data.QueryObjects;
 using Draugen.Data.Repositories;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -13,23 +14,19 @@ namespace Draugen.Data
     public class DraguenConfigurationTests
     {
         private static DraugenConfiguration _configuration;
-        private static UnitOfWorkFactory _unitOfWorkFactory;
+        private UnitOfWork _unitOfWork;
 
         [ClassInitialize]
         public static void Initialize(TestContext context)
         {
             _configuration = new DraugenConfiguration("Data Source=localhost;Initial Catalog=CatchbaseTest;Integrated Security=True");
-            _unitOfWorkFactory = new UnitOfWorkFactory(_configuration.GetSessionFactory());
         }
 
         [ClassCleanup]
         public static void Cleanup()
         {
-            _unitOfWorkFactory.Dispose();
-            _unitOfWorkFactory = null;
             _configuration.Dispose();
             _configuration = null;
-            _unitOfWorkFactory = null;
         }
 
         [TestMethod]
@@ -52,27 +49,22 @@ namespace Draugen.Data
                              };
             fangst.Kommentarer.Add(kommentar);
 
-            using( _unitOfWorkFactory.Create())
+            
+            using(_unitOfWork = new UnitOfWork(_configuration.GetSessionFactory()))
             {
                 Persist(team);
                 Persist(fisker);
                 Persist(sted);
                 Persist(art);
                 Persist(fangst);
+                Test(team);
             }
-            Test(team);
-
-            _unitOfWorkFactory.Dispose();
             _configuration.Dispose();
         }
 
         private void Test<T>(T item) where T : Kommenterbar
         {
-            T result;
-            using(_unitOfWorkFactory.Create())
-            {
-                result = Load<T>(item.Id);
-            }
+            var result = Load<T>(item.Id);
             foreach(var property in typeof(T).GetProperties(BindingFlags.Public))
             {
                 var resultValue = property.GetValue(result, null);
@@ -83,14 +75,14 @@ namespace Draugen.Data
 
         private T Load<T>(int id) where T : Kommenterbar
         {
-            var repository = new Repository<T>(_unitOfWorkFactory);
-            return repository.FindAll().Single(x => x.Id == id);
+            var repository = new Repository<T>(_unitOfWork.Session);
+            return repository.FindAll(new Query()).Single(x => x.Id == id);
         }
 
         private void Persist<T>(T item) where T : Kommenterbar
         {
 
-            var repository = new Repository<T>(_unitOfWorkFactory);
+            var repository = new Repository<T>(_unitOfWork.Session);
                 repository.Add(item);
             
         }

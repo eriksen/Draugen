@@ -74,26 +74,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assemblers\Cards\FangstAssembler.cs" />
-    <Compile Include="Assemblers\Decks\FangsterAssembler.cs" />
-    <Compile Include="Assemblers\IAssembler.cs" />
-    <Compile Include="DataBuilders\IBuilder.cs" />
-    <Compile Include="DataBuilders\Home\IndexBuilder.cs" />
-    <Compile Include="DataBuilders\IMasterBuilder.cs" />
-    <Compile Include="DataBuilders\Shared\MasterBuilder.cs" />
-    <Compile Include="Filters\FangstFilter.cs" />
     <Compile Include="Configuration\ILocalContainer.cs" />
     <Compile Include="Configuration\LocalContainer.cs" />
+    <Compile Include="Dtos\FangstDto.cs" />
     <Compile Include="ServiceBase.cs" />
-    <Compile Include="ViewData\Shared\Cards\BildeCard.cs" />
-    <Compile Include="ViewData\Shared\Cards\FangstCard.cs" />
-    <Compile Include="ViewDataService.cs" />
-    <Compile Include="IViewDataService.cs" />
+    <Compile Include="Dtos\Sorting\SortBy.cs" />
+    <Compile Include="Dtos\Sorting\SortOrder.cs" />
+    <Compile Include="FangstService.cs" />
+    <Compile Include="IFangstService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewData\Shared\TocData.cs" />
-    <Compile Include="ViewData\Shared\Decks\FangstDeck.cs" />
-    <Compile Include="ViewData\Home\IndexData.cs" />
-    <Compile Include="ViewData\Shared\MasterData.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Draugen.Core\Draugen.Core.csproj">

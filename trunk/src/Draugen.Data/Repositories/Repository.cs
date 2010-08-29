@@ -1,7 +1,9 @@
 ﻿using System.Diagnostics.Contracts;
 using System.Linq;
+using Draugen.Data.QueryObjects;
 using NHibernate;
 using NHibernate.Linq;
+using IQuery = Draugen.Data.QueryObjects.IQuery;
 
 
 namespace Draugen.Data.Repositories
@@ -22,10 +24,9 @@ namespace Draugen.Data.Repositories
             Contract.Invariant(_session.Transaction.IsActive == true);
         }
 
-        public virtual IQueryable<T> FindAll()
+        public virtual IQueryable<T> FindAll(IQuery query)
         {
-            Contract.Ensures(Contract.Result<IQueryable<T>>() != null);
-            return _session.Linq<T>();
+            return _session.Linq<T>().Query<T>(query);
         }
 
         public virtual void Add(T item)

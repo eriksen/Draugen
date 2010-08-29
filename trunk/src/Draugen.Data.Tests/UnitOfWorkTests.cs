@@ -1,4 +1,5 @@
 ﻿using System;
+using Draugen.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using NHibernate;
@@ -16,13 +17,10 @@ namespace Draugen.Data
         [TestInitialize]
         public void InitializeTest()
         {
-            var unitOfWorkFactory = new Mock<IUnitOfWorkFactory>();
-            _transaction = new Mock<ITransaction>();
-            _session = new Mock<ISession>();
-            _session.Setup(s => s.Transaction).Returns(_transaction.Object);
-            _sessionFactory = new Mock<ISessionFactory>();
-            _sessionFactory.Setup(s => s.OpenSession()).Returns(_session.Object);
-            _unitOfWork = new UnitOfWork(unitOfWorkFactory.Object, _sessionFactory.Object);
+            _transaction = MyMocks.Transaction();
+            _session = MyMocks.Session(_transaction);
+            _sessionFactory = MyMocks.SessionFactory(_session);
+            _unitOfWork = new UnitOfWork(_sessionFactory.Object);
         }
 
         [TestMethod]

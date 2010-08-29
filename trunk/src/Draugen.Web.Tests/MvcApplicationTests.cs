@@ -19,7 +19,7 @@ namespace Draugen
         [TestMethod]
         public void ConfigureDraugen_MustSetupDraugenUnityContainer()
         {
-            Assert.IsInstanceOfType(TestableMvcApplication.Container, typeof(DraugenContainer));
+            Assert.IsInstanceOfType(TestableMvcApplication.Container, typeof(GlobalContainer));
             Assert.IsNotNull(TestableMvcApplication.Container.Resolve<ISessionFactory>());
         }
 

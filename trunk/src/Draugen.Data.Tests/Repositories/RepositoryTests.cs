@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Draugen.Data.QueryObjects;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using NHibernate;
 using NHibernate.Linq;
@@ -14,19 +15,20 @@ namespace Draugen.Data.Repositories
         [TestInitialize]
         public void Initialize()
         {
-            var unitOfWorkFactoryMock = new Mock<IUnitOfWorkFactory>();
             var unitOfWorkMock = new Mock<IUnitOfWork>();
             _sessionMock = new Mock<ISession>();
-            unitOfWorkFactoryMock.Setup(u => u.Create()).Returns(unitOfWorkMock.Object);
+            var transactionMock = new Mock<ITransaction>();
+            transactionMock.Setup(t => t.IsActive).Returns(true);
+            _sessionMock.Setup(s => s.Transaction).Returns(transactionMock.Object);
             unitOfWorkMock.Setup(u => u.Session).Returns(_sessionMock.Object);
-            _repository = new Repository<Sted>(unitOfWorkFactoryMock.Object);
+            _repository = new Repository<Sted>(_sessionMock.Object);
 
         }
         
         [TestMethod]
         public void FindAll_MustCallSessionLinq()
         {
-            var result =  _repository.FindAll();
+            var result =  _repository.FindAll(new Query());
             Assert.IsInstanceOfType(result, typeof(Query<Sted>));
         }
 
