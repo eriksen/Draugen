@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq.Dynamic;
-using System.Linq.Expressions;
-using Draugen.Data;
+﻿using Draugen.Services.Configuration;
 using Microsoft.Practices.Unity;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Moq;
 
 namespace Draugen.Services
 {
@@ -19,29 +14,25 @@ namespace Draugen.Services
         public void InitializeTest()
         {
             _container = new UnityContainer();
+            _container.RegisterType<IUnityContainer, ServiceContainer>("Service");
             _service = new TestableServiceBase(_container);
         }
 
         [TestMethod]
-        public void ServiceBase_MustResolveUnitOfWorkFactory()
+        public void ServiceBase_MustResolveServiceContrainer()
         {
-            Assert.AreSame(_container, _service.GlobalContainerInstance);
+            Assert.IsInstanceOfType(_service.ContainerInstance, typeof(ServiceContainer));
         }
 
         private class TestableServiceBase : ServiceBase
         {
             public TestableServiceBase(IUnityContainer container) : base(container){}
             
-            public IUnityContainer GlobalContainerInstance
+            public IUnityContainer ContainerInstance
             {
-                get { return GlobalContainer; }
+                get { return Container; }
             }
         }
 
     }
-
-    public static class Extensions
-    {
-    }
-    
 }

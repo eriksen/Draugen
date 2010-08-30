@@ -5,18 +5,18 @@ namespace Draugen.Services
 {
     public abstract class ServiceBase
     {
-        protected IUnityContainer GlobalContainer;
+        protected IUnityContainer Container;
 
-        protected ServiceBase(IUnityContainer globalContainer)
+        protected ServiceBase(IUnityContainer container)
         {
-            Contract.Requires(globalContainer != null);
-            GlobalContainer = globalContainer;
+            Contract.Requires(container != null);
+            Container = container.Resolve<IUnityContainer>("Service");
         }
 
         [ContractInvariantMethod]
         private void ObjectInvariant()
         {
-            Contract.Invariant(GlobalContainer != null);
+            Contract.Invariant(Container != null);
         }
 
     }

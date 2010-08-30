@@ -12,7 +12,9 @@ namespace Draugen.Data.Import
             var composer = new Composer(@"C:\Projects\Draugen\trunk\src\Draugen.Data.Import\draugen_org_data");
             using (var unitOfWork = new UnitOfWork(configuration.GetSessionFactory()))
             {
+                unitOfWork.BeginTransaction();
                 composer.Save(unitOfWork.Session);
+                unitOfWork.CommitTransaction();
             }
         }
     }

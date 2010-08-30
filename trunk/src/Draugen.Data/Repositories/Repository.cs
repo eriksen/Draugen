@@ -14,8 +14,7 @@ namespace Draugen.Data.Repositories
         public Repository(ISession session)
         {
             Contract.Requires(session != null);
-            Contract.Requires(session.Transaction != null);
-            Contract.Requires(session.Transaction.IsActive == true);
+            Contract.Requires(session.IsOpen == true);
             Session = session;
         }
 
@@ -23,8 +22,7 @@ namespace Draugen.Data.Repositories
         private void ObjectInvariant()
         {
             Contract.Invariant(Session != null);
-            Contract.Invariant(Session.Transaction != null);
-            Contract.Invariant(Session.Transaction.IsActive == true);
+            Contract.Invariant(Session.IsOpen == true);
         }
 
         public virtual IEnumerable<T> FindAll(IQueryObject[] queryObjects)

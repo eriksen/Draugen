@@ -1,6 +1,9 @@
 ﻿using System.Diagnostics.Contracts;
 using System.Web.Mvc;
+using Draugen.Model.Home;
+using Draugen.Model.Shared;
 using Draugen.Services;
+using Draugen.Services.Dtos.Requests;
 
 namespace Draugen.Controllers
 {
@@ -24,8 +27,16 @@ namespace Draugen.Controllers
         public ActionResult Index()
         {
             Contract.Ensures(Contract.Result<ActionResult>() != null);
-            var fangster = _fangstService.GetFangster();
-            return View(fangster);
+            var request = new GetFangsterRequest()
+                              {
+                                  Header = new ServiceHeader() {Culture = "no"}
+                              };
+            var response = _fangstService.GetFangster(request);
+            var model = new IndexModel
+                            {
+                                Fangster = new FangstList(response.Body.FangstList)
+                            };
+            return View(model);
         }
     }
 }

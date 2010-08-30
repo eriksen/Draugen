@@ -1,34 +1,21 @@
-﻿using System.Diagnostics.Contracts;
-using System.Linq;
-using Draugen.Data.QueryObjects;
-using Draugen.Data.Repositories;
-using Draugen.Services.Assemblers;
-using Draugen.Services.Builders;
-using Draugen.Services.Configuration;
-using Draugen.Services.Dtos;
+﻿using Draugen.Services.Builders;
+using Draugen.Services.Dtos.Requests;
+using Draugen.Services.Dtos.Responses;
 using Microsoft.Practices.Unity;
 
 namespace Draugen.Services
 {
-    public interface IFangstService
-    {
-        FangstDto[] GetFangster();
-    }
-
     public class FangstService : ServiceBase, IFangstService
     {
         public FangstService(IUnityContainer globalContainer) : base(globalContainer){}
 
-        public FangstDto[] GetFangster()
+        public GetFangsterResponse GetFangster(GetFangsterRequest request)
         {
-            Contract.Ensures(Contract.Result<FangstDto[]>() != null);
-            using (var localContainer = GlobalContainer.Resolve<ILocalContainer>())
+            using (var container = Container.Resolve<IUnityContainer>())
             {
-                return localContainer.Resolve<FangstListBuilder>().Build();
+                return container.Resolve<IResponseBuilder<GetFangsterResponse, GetFangsterRequest>>().Build(request);
             }
         }
-
-
     }
 
     

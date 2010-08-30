@@ -11,7 +11,7 @@ namespace Draugen.Data.Repositories
 
         public FangstRepository(ISession session) : base(session)
         {
-            Contract.Requires(session.Transaction.IsActive == true);
+            Contract.Requires(session.IsOpen == true);
             _hack = new Filter("Art.Id", FilterOperator.GreaterThan, 0);
         }
 

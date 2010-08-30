@@ -67,6 +67,8 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -76,10 +78,17 @@
   <ItemGroup>
     <Compile Include="Assemblers\FangstAssembler.cs" />
     <Compile Include="Assemblers\IAssembler.cs" />
-    <Compile Include="Builders\FangstListDtoBuilder.cs" />
-    <Compile Include="Configuration\ILocalContainer.cs" />
-    <Compile Include="Configuration\LocalContainer.cs" />
+    <Compile Include="Builders\GetFangsterResponseBuilder.cs" />
+    <Compile Include="Builders\IResponseBuilder.cs" />
+    <Compile Include="Configuration\PerCallContainer.cs" />
+    <Compile Include="Configuration\ServiceContainer.cs" />
     <Compile Include="Dtos\FangstDto.cs" />
+    <Compile Include="Dtos\Requests\GetFangsterRequest.cs" />
+    <Compile Include="Dtos\Requests\GetFangsterRequestBody.cs" />
+    <Compile Include="Dtos\Responses\GetFangsterResponse.cs" />
+    <Compile Include="Dtos\Responses\GetFangsterResponseBody.cs" />
+    <Compile Include="Dtos\Requests\ServiceHeader.cs" />
+    <Compile Include="IFangstService.cs" />
     <Compile Include="ServiceBase.cs" />
     <Compile Include="FangstService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -94,9 +103,7 @@
       <Name>Draugen.Data</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Factories\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

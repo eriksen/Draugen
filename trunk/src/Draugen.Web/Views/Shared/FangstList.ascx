@@ -1,22 +1,21 @@
-﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<Draugen.Services.Dtos.FangstDto[]>" %>
-<%@ Import Namespace="Draugen.Helpers" %>
+﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<Draugen.Model.Shared.FangstList>" %>
 <table cellspacing="0">
     <tr>
-        <th>Fangst</th>
         <th>Art</th>
-        <th>Gram</th>
+        <th>Vekt</th>
         <th>Fisker</th>
         <th>Sted</th>
         <th>Dato</th>
+        <th>Poeng</th>
     </tr>
     <% foreach (var fangst in Model) { %>
     <tr>
         <td><%= fangst.Art %></td>
-        <td class="numeric"><%= fangst.Vekt %></td>
+        <td class="numeric"><%= fangst.Vekt %> kg</td>
         <td><%= fangst.Fisker %></td>
         <td><%= fangst.Sted %></td>
         <td><%= fangst.Dato %></td>
+        <td class="numeric"><%= fangst.Poeng %></td>
     </tr>
     <% } %>
 </table>
-<div id="bottomads">&nbsp;</div>

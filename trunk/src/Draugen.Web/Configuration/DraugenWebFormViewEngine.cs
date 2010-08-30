@@ -8,8 +8,6 @@ namespace Draugen.Configuration
         {
             PartialViewLocationFormats = new []   {
                                                       "~/Views/Shared/{0}.ascx",
-                                                      "~/Views/Shared/Cards/{0}.ascx",
-                                                      "~/Views/Shared/Decks/{0}.ascx"
                                                   };
 
         }

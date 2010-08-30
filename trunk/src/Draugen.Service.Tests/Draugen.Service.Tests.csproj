@@ -51,8 +51,10 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Configuration\LoaclContainerTests.cs" />
-    <Compile Include="Dynamic.cs" />
+    <Compile Include="Assemblers\FangstAssemblerTest.cs" />
+    <Compile Include="Configuration\PerCallContainerTest.cs" />
+    <Compile Include="Configuration\ServiceContainerTest.cs" />
+    <Compile Include="FangstServiceTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceBaseTests.cs" />
   </ItemGroup>

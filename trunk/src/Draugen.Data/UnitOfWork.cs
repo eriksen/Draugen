@@ -10,10 +10,28 @@ namespace Draugen.Data
         {
             Contract.Requires(sessionFactory != null);
             Session = sessionFactory.OpenSession();
-            Session.BeginTransaction();
         }
 
         public ISession Session { get; private set; }
+
+        public void BeginTransaction()
+        {
+            Session.BeginTransaction();
+        }
+
+        public bool CommitTransaction()
+        {
+            try
+            {
+                Session.Transaction.Commit();
+                return true;
+            }
+            catch (Exception)
+            {
+                Session.Transaction.Rollback();
+                return false;
+            }
+        }
 
         public void Dispose()
         {
@@ -24,26 +42,15 @@ namespace Draugen.Data
         protected void Dispose(bool disposing)
         {
             Contract.Ensures(Session == null);
-            if(!disposing){ return; }
-            try
-            {
-                Session.Transaction.Commit();
-            }
-            catch (Exception)
-            {
-                Session.Transaction.Rollback();
-            }
-            finally
-            {
-                Session.Dispose();
-                Session = null;
-            }
+            if (!disposing) return;
+            Session.Dispose();
+            Session = null;
         }
 
         [ContractInvariantMethod]
         private void ObjectInvariant()
         {
-            Contract.Invariant(Session.Transaction.IsActive == true);
+            Contract.Invariant(Session.IsOpen == true);
         }
 
     }

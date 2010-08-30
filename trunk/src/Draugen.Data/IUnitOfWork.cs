@@ -17,7 +17,6 @@ namespace Draugen.Data
         {
             get
             {
-                Contract.Ensures(Contract.Result<ISession>().Transaction.IsActive == true);
                 return default(ISession);
             }
         }

@@ -9,7 +9,7 @@ namespace Draugen
             Fangster = new List<Fangst>();
         }
 
-        public virtual List<Fangst> Fangster { get; set; }
+        public virtual IList<Fangst> Fangster { get; set; }
 
         public virtual string Navn { get; set; }
     }

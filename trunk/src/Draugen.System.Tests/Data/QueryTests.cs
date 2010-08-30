@@ -1,7 +1,5 @@
 ﻿using System.Linq;
 using Draugen.Data.QueryObjects;
-
-using Draugen.Services.Configuration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Draugen.Configuration;
 using Microsoft.Practices.Unity;
@@ -14,24 +12,22 @@ namespace Draugen.Data
     public class QueryTests
     {
         private static ISession _session;
-        private static ILocalContainer _localContainer;
-        private static GlobalContainer _container;
+        private static IUnityContainer _perCallContainer;
 
         [ClassInitialize]
         public static void Initialize(TestContext testContext)
         {
-            _container = new GlobalContainer(new DraugenConfiguration("Data Source=localhost;Initial Catalog=Catchbase;Integrated Security=True").GetSessionFactory());
-            _localContainer = _container.Resolve<ILocalContainer>();
-            _session = _localContainer.Resolve<ISession>();
+            var container = new GlobalContainer(new DraugenConfiguration("Data Source=localhost;Initial Catalog=Catchbase;Integrated Security=True").GetSessionFactory());
+            var serviceContainer = container.Resolve<IUnityContainer>("Service");
+            _perCallContainer = serviceContainer.Resolve<IUnityContainer>();
+            _session = _perCallContainer.Resolve<ISession>();
         }
 
         [ClassCleanup]
         public static void Cleanup()
         {
-            _localContainer.Dispose();
-            _localContainer = null;
-            _container.Dispose();
-            _container = null;
+            _perCallContainer.Dispose();
+            _perCallContainer = null;
         }
 
         [TestMethod]

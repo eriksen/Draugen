@@ -22,18 +22,6 @@
     <AgentRule name="LocalMachineDefaultRole">
       <DataCollectors>
         <DataCollector uri="datacollector://microsoft/CodeCoverage/1.0" assemblyQualifiedName="Microsoft.VisualStudio.TestTools.CodeCoverage.CoveragePlugIn, Microsoft.VisualStudio.QualityTools.Plugins.CodeCoverage, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" friendlyName="Code Coverage">
-          <Configuration>
-            <CodeCoverage xmlns="">
-              <Regular>
-                <CodeCoverageItem binaryFile="Draugen.Core\bin\Debug\Draugen.Core.dll" pdbFile="Draugen.Core\bin\Debug\Draugen.Core.pdb" instrumentInPlace="true" />
-                <CodeCoverageItem binaryFile="Draugen.Data\bin\Debug\Draugen.Data.dll" pdbFile="Draugen.Data\bin\Debug\Draugen.Data.pdb" instrumentInPlace="true" />
-                <CodeCoverageItem binaryFile="Draugen.Services\bin\Debug\Draugen.Services.dll" pdbFile="Draugen.Services\bin\Debug\Draugen.Services.pdb" instrumentInPlace="true" />
-              </Regular>
-              <AspNet>
-                <AspNetCodeCoverageItem id="4fc88155-7082-4112-a3b8-651d078392ea" name="Draugen.Web" applicationRoot="/" url="http://localhost:0/" />
-              </AspNet>
-            </CodeCoverage>
-          </Configuration>
         </DataCollector>
       </DataCollectors>
     </AgentRule>

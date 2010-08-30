@@ -15,12 +15,14 @@ namespace Draugen.Helpers
 
         public static Mock<ISession> Session()
         {
-            return Session(Transaction());
+            var mock = new Mock<ISession>();
+            mock.Setup(s => s.IsOpen).Returns(true);
+            return mock;
         }
 
         public static Mock<ISession> Session(Mock<ITransaction> transaction)
         {
-            var mock = new Mock<ISession>();
+            var mock = Session();
             mock.Setup(m => m.Transaction).Returns(transaction.Object);
             return mock;
         }
@@ -35,11 +37,6 @@ namespace Draugen.Helpers
             var mock = new Mock<ISessionFactory>();
             mock.Setup(m => m.OpenSession()).Returns(session.Object);
             return mock;
-        }
-
-        public static Mock<IQueryable<T>> Queryable<T>() 
-        {
-            return new Mock<IQueryable<T>>();
         }
     }
 }
