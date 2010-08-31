@@ -78,7 +78,9 @@
   <ItemGroup>
     <Compile Include="Assemblers\FangstAssembler.cs" />
     <Compile Include="Assemblers\IAssembler.cs" />
+    <Compile Include="Builders\FangstListBuilder.cs" />
     <Compile Include="Builders\GetFangsterResponseBuilder.cs" />
+    <Compile Include="Builders\IListBuilder.cs" />
     <Compile Include="Builders\IResponseBuilder.cs" />
     <Compile Include="Configuration\PerCallContainer.cs" />
     <Compile Include="Configuration\ServiceContainer.cs" />

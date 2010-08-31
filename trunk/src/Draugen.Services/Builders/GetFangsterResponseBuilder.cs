@@ -1,9 +1,4 @@
-﻿using System.Globalization;
-using System.Linq;
-using Draugen.Data.QueryObjects;
-using Draugen.Data.Repositories;
-using Draugen.Services.Assemblers;
-using Draugen.Services.Dtos;
+﻿using Draugen.Services.Dtos;
 using Draugen.Services.Dtos.Requests;
 using Draugen.Services.Dtos.Responses;
 
@@ -11,13 +6,11 @@ namespace Draugen.Services.Builders
 {
     public class GetFangsterResponseBuilder : IResponseBuilder<GetFangsterResponse, GetFangsterRequest>
     {
-        private readonly IRepository<Fangst> _fangstRepository;
-        private readonly IAssembler<FangstDto, Fangst> _fangstAssembler;
+        private readonly IListBuilder<FangstDto[]> _fangstBuilder;
 
-        public GetFangsterResponseBuilder(IRepository<Fangst> fangstRepository, IAssembler<FangstDto, Fangst> fangstAssembler)
+        public GetFangsterResponseBuilder(IListBuilder<FangstDto[]> fangstBuilder)
         {
-            _fangstAssembler = fangstAssembler;
-            _fangstRepository = fangstRepository;
+            _fangstBuilder = fangstBuilder;
         }
 
         public GetFangsterResponse Build(GetFangsterRequest request)
@@ -32,21 +25,9 @@ namespace Draugen.Services.Builders
         {
             return new GetFangsterResponseBody()
                        {
-                           FangstList = BuildFangstList(request)
+                           FangstList = _fangstBuilder.BuildFangstList(request.Header)
                        };
         }
 
-        private FangstDto[] BuildFangstList(GetFangsterRequest request)
-        {
-            var queryObjects = new IQueryObject[]
-                                   {
-                                       new Sort("Poeng", SortDirection.Descending),
-                                       new Page(2, 25)
-                                   };
-            var fangster = _fangstRepository.FindAll(queryObjects);
-            var culture = new CultureInfo(request.Header.Culture);
-            
-            return fangster.Select(f => _fangstAssembler.WriteDto(f, culture)).ToArray();
-        }
     }
 }
