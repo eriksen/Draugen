@@ -2,6 +2,7 @@
 using Draugen.Data;
 using Draugen.Helpers;
 using Draugen.Services;
+using Draugen.Services.Configuration;
 using Microsoft.Practices.Unity;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
@@ -37,17 +38,19 @@ namespace Draugen.Initialize
         [TestMethod]
         public void Ctor_MustRegisterInstanceOfISessionFactory()
         {
-            var container = _container.Resolve<IUnityContainer>();
-            Assert.AreSame(_sessionFactory.Object, container.Resolve<ISessionFactory>());
+            Assert.AreSame(_sessionFactory.Object, _container.Resolve<ISessionFactory>());
         }
 
         [TestMethod]
         public void Ctor_MustRegisterInterfaces()
         {
-            Assert.IsInstanceOfType(_container.Resolve<IUnitOfWork>(), typeof(UnitOfWork));
             Assert.IsInstanceOfType(_container.Resolve<IFangstService>(), typeof(FangstService));
-            Assert.IsInstanceOfType(_container.Resolve<IUnityContainer>(), typeof(GlobalContainer));
         }
 
+        [TestMethod]
+        public void Ctor_MustRegisterNamedInterfaces()
+        {
+            Assert.IsInstanceOfType(_container.Resolve<IUnityContainer>("Service"), typeof(ServiceContainer));
+        }
     }
 }

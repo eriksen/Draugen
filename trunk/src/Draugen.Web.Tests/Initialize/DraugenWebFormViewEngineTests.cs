@@ -18,8 +18,6 @@ namespace Draugen.Initialize
         public void Ctor_MustRegisterPartialViewLocationFormats()
         {
             Assert.AreEqual("~/Views/Shared/{0}.ascx", _engine.PartialViewLocationFormats[0]);
-            Assert.AreEqual("~/Views/Shared/Cards/{0}.ascx", _engine.PartialViewLocationFormats[1]);
-            Assert.AreEqual("~/Views/Shared/Decks/{0}.ascx", _engine.PartialViewLocationFormats[2]);
         }
     }
 }
