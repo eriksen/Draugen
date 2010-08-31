@@ -44,6 +44,5 @@ namespace Draugen.Data.QueryObjects
         {
             new Sort("Bogus", SortDirection.Descending).Refine(_queryable);
         }
-
     }
 }

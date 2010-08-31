@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using Draugen.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
@@ -30,20 +31,6 @@ namespace Draugen.Data
         }
 
         [TestMethod]
-        public void Ctor_MustCallBeginTransaction()
-        {
-            _session.Verify(s => s.BeginTransaction());
-        }
-
-        [TestMethod]
-        public void Dispose_MustCommitTransaction()
-        {
-            _unitOfWork.Dispose();
-            _transaction.Verify(t => t.Commit());
-            _transaction.Verify(t => t.Rollback(), Times.Never());
-        }
-
-        [TestMethod]
         public void Session_MustBeDisposed_WhenSessionIsSuccessfullyComitted()
         {
             _unitOfWork.Dispose();
@@ -51,19 +38,25 @@ namespace Draugen.Data
         }
 
         [TestMethod]
-        public void Dispose_MustRollbackTransaction_WhenCommitFails()
+        public void BeginTransaction_MustCallBeginTransactionOnSession()
         {
-            _transaction.Setup(t => t.Commit()).Throws(new Exception());
-            _unitOfWork.Dispose();
-            _transaction.Verify(t => t.Rollback());
+            _unitOfWork.BeginTransaction();
+            _session.Verify(s => s.BeginTransaction(), Times.Once());
         }
 
         [TestMethod]
-        public void Session_MustBeDisposed_WhenSessionIsRolledback()
+        public void CommitTransaction_MustCallSessionCommitAndReturnTrue()
+        {
+            Assert.IsTrue(_unitOfWork.CommitTransaction());
+            _transaction.Verify(t => t.Commit(), Times.Once());
+        }
+
+        [TestMethod]
+        public void CommitTransaction_MusrRollbackAndReturnFalse_WhenCommitThrows()
         {
             _transaction.Setup(t => t.Commit()).Throws(new Exception());
-            _unitOfWork.Dispose();
-            _session.Verify(s => s.Dispose());
+            Assert.IsFalse(_unitOfWork.CommitTransaction());
+            _transaction.Verify(t => t.Rollback(), Times.Once());
         }
     }
 }

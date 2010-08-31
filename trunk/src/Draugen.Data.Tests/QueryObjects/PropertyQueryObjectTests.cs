@@ -35,7 +35,7 @@ namespace Draugen.Data.QueryObjects
         [TestMethod]
         public void Refine_MustThrowArguementException_WhenSubPropertyDoesNotExist()
         {
-            const string expectedMessage = "Property Bogus in relation to Fangst does not exist";
+            const string expectedMessage = "Property Bogus in relation to Art does not exist";
             try
             {
                 new TestablePropertyQueryObject("Art.Bogus").TestValidate<Fangst>();

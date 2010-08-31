@@ -4,7 +4,7 @@ using NHibernate;
 
 namespace Draugen.Data
 {
-    public class UnitOfWork : IUnitOfWork
+    public sealed class UnitOfWork : IUnitOfWork
     {
         public UnitOfWork(ISessionFactory sessionFactory)
         {
@@ -35,16 +35,7 @@ namespace Draugen.Data
 
         public void Dispose()
         {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        protected void Dispose(bool disposing)
-        {
-            Contract.Ensures(Session == null);
-            if (!disposing) return;
             Session.Dispose();
-            Session = null;
         }
 
         [ContractInvariantMethod]
