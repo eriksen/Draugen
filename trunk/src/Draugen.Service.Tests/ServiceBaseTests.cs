@@ -1,4 +1,5 @@
-﻿using Draugen.Services.Configuration;
+﻿using Draugen.Helpers;
+using Draugen.Services.Configuration;
 using Microsoft.Practices.Unity;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -14,6 +15,7 @@ namespace Draugen.Services
         public void InitializeTest()
         {
             _container = new UnityContainer();
+            _container.RegisterInstance(MyMocks.SessionFactory().Object);
             _container.RegisterType<IUnityContainer, ServiceContainer>("Service");
             _service = new TestableServiceBase(_container);
         }

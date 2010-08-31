@@ -8,29 +8,26 @@ using Draugen.Services.Dtos.Requests;
 
 namespace Draugen.Services.Builders
 {
-    public class FangstListBuilder : IListBuilder<FangstDto[]>
+    public class FangstListBuilder : IListBuilder<FangstDto>
     {
         private readonly IAssembler<FangstDto, Fangst> _fangstAssembler;
         private readonly IRepository<Fangst> _fangstRepository;
+        private readonly IListBuilder<IQueryObject> _queryObjectListBuilder;
 
-        public FangstListBuilder(IRepository<Fangst> fangstRepository, IAssembler<FangstDto, Fangst> fangstAssembler)
+        public FangstListBuilder(IRepository<Fangst> fangstRepository, IAssembler<FangstDto, Fangst> fangstAssembler, IListBuilder<IQueryObject> queryObjectListBuilder)
         {
+            _queryObjectListBuilder = queryObjectListBuilder;
             _fangstRepository = fangstRepository;
             _fangstAssembler = fangstAssembler;
         }
 
-        public FangstDto[] BuildFangstList(ServiceHeader header)
+        public FangstDto[] Build(ServiceHeader header)
         {
-            var queryObjects = new IQueryObject[]
-                                   {
-                                       new Sort("Poeng", SortDirection.Descending),
-                                       new Page(10, 25)
-                                   };
-            var fangster = _fangstRepository.FindAll(queryObjects);
+            var fangster = _fangstRepository.FindAll(_queryObjectListBuilder.Build(header));
             var culture = new CultureInfo(header.Culture);
-
             return fangster.Select(f => _fangstAssembler.WriteDto(f, culture)).ToArray();
         }
 
+        
     }
 }

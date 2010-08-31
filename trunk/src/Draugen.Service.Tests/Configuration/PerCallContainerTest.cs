@@ -1,4 +1,5 @@
 ﻿using Draugen.Data;
+using Draugen.Data.QueryObjects;
 using Draugen.Data.Repositories;
 using Draugen.Helpers;
 using Draugen.Services.Assemblers;
@@ -47,7 +48,9 @@ namespace Draugen.Services.Configuration
         {
             Assert.IsInstanceOfType(_container.Resolve<IRepository<Fangst>>(), typeof(FangstRepository));
             Assert.IsInstanceOfType(_container.Resolve<IAssembler<FangstDto, Fangst>>(), typeof(FangstAssembler));
-            Assert.IsInstanceOfType(_container.Resolve <IResponseBuilder<GetFangsterResponse, GetFangsterRequest>>(), typeof(GetFangsterResponseBuilder));
+            Assert.IsInstanceOfType(_container.Resolve<IListBuilder<FangstDto>>(), typeof(FangstListBuilder));
+            Assert.IsInstanceOfType(_container.Resolve<IListBuilder<IQueryObject>>(), typeof(QueryObjectListBuilder));
+            Assert.IsInstanceOfType(_container.Resolve<IResponseBuilder<GetFangsterResponse, GetFangsterRequest>>(), typeof(GetFangsterResponseBuilder));
         }
     }
 }

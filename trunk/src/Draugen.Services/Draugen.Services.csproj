@@ -82,6 +82,7 @@
     <Compile Include="Builders\GetFangsterResponseBuilder.cs" />
     <Compile Include="Builders\IListBuilder.cs" />
     <Compile Include="Builders\IResponseBuilder.cs" />
+    <Compile Include="Builders\QueryObjectListBuilder.cs" />
     <Compile Include="Configuration\PerCallContainer.cs" />
     <Compile Include="Configuration\ServiceContainer.cs" />
     <Compile Include="Dtos\FangstDto.cs" />

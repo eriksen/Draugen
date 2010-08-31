@@ -8,7 +8,7 @@ namespace Draugen.Services.Builders
     [TestClass]
     public class GetFangsterResponseBuilderTests
     {
-        private Mock<IListBuilder<FangstDto[]>> _fangstBuilder;
+        private Mock<IListBuilder<FangstDto>> _fangstBuilder;
         private GetFangsterResponseBuilder _builder;
         private FangstDto[] _fangstList;
         private GetFangsterRequest _request;
@@ -16,12 +16,12 @@ namespace Draugen.Services.Builders
         [TestInitialize]
         public void InitializeTest()
         {
-            _fangstBuilder = new Mock<IListBuilder<FangstDto[]>>();
+            _fangstBuilder = new Mock<IListBuilder<FangstDto>>();
             
             _builder = new GetFangsterResponseBuilder(_fangstBuilder.Object);
             _fangstList = new FangstDto[] { };
-            _request = new GetFangsterRequest() { Header = new ServiceHeader() };
-            _fangstBuilder.Setup(f => f.BuildFangstList(_request.Header)).Returns(_fangstList);
+            _request = new GetFangsterRequest { Header = new ServiceHeader() };
+            _fangstBuilder.Setup(f => f.Build(_request.Header)).Returns(_fangstList);
         }
 
         [TestMethod]

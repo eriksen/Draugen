@@ -1,4 +1,5 @@
 ﻿using Draugen.Data;
+using Draugen.Data.QueryObjects;
 using Draugen.Data.Repositories;
 using Draugen.Services.Assemblers;
 using Draugen.Services.Builders;
@@ -20,7 +21,10 @@ namespace Draugen.Services.Configuration
 
             this.RegisterType<IRepository<Fangst>,FangstRepository>();
             this.RegisterType<IAssembler<FangstDto, Fangst>, FangstAssembler>();
+            this.RegisterType<IListBuilder<FangstDto>, FangstListBuilder>();
+            this.RegisterType<IListBuilder<IQueryObject>, QueryObjectListBuilder>();
             this.RegisterType<IResponseBuilder<GetFangsterResponse, GetFangsterRequest>, GetFangsterResponseBuilder>();
+            
         }
 
         protected override void Dispose(bool disposing)

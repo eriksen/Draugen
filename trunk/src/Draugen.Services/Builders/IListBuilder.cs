@@ -4,6 +4,6 @@ namespace Draugen.Services.Builders
 {
     public interface IListBuilder<out T>    
     {
-        T BuildFangstList(ServiceHeader header);
+        T[] Build(ServiceHeader header);
     }
 }

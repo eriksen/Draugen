@@ -52,7 +52,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assemblers\FangstAssemblerTest.cs" />
+    <Compile Include="Builders\FangstListBuilderTests.cs" />
     <Compile Include="Builders\GetFangsterResponseBuilderTests.cs" />
+    <Compile Include="Builders\QueryObjectListBuilderTests.cs" />
     <Compile Include="Configuration\PerCallContainerTest.cs" />
     <Compile Include="Configuration\ServiceContainerTest.cs" />
     <Compile Include="FangstServiceTests.cs" />
