@@ -2,6 +2,7 @@
 using Draugen.Data.QueryObjects;
 using Draugen.Data.Repositories;
 using Draugen.Services.Assemblers;
+using Draugen.Services.Builders.Queries;
 using Draugen.Services.Dtos;
 using Draugen.Services.Dtos.Requests;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -23,8 +24,8 @@ namespace Draugen.Services.Builders
             _fangstDto = new FangstDto();
 
             var queryObjects = new IQueryObject[] { };
-            var queryObjectListBuilder = new Mock<IListBuilder<IQueryObject>>();
-            queryObjectListBuilder.Setup(q => q.Build(_header)).Returns(queryObjects);
+            var queryBuilder = new Mock<IQueryBuilder<Fangst>>();
+            queryBuilder.Setup(q => q.Build()).Returns(queryObjects);
 
             var fangst = new Fangst();
             var fangster = new[] { fangst };
@@ -34,7 +35,7 @@ namespace Draugen.Services.Builders
             var fangstAssembler = new Mock<IAssembler<FangstDto, Fangst>>();
             fangstAssembler.Setup(a => a.WriteDto(fangst, It.Is<CultureInfo>(c => c.Name == "no"))).Returns(_fangstDto);
 
-            _builder = new FangstListBuilder(fangstRepository.Object, fangstAssembler.Object, queryObjectListBuilder.Object);
+            _builder = new FangstListBuilder(queryBuilder.Object, fangstRepository.Object, fangstAssembler.Object);
         }
 
         [TestMethod]

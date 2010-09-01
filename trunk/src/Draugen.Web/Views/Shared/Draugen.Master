@@ -7,38 +7,20 @@
         <title></title>
         <asp:ContentPlaceHolder ID="head" runat="server">
         </asp:ContentPlaceHolder>
-        <link type="text/css"  href="~/Content/Site.css"/>
+        <link type="text/css"  href="<%=Url.Content("~/Content/Css/Old.css") %>" rel="Stylesheet" />
     </head>
     <body>
-        <div id="title">
-	        <h1><strong><span><%= Model.Tittel %></span></strong></h1>
-	        <p>For å fremme fiskeglede blant slekt og venner</p>
-        </div>
-        <div id="login">&nbsp;</div>
         <div id="main">
-            <asp:ContentPlaceHolder ID="mainContent" runat="server">
+            <div id="title">
+	            <h1><strong><span><%= Model.Tittel %></span></strong></h1>
+	            <p>For å fremme fiskeglede blant slekt og venner</p>
+            </div>
+            <div id="content">
+                <asp:ContentPlaceHolder ID="mainContent" runat="server">
         
-            </asp:ContentPlaceHolder>
-        </div>
-        
-        <div id="toc">
-            <a href="/" title="Draugens siste fangster">Fangster</a><br />
-            <a href="#" title="Draugens forum">Draugprat</a><br />
-            <a href="#" title="Draugens rekorder">Rekorder</a><br />
-            <a href="#" title="Draugens resultatlister">Sammendraug</a><br />
-            <a href="#" title="Logg inn og vis hvem du er">Logg inn</a>
-            <br />
-            <br />
-            <br />
-            <strong>Fiskerne våre:</strong><br />
-            <a href="#" title="Draugling Joakims personlige rekorder(1)">Joakim</a><br />
-            <a href="#" title="Draug Kim-frodes personlige rekorder(2)">Kim-frode</a><br />
-            <br /><strong>Artene våre:</strong><br />
-            <a href="#" title="Abbor fisket av Draugen">Abbor</a><br />
-            <a href="#" title="asp fisket av Draugen">Asp</a><br />
-            <strong>Fiskeplasser:</strong><br />
-            <a href="#" title="Akerselva har gitt disse draugenfangstene">Akerselva</a><br />
-            <a href="#" title="Belteren har gitt disse draugenfangstene">Belteren</a><br />
+                </asp:ContentPlaceHolder>
+            </div>
+            <% Html.RenderPartial("TocData", Model); %>
         </div>
         <div id="logo">
             <a href="http://www.draugen.org/"><img src="http://www.draugen.org/img/draugen.jpg" alt="Draugen" /></a>

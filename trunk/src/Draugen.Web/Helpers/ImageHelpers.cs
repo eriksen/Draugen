@@ -1,5 +1,4 @@
-﻿using System;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
 namespace Draugen.Helpers
 {
@@ -7,11 +6,12 @@ namespace Draugen.Helpers
     {
         public static MvcHtmlString Image(this HtmlHelper helper, string bilde)
         {
-            //var image = new TagBuilder("img");
-            //image.MergeAttribute("src", "~/Content/Images/" + bilde.Navn);
-            //image.MergeAttribute("alt", bilde.Alt);
-            //return MvcHtmlString.Create(image.ToString(TagRenderMode.SelfClosing));
-            throw new NotImplementedException();
+            var image = new TagBuilder("img");
+            image.MergeAttribute("src", bilde);
+            image.MergeAttribute("alt", bilde);
+            image.MergeAttribute("height", "100px");
+            image.MergeAttribute("width", "100px");
+            return MvcHtmlString.Create(image.ToString(TagRenderMode.SelfClosing));
         }
     }
 }

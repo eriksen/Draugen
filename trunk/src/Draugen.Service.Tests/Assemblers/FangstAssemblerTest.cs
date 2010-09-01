@@ -18,6 +18,7 @@ namespace Draugen.Services.Assemblers
             _assembler = new FangstAssembler();
             _fangst = new Fangst()
                           {
+                              LegacyId = 2,
                               Art = new Art {Navn = "navn"},
                               Dato = DateTime.Parse("2010-01-01"),
                               Fisker = new Fisker {Navn = "fiskernavn"},
@@ -33,6 +34,13 @@ namespace Draugen.Services.Assemblers
         {
             var result = _assembler.WriteDto(_fangst, _culture);
             Assert.AreEqual("navn", result.Art);
+        }
+
+        [TestMethod]
+        public void WriteDto_MustSetBildeToArtNavn()
+        {
+            var result = _assembler.WriteDto(_fangst, _culture);
+            Assert.AreEqual("draug2.jpg", result.Bilde);
         }
 
         [TestMethod]

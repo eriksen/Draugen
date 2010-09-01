@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using System.Linq;
 using Draugen.Services.Dtos;
 
 namespace Draugen.Services.Assemblers
@@ -11,13 +12,22 @@ namespace Draugen.Services.Assemblers
             return new FangstDto()
                        {
                            Art = domain.Art.Navn,
+                           Bilde = domain.Bilde.Navn,
                            Dato =  domain.Dato.Date.ToString(culture).Substring(0, 10),
                            Fisker = domain.Fisker.Navn,
                            Lengde = domain.Lengde.ToString(culture),
                            Poeng = Math.Floor(domain.Poeng).ToString(culture),
                            Sted = domain.Sted.Navn,
-                           Vekt = domain.Vekt.ToString("0.000", culture)
+                           Vekt = domain.Vekt.ToString("0.000", culture),
+                           Kommentar = GetKommentar(domain)
                        };
+        }
+
+        private string GetKommentar(Fangst domain)
+        {
+            var kommentar = domain.Kommentarer.Where(k => k.Forfatter == domain.Fisker).FirstOrDefault();
+            if (kommentar == null) { return "..."; }
+            return kommentar.Innhold;
         }
 
         public Fangst Create(FangstDto dto)

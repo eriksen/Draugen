@@ -3,6 +3,7 @@ using Draugen.Data.QueryObjects;
 using Draugen.Data.Repositories;
 using Draugen.Services.Assemblers;
 using Draugen.Services.Builders;
+using Draugen.Services.Builders.Queries;
 using Draugen.Services.Dtos;
 using Draugen.Services.Dtos.Requests;
 using Draugen.Services.Dtos.Responses;
@@ -22,7 +23,7 @@ namespace Draugen.Services.Configuration
             this.RegisterType<IRepository<Fangst>,FangstRepository>();
             this.RegisterType<IAssembler<FangstDto, Fangst>, FangstAssembler>();
             this.RegisterType<IListBuilder<FangstDto>, FangstListBuilder>();
-            this.RegisterType<IListBuilder<IQueryObject>, QueryObjectListBuilder>();
+            this.RegisterType<IQueryBuilder<Fangst>, FangstQueryBuilder>();
             this.RegisterType<IResponseBuilder<GetFangsterResponse, GetFangsterRequest>, GetFangsterResponseBuilder>();
             
         }

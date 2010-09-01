@@ -121,6 +121,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\ImageHelpers.cs" />
+    <Compile Include="Helpers\StringHelpers.cs" />
     <Compile Include="Model\Home\IndexModel.cs" />
     <Compile Include="Model\Shared\FangstList.cs" />
     <Compile Include="Model\Shared\MasterModel.cs" />
@@ -131,7 +132,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
+    <Content Include="Content\Css\Old.css" />
     <Content Include="Views\Home\Index.aspx" />
     <Content Include="Views\Shared\FangstList.ascx" />
     <Content Include="Views\Shared\TocData.ascx" />
@@ -156,7 +157,11 @@
     <Content Include="Scripts\MicrosoftMvcValidation.debug.js" />
     <Content Include="Views\Web.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Content\Images\Fangstbilder\Original\" />
+    <Folder Include="Content\Images\Fangstbilder\Thumbnail\" />
+    <Folder Include="Content\Images\Fangstbilder\Websized\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Draugen.Data\Draugen.Data.csproj">
       <Project>{9E66D512-A067-4FFE-9B58-E573D9FB9E4D}</Project>

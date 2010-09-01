@@ -1,21 +1,15 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<Draugen.Model.Shared.FangstList>" %>
-<table cellspacing="0">
-    <tr>
-        <th>Art</th>
-        <th>Vekt</th>
-        <th>Fisker</th>
-        <th>Sted</th>
-        <th>Dato</th>
-        <th>Poeng</th>
-    </tr>
-    <% foreach (var fangst in Model) { %>
-    <tr>
-        <td><%= fangst.Art %></td>
-        <td class="numeric"><%= fangst.Vekt %> kg</td>
-        <td><%= fangst.Fisker %></td>
-        <td><%= fangst.Sted %></td>
-        <td><%= fangst.Dato %></td>
-        <td class="numeric"><%= fangst.Poeng %></td>
-    </tr>
-    <% } %>
-</table>
+<%@ Import Namespace="Draugen.Helpers" %>
+<% foreach (var fangst in Model) { %>
+<div class="fangst">
+    <table cellspacing="0"  width="380px">
+        <tr>
+            <td rowspan="2" class="thumbnail"><%= Html.Image(Url.Content("~/Content/Images/Fangstbilder/Thumbnail/" + fangst.Bilde)) %></td>
+            <td><%= fangst.Art %> på <%= fangst.Vekt %>&nbsp;kg og <%= fangst.Poeng %>&nbsp;poeng tatt&nbsp;<%= fangst.Dato %> av&nbsp;<%= fangst.Fisker %> på&nbsp;<%= fangst.Sted %></td>
+        </tr>
+        <tr>
+            <td rowspan="2"><%= Html.KommentarExtract(fangst.Kommentar) %></td>
+        </tr>
+    </table>
+</div>
+<% } %>

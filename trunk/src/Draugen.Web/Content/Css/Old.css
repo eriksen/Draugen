@@ -1,0 +1,33 @@
+body {
+    margin: 0px 0px;
+    padding: 0px;
+    text-align: center;
+}
+
+div#main {
+    width: 740px;
+    margin: 0px auto;
+    text-align: left;
+    padding: 15px;
+    border: 1px solid #000000;
+    background-color: #eeeeee;
+}
+
+div#logo 
+{
+    background-color: Aqua;
+}
+
+image
+{
+    border: 0;    
+}
+
+td
+{
+    padding: 2 0 2 5;
+}
+table
+{
+   
+}

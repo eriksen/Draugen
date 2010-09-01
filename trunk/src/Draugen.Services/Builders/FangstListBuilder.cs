@@ -1,8 +1,8 @@
 ﻿using System.Globalization;
 using System.Linq;
-using Draugen.Data.QueryObjects;
 using Draugen.Data.Repositories;
 using Draugen.Services.Assemblers;
+using Draugen.Services.Builders.Queries;
 using Draugen.Services.Dtos;
 using Draugen.Services.Dtos.Requests;
 
@@ -12,22 +12,22 @@ namespace Draugen.Services.Builders
     {
         private readonly IAssembler<FangstDto, Fangst> _fangstAssembler;
         private readonly IRepository<Fangst> _fangstRepository;
-        private readonly IListBuilder<IQueryObject> _queryObjectListBuilder;
+        private readonly IQueryBuilder<Fangst> _fangstQueryBuilder;
 
-        public FangstListBuilder(IRepository<Fangst> fangstRepository, IAssembler<FangstDto, Fangst> fangstAssembler, IListBuilder<IQueryObject> queryObjectListBuilder)
+        public FangstListBuilder(IQueryBuilder<Fangst> fangstQueryBuilder, IRepository<Fangst> fangstRepository, IAssembler<FangstDto, Fangst> fangstAssembler)
         {
-            _queryObjectListBuilder = queryObjectListBuilder;
+            _fangstQueryBuilder = fangstQueryBuilder;
             _fangstRepository = fangstRepository;
             _fangstAssembler = fangstAssembler;
         }
 
         public FangstDto[] Build(ServiceHeader header)
         {
-            var fangster = _fangstRepository.FindAll(_queryObjectListBuilder.Build(header));
+
+            var fangster = _fangstRepository.FindAll(_fangstQueryBuilder.Build());
             var culture = new CultureInfo(header.Culture);
             return fangster.Select(f => _fangstAssembler.WriteDto(f, culture)).ToArray();
         }
 
-        
     }
 }
