@@ -10,6 +10,7 @@ namespace Draugen.Data
     [TestClass]
     public class UnitOfWorkTests
     {
+       
         private Mock<ISession> _session;
         private Mock<ISessionFactory> _sessionFactory;
         private UnitOfWork _unitOfWork;

@@ -8,20 +8,20 @@ namespace Draugen.Data.QueryObjects
 {
     public class Filter : PropertyQueryObject, IQueryObject
     {
-        private readonly FilterOperator _filterOperator;
-        private readonly object _value;
+        public FilterOperator FilterOperator { get; private set; }
+        public object Value{ get; private set; }
 
         public Filter(string propertyName, FilterOperator filterOperator, object value) : base(propertyName)
         {
             Contract.Requires(!string.IsNullOrWhiteSpace(propertyName));
-            _filterOperator = filterOperator;
-            _value = value;
+            FilterOperator = filterOperator;
+            Value = value;
         }
 
         public IQueryable<T> Refine<T>(IQueryable<T> queryable) where T : class
         {
             ValidateProperties<T>();
-            var result = queryable.Where(Clause(), _value);
+            var result = queryable.Where(Clause(), Value);
             if (result != null)
                 return result;
             return null;
@@ -29,8 +29,8 @@ namespace Draugen.Data.QueryObjects
 
         private string ParseOperator()
         {
-            if (_filterOperator == FilterOperator.Equals) { return "=="; }
-            return _filterOperator == FilterOperator.GreaterThan ? ">" : "<";
+            if (FilterOperator == FilterOperator.Equals) { return "=="; }
+            return FilterOperator == FilterOperator.GreaterThan ? ">" : "<";
         }
 
         private string Clause()

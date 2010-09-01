@@ -7,7 +7,7 @@ namespace Draugen.Data.QueryObjects
 {
     public abstract class PropertyQueryObject
     {
-        protected string PropertyName;
+        public string PropertyName { get; private set; }
 
         protected PropertyQueryObject(string propertyName)
         {

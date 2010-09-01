@@ -8,12 +8,12 @@ namespace Draugen.Data.QueryObjects
 {
     public class Sort : PropertyQueryObject, IQueryObject
     {
-        private readonly SortDirection _direction;
+        public SortDirection Direction { get; private set; }
 
         public Sort(string propertyName, SortDirection direction) : base(propertyName)
         {
             Contract.Requires(!string.IsNullOrWhiteSpace(propertyName));
-            _direction = direction;
+            Direction = direction;
         }
 
         public IQueryable<T> Refine<T>(IQueryable<T> queryable) where T : class
@@ -24,7 +24,7 @@ namespace Draugen.Data.QueryObjects
 
         private string ParseDirection()
         {
-            return _direction == SortDirection.Descending ? " descending" : "";
+            return Direction == SortDirection.Descending ? " descending" : "";
         }
     }
 }
