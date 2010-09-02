@@ -34,7 +34,7 @@ namespace Draugen.Controllers
             var response = _fangstService.GetFangster(request);
             var model = new IndexModel
                             {
-                                Fangster = new FangstList(response.Body.FangstList)
+                                //Fangster = new FangstList(response.Body.FangstList)
                             };
             return View(model);
         }

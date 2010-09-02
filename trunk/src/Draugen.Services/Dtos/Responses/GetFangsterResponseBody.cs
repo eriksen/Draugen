@@ -6,6 +6,6 @@ namespace Draugen.Services.Dtos.Responses
     public class GetFangsterResponseBody
     {
         [DataMember]
-        public FangstDto[] FangstList { get; set; }
+        public FangstListDto FangstList { get; set; }
     }
 }

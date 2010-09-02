@@ -25,7 +25,7 @@ namespace Draugen.Services.Builders
         {
             return new GetFangsterResponseBody()
                        {
-                           FangstList = _fangstBuilder.Build(request.Header)
+                           //FangstList = _fangstBuilder.Build(request.Header)
                        };
         }
 

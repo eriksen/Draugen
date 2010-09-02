@@ -6,6 +6,7 @@ namespace Draugen.Helpers
     {
         public static MvcHtmlString Image(this HtmlHelper helper, string bilde)
         {
+
             var image = new TagBuilder("img");
             image.MergeAttribute("src", bilde);
             image.MergeAttribute("alt", bilde);

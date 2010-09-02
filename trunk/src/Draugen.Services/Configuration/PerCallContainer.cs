@@ -22,7 +22,7 @@ namespace Draugen.Services.Configuration
 
             this.RegisterType<IRepository<Fangst>,FangstRepository>();
             this.RegisterType<IAssembler<FangstDto, Fangst>, FangstAssembler>();
-            this.RegisterType<IListBuilder<FangstDto>, FangstListBuilder>();
+            this.RegisterType<IListBuilder<FangstListDto>, FangstListBuilder>();
             this.RegisterType<IQueryBuilder<Fangst>, FangstQueryBuilder>();
             this.RegisterType<IResponseBuilder<GetFangsterResponse, GetFangsterRequest>, GetFangsterResponseBuilder>();
             

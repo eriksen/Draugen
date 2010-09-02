@@ -23,7 +23,7 @@ namespace Draugen.Services.Builders
             _header = new ServiceHeader { Culture = "no" };
             _fangstDto = new FangstDto();
 
-            var queryObjects = new IQueryObject[] { };
+            var queryObjects = new QueryContainer<Fangst>();
             var queryBuilder = new Mock<IQueryBuilder<Fangst>>();
             queryBuilder.Setup(q => q.Build()).Returns(queryObjects);
 

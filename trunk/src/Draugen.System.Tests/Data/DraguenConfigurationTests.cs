@@ -76,15 +76,13 @@ namespace Draugen.Data
         private T Load<T>(int id) where T : Kommenterbar
         {
             var repository = new Repository<T>(_unitOfWork.Session);
-            return repository.FindAll(new IQueryObject[]{}).Single(x => x.Id == id);
+            return repository.FindAll(new QueryContainer<T>()).Single(x => x.Id == id);
         }
 
         private void Persist<T>(T item) where T : Kommenterbar
         {
-
             var repository = new Repository<T>(_unitOfWork.Session);
                 repository.Add(item);
-            
         }
 
     }

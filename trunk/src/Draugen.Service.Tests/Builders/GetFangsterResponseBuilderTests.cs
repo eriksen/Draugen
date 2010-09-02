@@ -21,7 +21,7 @@ namespace Draugen.Services.Builders
             _builder = new GetFangsterResponseBuilder(_fangstBuilder.Object);
             _fangstList = new FangstDto[] { };
             _request = new GetFangsterRequest { Header = new ServiceHeader() };
-            _fangstBuilder.Setup(f => f.Build(_request.Header)).Returns(_fangstList);
+            //_fangstBuilder.Setup(f => f.Build(_request.Header)).Returns(_fangstList);
         }
 
         [TestMethod]

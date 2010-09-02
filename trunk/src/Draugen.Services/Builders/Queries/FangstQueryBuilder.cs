@@ -2,12 +2,14 @@
 
 namespace Draugen.Services.Builders.Queries
 {
-    public class FangstQueryBuilder : QueryBuilder<Fangst>
+    public class FangstQueryBuilder : IQueryBuilder<Fangst>
     {
-        public FangstQueryBuilder()
+        public IQueryObject<Fangst> Build()
         {
-            Sort = new Sort("Dato", SortDirection.Descending);
-            Page = new Page(1, 25);
+            var queryContainer = new QueryContainer<Fangst>();
+            queryContainer.SetPage(1, 25);
+            queryContainer.SetSort("Dato", SortDirection.Descending);
+            return queryContainer;
         }
     }
 }

@@ -4,7 +4,7 @@
 <div class="fangst">
     <table cellspacing="0"  width="380px">
         <tr>
-            <td rowspan="2" class="thumbnail"><%= Html.Image(Url.Content("~/Content/Images/Fangstbilder/Thumbnail/" + fangst.Bilde)) %></td>
+            <td rowspan="2" class="thumbnai> <%= Html.Image(Url.Content("~/Content/Images/Fangstbilder/Thumbnail/" + fangst.Bilde)) %></td>
             <td><%= fangst.Art %> på <%= fangst.Vekt %>&nbsp;kg og <%= fangst.Poeng %>&nbsp;poeng tatt&nbsp;<%= fangst.Dato %> av&nbsp;<%= fangst.Fisker %> på&nbsp;<%= fangst.Sted %></td>
         </tr>
         <tr>

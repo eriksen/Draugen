@@ -84,10 +84,10 @@
     <Compile Include="Builders\IListBuilder.cs" />
     <Compile Include="Builders\IResponseBuilder.cs" />
     <Compile Include="Builders\Queries\IQueryBuilder.cs" />
-    <Compile Include="Builders\Queries\QueryBuilder.cs" />
     <Compile Include="Configuration\PerCallContainer.cs" />
     <Compile Include="Configuration\ServiceContainer.cs" />
     <Compile Include="Dtos\FangstDto.cs" />
+    <Compile Include="Dtos\FangstListDto.cs" />
     <Compile Include="Dtos\Requests\GetFangsterRequest.cs" />
     <Compile Include="Dtos\Requests\GetFangsterRequestBody.cs" />
     <Compile Include="Dtos\Responses\GetFangsterResponse.cs" />

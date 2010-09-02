@@ -3,11 +3,8 @@ using Draugen.Data.QueryObjects;
 
 namespace Draugen.Services.Builders.Queries
 {
-    public interface IQueryBuilder<T>
+    public interface IQueryBuilder<T> where T : DomainObject
     {
-        IQueryObject[] Build();
-        Sort Sort { get; }
-        Page Page { get; }
-        ICollection<Filter> Filter { get; }
+        IQueryObject<T> Build();
     }
 }
