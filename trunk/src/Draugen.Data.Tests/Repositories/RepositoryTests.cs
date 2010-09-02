@@ -19,13 +19,12 @@ namespace Draugen.Data.Repositories
         {
             _sessionMock = MyMocks.Session();
             _repository = new Repository<Sted>(_sessionMock.Object);
-
         }
         
         [TestMethod]
         public void FindAll_MustCallSessionLinq()
         {
-            var result =  _repository.FindAll(new IQueryObject[]{});
+            var result =  _repository.FindAll(new QueryContainer<Sted>());
             Assert.IsInstanceOfType(result, typeof(Query<Sted>));
         }
 

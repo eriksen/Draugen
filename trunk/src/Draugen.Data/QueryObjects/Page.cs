@@ -4,12 +4,12 @@ using System.Linq;
 
 namespace Draugen.Data.QueryObjects
 {
-    public class Page : IQueryObject
+    internal class Page
     {
-        public int Number { get; private set; }
-        public int Size { get; private set; }
+        internal int Number { get; private set; }
+        internal int Size { get; private set; }
 
-        public Page(int number, int size)
+        internal Page(int number, int size)
         {
             Contract.Requires(number > 0);
             Contract.Requires(size > 0);
@@ -17,10 +17,14 @@ namespace Draugen.Data.QueryObjects
             Size = size;
         }
 
-        public IQueryable<T> Refine<T>(IQueryable<T> queryable) where T : class
+        internal IQueryable<T> Refine<T>(IQueryable<T> queryable)
         {
             return queryable.Skip((Number - 1) * Size).Take(Size);
         }
 
+        internal int Count
+        {
+            get { return 0; }
+        }
     }
 }

@@ -100,9 +100,9 @@
     <Compile Include="QueryObjects\Filter.cs" />
     <Compile Include="QueryObjects\IQueryObject.cs" />
     <Compile Include="QueryObjects\Page.cs" />
-    <Compile Include="QueryObjects\QueryableExtenstions.cs" />
     <Compile Include="QueryObjects\FilterOperator.cs" />
     <Compile Include="QueryObjects\PropertyQueryObject.cs" />
+    <Compile Include="QueryObjects\QueryContainer.cs" />
     <Compile Include="QueryObjects\Sort.cs" />
     <Compile Include="QueryObjects\SortDirection.cs" />
     <Compile Include="Repositories\FangstRepository.cs" />

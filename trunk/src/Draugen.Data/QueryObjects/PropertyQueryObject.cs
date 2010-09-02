@@ -5,9 +5,9 @@ using System.Linq;
 
 namespace Draugen.Data.QueryObjects
 {
-    public abstract class PropertyQueryObject
+    internal abstract class PropertyQueryObject<T> where T : DomainObject
     {
-        public string PropertyName { get; private set; }
+        internal string PropertyName { get; private set; }
 
         protected PropertyQueryObject(string propertyName)
         {
@@ -15,13 +15,13 @@ namespace Draugen.Data.QueryObjects
             PropertyName = propertyName;
         }
 
-        protected void ValidateProperties<T>()
+        protected void ValidateProperties()
         {
             var properites = PropertyName.Split(new[] {'.'}).ToList();
-            ValidateProperties<T>(properites);
+            ValidateProperties(properites);
         }
 
-        private static void ValidateProperties<T>(IList<string> properties)
+        private static void ValidateProperties(IList<string> properties)
         {
             Contract.Requires(properties != null);
             ValidateProperties(typeof(T), properties);

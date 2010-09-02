@@ -11,9 +11,9 @@ namespace Draugen.Data.QueryObjects
         [TestMethod]
         public void Validate_MustNotThrow_WhenNoErrorExists()
         {
-            new TestablePropertyQueryObject("Navn").TestValidate<Art>();
-            new TestablePropertyQueryObject("Art.Id").TestValidate<Fangst>();
-            new TestablePropertyQueryObject("Fisker.Navn").TestValidate<Fangst>();
+            new TestablePropertyQueryObject<Art>("Navn").TestValidate();
+            new TestablePropertyQueryObject<Fangst>("Art.Id").TestValidate();
+            new TestablePropertyQueryObject<Fangst>("Fisker.Navn").TestValidate();
         }
 
         [TestMethod]
@@ -22,7 +22,7 @@ namespace Draugen.Data.QueryObjects
             const string expectedMessage = "Property Bogus in relation to Art does not exist";
             try
             {
-                new TestablePropertyQueryObject("Bogus").TestValidate<Art>();
+                new TestablePropertyQueryObject<Art>("Bogus").TestValidate();
             }
             catch (ArgumentException e)
             {
@@ -38,7 +38,7 @@ namespace Draugen.Data.QueryObjects
             const string expectedMessage = "Property Bogus in relation to Art does not exist";
             try
             {
-                new TestablePropertyQueryObject("Art.Bogus").TestValidate<Fangst>();
+                new TestablePropertyQueryObject<Fangst>("Art.Bogus").TestValidate();
             }
             catch (ArgumentException e)
             {
@@ -48,13 +48,13 @@ namespace Draugen.Data.QueryObjects
             Assert.Fail();
         }
 
-        private class TestablePropertyQueryObject : PropertyQueryObject
+        private class TestablePropertyQueryObject<T> : PropertyQueryObject<T> where T : DomainObject
         {
             public TestablePropertyQueryObject(string propertyName) : base(propertyName) {}
 
-            public void TestValidate<T>()
+            public void TestValidate()
             {
-                ValidateProperties<T>();
+                ValidateProperties();
             }
         }
     }

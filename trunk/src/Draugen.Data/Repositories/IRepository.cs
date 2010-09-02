@@ -8,7 +8,7 @@ namespace Draugen.Data.Repositories
     [ContractClass(typeof(RepositoryContracts<>))]
     public interface IRepository<T> where T : Kommenterbar
     {
-        IEnumerable<T> FindAll(IQueryObject[] queryObjects);
+        IEnumerable<T> FindAll(IQueryObject<T> queryObject);
         void Add(T item);
         void Delete(T item);
     }
@@ -16,9 +16,9 @@ namespace Draugen.Data.Repositories
     [ContractClassFor(typeof(IRepository<>))]
     internal abstract class RepositoryContracts<T> : IRepository<T> where T : Kommenterbar
     {
-        public IEnumerable<T> FindAll(IQueryObject[] queryObjects)
+        public IEnumerable<T> FindAll(IQueryObject<T> queryObject)
         {
-            Contract.Requires(queryObjects != null);
+            Contract.Requires(queryObject != null);
             Contract.Ensures(Contract.Result<IEnumerable<T>>() != null);
             return default(IQueryable<T>);
         }

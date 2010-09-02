@@ -7,18 +7,19 @@ namespace Draugen.Data.Repositories
 {
     public class FangstRepository : Repository<Fangst>
     {
-        private readonly Filter _hack;
 
         public FangstRepository(ISession session) : base(session)
         {
             Contract.Requires(session.IsOpen == true);
-            _hack = new Filter("Art.Id", FilterOperator.GreaterThan, 0);
         }
 
-        public override IEnumerable<Fangst> FindAll(IQueryObject[] queryObjects)
+        public override IEnumerable<Fangst> FindAll(IQueryObject<Fangst> queryObject)
         {
-            queryObjects = new List<IQueryObject>(queryObjects) { _hack }.ToArray();
-            return base.FindAll(queryObjects);
+            if(queryObject.GetType() == typeof(QueryContainer<Fangst>))
+            {
+                ((QueryContainer<Fangst>)queryObject).AddFilter("Art.Id", FilterOperator.GreaterThan, 0);    
+            }
+            return base.FindAll(queryObject);
         }
     }
 }

@@ -1,23 +1,28 @@
-﻿using System;
-using System.Diagnostics.Contracts;
+﻿using System.Diagnostics.Contracts;
 using System.Linq;
 
 namespace Draugen.Data.QueryObjects
 {
-    [ContractClass(typeof(QueryObjectContracts))]
-    public interface IQueryObject
+    [ContractClass(typeof(QueryObjectContracts<>))]
+    public interface IQueryObject<T>  where T : DomainObject
     {
-        IQueryable<T> Refine<T>(IQueryable<T> queryable) where T : class;
+        IQueryable<T> Query(IQueryable<T> queryable);
+        int Count { get; }
     }
 
-    [ContractClassFor(typeof(IQueryObject))]
-    internal abstract class QueryObjectContracts : IQueryObject 
+    [ContractClassFor(typeof(IQueryObject<>))]
+    internal abstract class QueryObjectContracts<T> : IQueryObject<T> where T : DomainObject 
     {
-        public IQueryable<T> Refine<T>(IQueryable<T> queryable) where T : class
+        public IQueryable<T> Query(IQueryable<T> queryable) 
         {
             Contract.Requires(queryable != null);
             Contract.Ensures(Contract.Result<IQueryable<T>>() != null);
             return default(IQueryable<T>);
+        }
+
+        public int Count
+        {
+            get { return default(int); }
         }
     }
 }

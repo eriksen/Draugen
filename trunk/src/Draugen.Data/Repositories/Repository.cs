@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using Draugen.Data.QueryObjects;
 using NHibernate;
@@ -25,9 +26,11 @@ namespace Draugen.Data.Repositories
             Contract.Invariant(Session.IsOpen == true);
         }
 
-        public virtual IEnumerable<T> FindAll(IQueryObject[] queryObjects)
+        public virtual IEnumerable<T> FindAll(IQueryObject<T> queryObject)
         {
-            return Session.Linq<T>().Query(queryObjects);
+            var list =queryObject.Query(Session.Linq<T>());
+            var count = queryObject.Count;
+            return list;
         }
 
         public virtual void Add(T item)
@@ -43,7 +46,6 @@ namespace Draugen.Data.Repositories
         {
             Session.Delete(item);
         }
-
-
     }
 }
+
