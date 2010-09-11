@@ -13,19 +13,21 @@ namespace Draugen.Data.Repositories
     {
         private Repository<Sted> _repository;
         private Mock<ISession> _sessionMock;
+        private Mock<IQueryManager<Sted>> _queryContainer;
 
         [TestInitialize]
         public void Initialize()
         {
             _sessionMock = MyMocks.Session();
             _repository = new Repository<Sted>(_sessionMock.Object);
+            _queryContainer = new Mock<IQueryManager<Sted>>();
+            _queryContainer.Setup(q => q.CountTotalItems(It.IsAny<IQueryable<Sted>>())).Returns(1);
         }
-        
+
         [TestMethod]
-        public void FindAll_MustCallSessionLinq()
+        public void FindAll_MustReturnListFromSessionLinq()
         {
-            var result =  _repository.FindAll(new QueryContainer<Sted>());
-            Assert.IsInstanceOfType(result, typeof(Query<Sted>));
+            _repository.FindAll(_queryContainer.Object);
         }
 
         [TestMethod]

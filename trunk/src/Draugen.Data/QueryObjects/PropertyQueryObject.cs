@@ -5,14 +5,18 @@ using System.Linq;
 
 namespace Draugen.Data.QueryObjects
 {
-    internal abstract class PropertyQueryObject<T> where T : DomainObject
+    internal abstract class PropertyQueryObject<T> where T : class
     {
-        internal string PropertyName { get; private set; }
+        private readonly string _propertyName;
+        internal string PropertyName
+        {
+            get { return _propertyName; }
+        }
 
         protected PropertyQueryObject(string propertyName)
         {
             Contract.Requires(!string.IsNullOrWhiteSpace(propertyName));
-            PropertyName = propertyName;
+            _propertyName = propertyName;
         }
 
         protected void ValidateProperties()
@@ -29,7 +33,6 @@ namespace Draugen.Data.QueryObjects
 
         private static void ValidateProperties(Type type, IList<string> properties)
         {
-            if (properties.Count == 0) { return; }
             var propertyInfo = type.GetProperty(properties[0]);
             if (propertyInfo == null)
             {
@@ -42,12 +45,5 @@ namespace Draugen.Data.QueryObjects
             var childType = propertyInfo.PropertyType;
             ValidateProperties(childType, properties);
         }
-
-        [ContractInvariantMethod]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(!string.IsNullOrWhiteSpace(PropertyName));
-        }
-
     }
 }

@@ -61,7 +61,7 @@ namespace Draugen.Data
         [TestMethod]
         public void CanLoadFangst()
         {
-            var queryContainer = new QueryContainer<Fangst>();
+            var queryContainer = new QueryManager<Fangst>();
             queryContainer.AddFilter("Art.Id", FilterOperator.GreaterThan, 0);
             var result = queryContainer.Query(_session.Linq<Fangst>());
 

@@ -14,7 +14,7 @@ namespace Draugen.Data
     {
         private static ISession _session;
         private static IUnityContainer _perCallContainer;
-        private QueryContainer<Fangst> queryContainer;
+        private QueryManager<Fangst> _queryManager;
 
         [ClassInitialize]
         public static void Initialize(TestContext testContext)
@@ -28,7 +28,7 @@ namespace Draugen.Data
         [TestInitialize]
         public void InitializeTest()
         {
-            queryContainer = new QueryContainer<Fangst>();
+            _queryManager = new QueryManager<Fangst>();
         }
 
         [ClassCleanup]
@@ -42,19 +42,19 @@ namespace Draugen.Data
         public void TestPaging()
         {
 
-            queryContainer = new QueryContainer<Fangst>();
-            queryContainer.SetPage(1, 10);
-            var result = queryContainer.Query(_session.Linq<Fangst>());
+            _queryManager = new QueryManager<Fangst>();
+            _queryManager.SetPage(1, 10);
+            var result = _queryManager.Query(_session.Linq<Fangst>());
         }
 
         [TestMethod]
         public void TestOrder_Vekt()
         {
-            queryContainer = new QueryContainer<Fangst>();
-            queryContainer.SetSort("Vekt", SortDirection.Descending);
-            queryContainer.SetPage(1, 10);
+            _queryManager = new QueryManager<Fangst>();
+            _queryManager.SetSort("Vekt", SortDirection.Descending);
+            _queryManager.SetPage(1, 10);
 
-            var result = queryContainer.Query(_session.Linq<Fangst>());
+            var result = _queryManager.Query(_session.Linq<Fangst>());
             Assert.IsTrue(result.First().Vekt > 10);
         }
 
@@ -62,20 +62,20 @@ namespace Draugen.Data
         public void TestOrder_Art()
         {
 
-            queryContainer = new QueryContainer<Fangst>();
-            queryContainer.SetSort("Art.Navn", SortDirection.Ascending);
-            queryContainer.SetPage(1, 10);
-            var result = queryContainer.Query(_session.Linq<Fangst>());
+            _queryManager = new QueryManager<Fangst>();
+            _queryManager.SetSort("Art.Navn", SortDirection.Ascending);
+            _queryManager.SetPage(1, 10);
+            var result = _queryManager.Query(_session.Linq<Fangst>());
             Assert.AreEqual("Abbor", result.First().Art.Navn);
         }
 
         [TestMethod]
         public void TestOrder_Poeng()
         {
-            queryContainer = new QueryContainer<Fangst>();
-            queryContainer.SetSort("Poeng", SortDirection.Descending);
-            queryContainer.SetPage(1, 10);
-            var result = queryContainer.Query(_session.Linq<Fangst>()).ToArray();
+            _queryManager = new QueryManager<Fangst>();
+            _queryManager.SetSort("Poeng", SortDirection.Descending);
+            _queryManager.SetPage(1, 10);
+            var result = _queryManager.Query(_session.Linq<Fangst>()).ToArray();
             Assert.AreEqual("Småflekket rødhai", result.First().Art.Navn);
             Assert.AreEqual(10, result.Length);
         }
@@ -83,10 +83,10 @@ namespace Draugen.Data
         [TestMethod]
         public void TestOrder_Poeng_Page5()
         {
-            queryContainer = new QueryContainer<Fangst>();
-            queryContainer.SetSort("Poeng", SortDirection.Descending);
-            queryContainer.SetPage(5, 10);
-            var result = queryContainer.Query(_session.Linq<Fangst>()).ToArray();
+            _queryManager = new QueryManager<Fangst>();
+            _queryManager.SetSort("Poeng", SortDirection.Descending);
+            _queryManager.SetPage(5, 10);
+            var result = _queryManager.Query(_session.Linq<Fangst>()).ToArray();
             Assert.AreEqual(10, result.Length);
         }
     }

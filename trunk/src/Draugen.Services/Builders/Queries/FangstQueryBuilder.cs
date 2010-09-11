@@ -4,9 +4,9 @@ namespace Draugen.Services.Builders.Queries
 {
     public class FangstQueryBuilder : IQueryBuilder<Fangst>
     {
-        public IQueryObject<Fangst> Build()
+        public IQueryManager<Fangst> Build()
         {
-            var queryContainer = new QueryContainer<Fangst>();
+            var queryContainer = new QueryManager<Fangst>();
             queryContainer.SetPage(1, 25);
             queryContainer.SetSort("Dato", SortDirection.Descending);
             return queryContainer;

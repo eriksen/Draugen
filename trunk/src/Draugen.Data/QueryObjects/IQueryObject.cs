@@ -4,25 +4,25 @@ using System.Linq;
 namespace Draugen.Data.QueryObjects
 {
     [ContractClass(typeof(QueryObjectContracts<>))]
-    public interface IQueryObject<T>  where T : DomainObject
+    public interface IQueryObject<T> where T : DomainObject
     {
         IQueryable<T> Query(IQueryable<T> queryable);
-        int Count { get; }
+        void Validate();
     }
 
     [ContractClassFor(typeof(IQueryObject<>))]
-    internal abstract class QueryObjectContracts<T> : IQueryObject<T> where T : DomainObject 
+    internal abstract class QueryObjectContracts<T> : IQueryObject<T> where T : DomainObject
     {
-        public IQueryable<T> Query(IQueryable<T> queryable) 
+        public IQueryable<T> Query(IQueryable<T> queryable)
         {
             Contract.Requires(queryable != null);
             Contract.Ensures(Contract.Result<IQueryable<T>>() != null);
             return default(IQueryable<T>);
         }
 
-        public int Count
+        public void Validate()
         {
-            get { return default(int); }
+            
         }
     }
 }

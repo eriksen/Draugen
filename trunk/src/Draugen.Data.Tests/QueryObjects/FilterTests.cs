@@ -27,7 +27,7 @@ namespace Draugen.Data.QueryObjects
         public void Refine_MustCorrectlyFilterProperty()
         {
             var filter = new Filter<Fangst>("Vekt", FilterOperator.Equals, 4);
-            var result = filter.Refine(_fangster);
+            var result = filter.Query(_fangster);
             Assert.AreEqual(1, result.Count());
         }
 
@@ -35,7 +35,7 @@ namespace Draugen.Data.QueryObjects
         public void Refine_MustCorrectlyFilterSubProperty()
         {
             var filter = new Filter<Fangst>("Art.Id", FilterOperator.Equals, 4);
-            var result = filter.Refine(_fangster);
+            var result = filter.Query(_fangster);
             Assert.AreEqual(1, result.Count());
         }
 
@@ -43,7 +43,7 @@ namespace Draugen.Data.QueryObjects
         public void Refine_MustCorrectlyFilterProperty_WithGreatherThan()
         {
             var filter = new Filter<Fangst>("Vekt", FilterOperator.GreaterThan, 4);
-            var result = filter.Refine(_fangster);
+            var result = filter.Query(_fangster);
             Assert.AreEqual(2, result.Count());
         }
         
@@ -51,7 +51,7 @@ namespace Draugen.Data.QueryObjects
         public void Refine_MustCorrectlyFilterProperty_WithLessThan()
         {
             var filter = new Filter<Fangst>("Vekt", FilterOperator.LessThan, 5);
-            var result = filter.Refine(_fangster);
+            var result = filter.Query(_fangster);
             Assert.AreEqual(3, result.Count());
         }
 
@@ -59,7 +59,7 @@ namespace Draugen.Data.QueryObjects
         [ExpectedException(typeof(ArgumentException))]
         public void Refine_MustThrowArgumentException_WhenPropertyDoesNotExist()
         {
-            new Filter<Fangst>("Bogus", FilterOperator.Equals, 1).Refine(_fangster);
+            new Filter<Fangst>("Bogus", FilterOperator.Equals, 1).Query(_fangster);
         }
     }
 }

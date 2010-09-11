@@ -5,6 +5,6 @@ namespace Draugen.Services.Builders.Queries
 {
     public interface IQueryBuilder<T> where T : DomainObject
     {
-        IQueryObject<T> Build();
+        IQueryManager<T> Build();
     }
 }

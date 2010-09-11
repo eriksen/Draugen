@@ -1,30 +1,38 @@
-﻿using System;
-using System.Diagnostics.Contracts;
+﻿using System.Diagnostics.Contracts;
 using System.Linq;
 
 namespace Draugen.Data.QueryObjects
 {
-    internal class Page
+    internal class Page<T> : IQueryObject<T> where T : DomainObject
     {
-        internal int Number { get; private set; }
-        internal int Size { get; private set; }
+        private readonly int _number;
+        internal int Number
+        {
+            get { return _number; }
+        }
+
+        private readonly int _size;
+        internal int Size
+        {
+            get { return _size; }
+        }
 
         internal Page(int number, int size)
         {
             Contract.Requires(number > 0);
             Contract.Requires(size > 0);
-            Number = number;
-            Size = size;
+            _number = number;
+            _size = size;
         }
 
-        internal IQueryable<T> Refine<T>(IQueryable<T> queryable)
+        public IQueryable<T> Query(IQueryable<T> queryable)
         {
             return queryable.Skip((Number - 1) * Size).Take(Size);
         }
 
-        internal int Count
+        public void Validate()
         {
-            get { return 0; }
+            
         }
     }
 }

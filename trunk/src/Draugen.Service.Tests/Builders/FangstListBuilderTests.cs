@@ -23,14 +23,14 @@ namespace Draugen.Services.Builders
             _header = new ServiceHeader { Culture = "no" };
             _fangstDto = new FangstDto();
 
-            var queryObjects = new QueryContainer<Fangst>();
+            var queryObjects = new QueryManager<Fangst>();
             var queryBuilder = new Mock<IQueryBuilder<Fangst>>();
             queryBuilder.Setup(q => q.Build()).Returns(queryObjects);
 
             var fangst = new Fangst();
             var fangster = new[] { fangst };
             var fangstRepository = new Mock<IRepository<Fangst>>();
-            fangstRepository.Setup(f => f.FindAll(queryObjects)).Returns(fangster);
+            //fangstRepository.Setup(f => f.FindAll(queryObjects)).Returns(fangster);
 
             var fangstAssembler = new Mock<IAssembler<FangstDto, Fangst>>();
             fangstAssembler.Setup(a => a.WriteDto(fangst, It.Is<CultureInfo>(c => c.Name == "no"))).Returns(_fangstDto);

@@ -64,13 +64,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Art.cs" />
-    <Compile Include="DomainList.cs" />
     <Compile Include="DomainObject.cs" />
     <Compile Include="Fangst.cs" />
     <Compile Include="FangstLeverandør.cs" />
     <Compile Include="Fisker.cs" />
     <Compile Include="Bilde.cs" />
-    <Compile Include="IDomainList.cs" />
     <Compile Include="Kommentar.cs" />
     <Compile Include="Kommenterbar.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

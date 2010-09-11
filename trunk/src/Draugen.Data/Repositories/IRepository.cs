@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics.Contracts;
-using System.Linq;
 using Draugen.Data.QueryObjects;
 
 namespace Draugen.Data.Repositories
@@ -8,7 +7,7 @@ namespace Draugen.Data.Repositories
     [ContractClass(typeof(RepositoryContracts<>))]
     public interface IRepository<T> where T : Kommenterbar
     {
-        IEnumerable<T> FindAll(IQueryObject<T> queryObject);
+        IPagedList<T> FindAll(IQueryManager<T> queryManager);
         void Add(T item);
         void Delete(T item);
     }
@@ -16,11 +15,11 @@ namespace Draugen.Data.Repositories
     [ContractClassFor(typeof(IRepository<>))]
     internal abstract class RepositoryContracts<T> : IRepository<T> where T : Kommenterbar
     {
-        public IEnumerable<T> FindAll(IQueryObject<T> queryObject)
+        public IPagedList<T> FindAll(IQueryManager<T> queryManager)
         {
-            Contract.Requires(queryObject != null);
+            Contract.Requires(queryManager != null);
             Contract.Ensures(Contract.Result<IEnumerable<T>>() != null);
-            return default(IQueryable<T>);
+            return default(IPagedList<T>);
         }
 
         public void Add(T item)

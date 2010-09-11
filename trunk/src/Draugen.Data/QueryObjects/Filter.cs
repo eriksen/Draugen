@@ -1,30 +1,43 @@
-﻿using System.Diagnostics.Contracts;
+﻿using System;
+using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Linq.Dynamic;
 
 
 namespace Draugen.Data.QueryObjects
 {
-    internal class Filter<T> : PropertyQueryObject<T> where T : DomainObject
+    internal class Filter<T> : PropertyQueryObject<T>, IQueryObject<T> where T : DomainObject
     {
-        internal FilterOperator FilterOperator { get; private set; }
-        internal object Value { get; private set; }
+        private readonly FilterOperator _filterOperator;
+        internal FilterOperator FilterOperator
+        {
+            get { return _filterOperator; }
+        }
+
+        private readonly object _value;
+        internal object Value
+        {
+            get { return _value; }
+        }
 
         internal Filter(string propertyName, FilterOperator filterOperator, object value)
             : base(propertyName)
         {
             Contract.Requires(!string.IsNullOrWhiteSpace(propertyName));
-            FilterOperator = filterOperator;
-            Value = value;
+            Contract.Requires(value != null);
+            _filterOperator = filterOperator;
+            _value = value;
         }
 
-        internal IQueryable<T> Refine<T>(IQueryable<T> queryable) where T : class
+        public IQueryable<T> Query(IQueryable<T> queryable)
+        {
+            Validate();
+            return queryable.Where(Clause(), Value);
+        }
+
+        public void Validate()
         {
             ValidateProperties();
-            var result = queryable.Where(Clause(), Value);
-            if (result != null)
-                return result;
-            return null;
         }
 
         private string ParseOperator()

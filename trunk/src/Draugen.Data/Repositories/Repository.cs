@@ -1,6 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics.Contracts;
+﻿using System.Diagnostics.Contracts;
+using System.Linq;
 using Draugen.Data.QueryObjects;
 using NHibernate;
 using NHibernate.Linq;
@@ -26,11 +25,10 @@ namespace Draugen.Data.Repositories
             Contract.Invariant(Session.IsOpen == true);
         }
 
-        public virtual IEnumerable<T> FindAll(IQueryObject<T> queryObject)
+        public virtual IPagedList<T> FindAll(IQueryManager<T> queryManager)
         {
-            var list =queryObject.Query(Session.Linq<T>());
-            var count = queryObject.Count;
-            return list;
+            var queryable = Session.Linq<T>();
+            return new PagedList<T>(queryable, queryManager);
         }
 
         public virtual void Add(T item)
