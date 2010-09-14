@@ -6,11 +6,11 @@ namespace Draugen.Services.Builders
 {
     public class GetFangsterResponseBuilder : IResponseBuilder<GetFangsterResponse, GetFangsterRequest>
     {
-        private readonly IListBuilder<FangstDto> _fangstBuilder;
+        private readonly IListBuilder<FangstListDto> _fangstListBuilder;
 
-        public GetFangsterResponseBuilder(IListBuilder<FangstDto> fangstBuilder)
+        public GetFangsterResponseBuilder(IListBuilder<FangstListDto> fangstListBuilder)
         {
-            _fangstBuilder = fangstBuilder;
+            _fangstListBuilder = fangstListBuilder;
         }
 
         public GetFangsterResponse Build(GetFangsterRequest request)
@@ -25,7 +25,7 @@ namespace Draugen.Services.Builders
         {
             return new GetFangsterResponseBody()
                        {
-                           //FangstList = _fangstBuilder.Build(request.Header)
+                           FangstList = _fangstListBuilder.Build(request.Header)
                        };
         }
 

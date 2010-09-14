@@ -1,6 +1,4 @@
-﻿using System;
-using System.Data.SqlClient;
-using System.Linq;
+﻿using System.Linq;
 using Draugen.Data.Paging;
 using Draugen.Data.QueryObjects;
 using Microsoft.VisualStudio.TestTools.UnitTesting;

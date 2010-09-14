@@ -25,11 +25,13 @@ namespace Draugen.Services.Builders
         public FangstListDto Build(ServiceHeader header)
         {
             var queryObject = _fangstQueryBuilder.Build();
-            var fangster = _fangstRepository.FindAll(queryObject);
+            var fangstPage = _fangstRepository.FindAll(queryObject);
             var culture = new CultureInfo(header.Culture);
-            var fanstList = new FangstListDto();
-            throw new NotImplementedException();
-            //return fangster.Select(f => _fangstAssembler.WriteDto(f, culture)).ToList();
+            return new FangstListDto(fangstPage.Select(f => _fangstAssembler.WriteDto(f, culture)).ToList())
+                                {
+                                    Pages = fangstPage.Size, CurrentPage = fangstPage.Index
+                                };
+
         }
 
     }

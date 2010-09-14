@@ -49,7 +49,7 @@ namespace Draugen.Services.Configuration
         {
             Assert.IsInstanceOfType(_container.Resolve<IRepository<Fangst>>(), typeof(FangstRepository));
             Assert.IsInstanceOfType(_container.Resolve<IAssembler<FangstDto, Fangst>>(), typeof(FangstAssembler));
-            Assert.IsInstanceOfType(_container.Resolve<IListBuilder<FangstDto>>(), typeof(FangstListBuilder));
+            Assert.IsInstanceOfType(_container.Resolve<IListBuilder<FangstListDto>>(), typeof(FangstListBuilder));
             Assert.IsInstanceOfType(_container.Resolve<IQueryBuilder<Fangst>>(), typeof(FangstQueryBuilder));
             Assert.IsInstanceOfType(_container.Resolve<IResponseBuilder<GetFangsterResponse, GetFangsterRequest>>(), typeof(GetFangsterResponseBuilder));
         }
