@@ -2,6 +2,7 @@
 using System.IO;
 using System.Text;
 using Draugen.Data.Import.Builders;
+using Draugen.Data.Paging;
 using Draugen.Data.Repositories;
 using NHibernate;
 
@@ -37,7 +38,7 @@ namespace Draugen.Data.Import
 
         private static void SaveEntities<T>(IDictionary<int, T> entities, ISession unitOfWorkFactory) where T : Kommenterbar
         {
-            var repository = new Repository<T>(unitOfWorkFactory);
+            var repository = new Repository<T>(unitOfWorkFactory, new PageBuilder<T>());
             foreach(var entity in entities)
             {
                 repository.Add(entity.Value);

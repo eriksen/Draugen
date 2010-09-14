@@ -1,4 +1,7 @@
 ﻿using System.IO;
+using System.Reflection;
+using FluentNHibernate.Cfg;
+using NHibernate.Tool.hbm2ddl;
 
 namespace Draugen.Data.Import
 {
@@ -8,7 +11,7 @@ namespace Draugen.Data.Import
         {
             var configuration =
                 new DraugenConfiguration("Data Source=localhost;Initial Catalog=Catchbase;Integrated Security=True");
-            configuration.BuildSchema();
+            BuildDatabase(configuration);
             var composer = new Composer(@"C:\Projects\Draugen\trunk\src\Draugen.Data.Import\draugen_org_data");
             using (var unitOfWork = new UnitOfWork(configuration.GetSessionFactory()))
             {
@@ -16,6 +19,14 @@ namespace Draugen.Data.Import
                 composer.Save(unitOfWork.Session);
                 unitOfWork.CommitTransaction();
             }
+        }
+
+        static void BuildDatabase(DraugenConfiguration configuration)
+        {
+            var propertyInfo = configuration.GetType().GetField("_configuration", BindingFlags.NonPublic | BindingFlags.Static);
+            var fluentConfiguration = (FluentConfiguration)propertyInfo.GetValue(configuration);
+            var config = fluentConfiguration.BuildConfiguration();
+            new SchemaExport(config).Create(false, true);
         }
     }
 }

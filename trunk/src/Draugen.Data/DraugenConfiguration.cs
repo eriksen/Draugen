@@ -3,7 +3,6 @@ using Draugen.Data.Mappings;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using NHibernate;
-using NHibernate.Tool.hbm2ddl;
 
 namespace Draugen.Data
 {
@@ -31,12 +30,6 @@ namespace Draugen.Data
         {
             Contract.Ensures(Contract.Result<ISessionFactory>() != null);
             return _sessionFactory;
-        }
-
-        public void BuildSchema()
-        {
-            var config = _configuration.BuildConfiguration();
-            new SchemaExport(config).Create(false, true);
         }
 
         private static MsSqlConfiguration MsSqlConfiguration(string connectionString)

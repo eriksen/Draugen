@@ -73,8 +73,6 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Data\DraguenConfigurationTests.cs" />
-    <Compile Include="Data\QueryTests.cs" />
     <Compile Include="Data\Repositories\RepositoryTests.cs" />
     <Compile Include="Data\SessionTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
