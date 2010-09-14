@@ -7,7 +7,6 @@ namespace Draugen.Data.QueryObjects
     [ContractClass(typeof(QueryManagerContracts<>))]
     public interface IQueryManager<T> : IQueryObject<T> where T : DomainObject
     {
-        int CountTotalItems(IQueryable<T> queryable);
         void AddFilter(string property, FilterOperator filterOperator, object value);
         void SetPage(int pageIndex, int pageSize);
         void SetSort(string property, SortDirection direction);
@@ -16,7 +15,7 @@ namespace Draugen.Data.QueryObjects
     [ContractClassFor(typeof(IQueryManager<>))]
     internal abstract class QueryManagerContracts<T> : IQueryManager<T> where T : DomainObject
     {
-        public int CountTotalItems(IQueryable<T> queryable)
+        internal int TotalItemsCount(IQueryable<T> queryable)
         {
             Contract.Requires(queryable != null);
             Contract.Ensures(Contract.Result<int>() >= 0);

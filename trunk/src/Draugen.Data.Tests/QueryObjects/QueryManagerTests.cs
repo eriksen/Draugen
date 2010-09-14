@@ -26,17 +26,31 @@ namespace Draugen.Data.QueryObjects
         }
 
         [TestMethod]
+        public void PageIndex_MustReturnIndexOfPageQuery()
+        {
+            _queryManager.SetPage(100, 1);
+            Assert.AreEqual(100, _queryManager.PageIndex);
+        }
+
+        [TestMethod]
+        public void PageSize_MustReturnSizeOfPageQuery()
+        {
+            _queryManager.SetPage(1, 100);
+            Assert.AreEqual(100, _queryManager.PageSize);
+        }
+
+        [TestMethod]
         public void CountAllItems_MustReturnACountOfAllHitsMatchingTheCriteria()
         {
             _queryManager.AddFilter("Navn", FilterOperator.Equals, "B");
-            Assert.AreEqual(1, _queryManager.CountTotalItems(_queryable));
+            Assert.AreEqual(1, _queryManager.TotalItemsCount(_queryable));
         }
 
         [TestMethod]
         public void AddFilter_MustAddFilterToResultset()
         {
             _queryManager.AddFilter("Navn", FilterOperator.Equals, "A");
-            Assert.AreEqual(2, _queryManager.CountTotalItems(_queryable));
+            Assert.AreEqual(2, _queryManager.TotalItemsCount(_queryable));
         }
 
         [TestMethod]
@@ -53,7 +67,7 @@ namespace Draugen.Data.QueryObjects
         public void SetPage_MustStillReturnFullCount()
         {
             _queryManager.SetPage(2, 2);
-            Assert.AreEqual(4, _queryManager.CountTotalItems(_queryable));
+            Assert.AreEqual(4, _queryManager.TotalItemsCount(_queryable));
             Assert.AreEqual(2, _queryManager.Query(_queryable).Count());
         }
 
@@ -73,7 +87,7 @@ namespace Draugen.Data.QueryObjects
             _queryManager.AddFilter("Rekord", FilterOperator.GreaterThan, 2.5);
             _queryManager.SetPage(2, 1);
             var result = _queryManager.Query(_queryable).ToArray();
-            Assert.AreEqual(2, _queryManager.CountTotalItems(_queryable));
+            Assert.AreEqual(2, _queryManager.TotalItemsCount(_queryable));
             Assert.AreEqual(1, result.Length);
             Assert.IsTrue(result.Contains(_art4));
         }

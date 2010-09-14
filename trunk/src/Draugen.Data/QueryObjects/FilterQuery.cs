@@ -1,12 +1,11 @@
-﻿using System;
-using System.Diagnostics.Contracts;
+﻿using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Linq.Dynamic;
 
 
 namespace Draugen.Data.QueryObjects
 {
-    internal class Filter<T> : PropertyQueryObject<T>, IQueryObject<T> where T : DomainObject
+    internal class FilterQuery<T> : PropertyQuery<T>, IQueryObject<T> where T : DomainObject
     {
         private readonly FilterOperator _filterOperator;
         internal FilterOperator FilterOperator
@@ -20,7 +19,7 @@ namespace Draugen.Data.QueryObjects
             get { return _value; }
         }
 
-        internal Filter(string propertyName, FilterOperator filterOperator, object value)
+        internal FilterQuery(string propertyName, FilterOperator filterOperator, object value)
             : base(propertyName)
         {
             Contract.Requires(!string.IsNullOrWhiteSpace(propertyName));

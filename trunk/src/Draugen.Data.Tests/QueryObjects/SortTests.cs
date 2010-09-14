@@ -27,21 +27,21 @@ namespace Draugen.Data.QueryObjects
         [TestMethod]
         public void Refine_MustOrderAscending()
         {
-            var result = new Sort<Art>("Navn", SortDirection.Ascending).Query(_queryable);
+            var result = new SortQuery<Art>("Navn", SortDirection.Ascending).Query(_queryable);
             Assert.AreEqual("ABCDE" ,string.Join("", result.Select(r => r.Navn)));
         }
 
         [TestMethod]
         public void Validate_MustValidateProperties()
         {
-            new Sort<Art>("Navn", SortDirection.Ascending).Validate();
+            new SortQuery<Art>("Navn", SortDirection.Ascending).Validate();
         }
 
 
         [TestMethod]
         public void Refine_MustOrderDescending()
         {
-            var result = new Sort<Art>("Navn", SortDirection.Descending).Query(_queryable);
+            var result = new SortQuery<Art>("Navn", SortDirection.Descending).Query(_queryable);
             Assert.AreEqual("EDCBA", string.Join("", result.Select(r => r.Navn)));
         }
 
@@ -49,7 +49,7 @@ namespace Draugen.Data.QueryObjects
         [ExpectedException(typeof(ArgumentException))]
         public void Refine_MustThrowArgumentException_WhenPropertyDoesNotExist()
         {
-            new Sort<Art>("Bogus", SortDirection.Descending).Query(_queryable);
+            new SortQuery<Art>("Bogus", SortDirection.Descending).Query(_queryable);
         }
     }
 }

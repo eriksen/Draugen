@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics.Contracts;
 using System.Linq;
@@ -8,43 +7,44 @@ namespace Draugen.Data.QueryObjects
 {
     public class QueryManager<T> : IQueryManager<T> where T : DomainObject
     {
-        private readonly ICollection<Filter<T>> _filterQueries;
-        private Page<T> _pageQuery;
-        private Sort<T> _sortQuery;
-
-        public QueryManager()
-        {
-            _pageQuery = new Page<T>(1, int.MaxValue);
-            _sortQuery = new Sort<T>("Id", SortDirection.Descending);
-            _filterQueries = new Collection<Filter<T>>();
-        }
-
         [ContractInvariantMethod]
         private void ObjectInvariant()
         {
             Contract.Invariant(_filterQueries != null);
-            Contract.Invariant(_pageQuery != null);
-            Contract.Invariant(_sortQuery != null);
+            Contract.Invariant(_pageQueryQuery != null);
+            Contract.Invariant(_sortQueryQuery != null);
+        }
+        private readonly ICollection<FilterQuery<T>> _filterQueries;
+        private PageQuery<T> _pageQueryQuery;
+        private SortQuery<T> _sortQueryQuery;
+
+        public QueryManager()
+        {
+            _pageQueryQuery = new PageQuery<T>(1, int.MaxValue);
+            _sortQueryQuery = new SortQuery<T>("Id", SortDirection.Descending);
+            _filterQueries = new Collection<FilterQuery<T>>();
         }
 
-        public int CountTotalItems(IQueryable<T> queryable) 
+        internal virtual int PageIndex { get { return _pageQueryQuery.Index; } }
+        internal virtual int PageSize { get { return _pageQueryQuery.Size; } }
+        internal virtual int TotalItemsCount(IQueryable<T> queryable) 
         {
             return Filter(queryable).Count();
         }
 
-        public void AddFilter(string property, FilterOperator filterOperator, object value)
+        public virtual void AddFilter(string property, FilterOperator filterOperator, object value)
         {
-            _filterQueries.Add(new Filter<T>(property, filterOperator, value));
+            _filterQueries.Add(new FilterQuery<T>(property, filterOperator, value));
         }
 
-        public void SetPage(int pageIndex, int pageSize)
+        public virtual void SetPage(int pageIndex, int pageSize)
         {
-            _pageQuery = new Page<T>(pageIndex, pageSize);
+            _pageQueryQuery = new PageQuery<T>(pageIndex, pageSize);
         }
 
-        public void SetSort(string property, SortDirection direction)
+        public virtual void SetSort(string property, SortDirection direction)
         {
-            _sortQuery = new Sort<T>(property, direction);
+            _sortQueryQuery = new SortQuery<T>(property, direction);
         }
 
         private IQueryable<T> Filter(IQueryable<T> queryable)
@@ -54,25 +54,25 @@ namespace Draugen.Data.QueryObjects
 
         private IQueryable<T> Page(IQueryable<T> queryable)
         {
-            return _pageQuery.Query(queryable);
+            return _pageQueryQuery.Query(queryable);
         }
 
         private IQueryable<T> Sort(IQueryable<T> queryable)
         {
-            return _sortQuery.Query(queryable);
+            return _sortQueryQuery.Query(queryable);
         }
 
-        public IQueryable<T> Query(IQueryable<T> queryable)
+        public virtual IQueryable<T> Query(IQueryable<T> queryable)
         {
             queryable = Filter(queryable);
             queryable = Sort(queryable);
             return Page(queryable);
         }
 
-        public void Validate()
+        public virtual void Validate()
         {
-            _pageQuery.Validate();
-            _sortQuery.Validate();
+            _pageQueryQuery.Validate();
+            _sortQueryQuery.Validate();
             foreach(var filter in _filterQueries)
             {
                 filter.Validate();

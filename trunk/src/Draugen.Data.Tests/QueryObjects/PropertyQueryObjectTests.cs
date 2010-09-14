@@ -9,9 +9,9 @@ namespace Draugen.Data.QueryObjects
         [TestMethod]
         public void Validate_MustNotThrow_WhenNoErrorExists()
         {
-            new TestablePropertyQueryObject<Art>("Navn").TestValidate();
-            new TestablePropertyQueryObject<Fangst>("Art.Id").TestValidate();
-            new TestablePropertyQueryObject<Fangst>("Fisker.Navn").TestValidate();
+            new TestablePropertyQuery<Art>("Navn").TestValidate();
+            new TestablePropertyQuery<Fangst>("Art.Id").TestValidate();
+            new TestablePropertyQuery<Fangst>("Fisker.Navn").TestValidate();
         }
 
         [TestMethod]
@@ -20,7 +20,7 @@ namespace Draugen.Data.QueryObjects
             const string expectedMessage = "Property Bogus in relation to Art does not exist";
             try
             {
-                new TestablePropertyQueryObject<Art>("Bogus").TestValidate();
+                new TestablePropertyQuery<Art>("Bogus").TestValidate();
             }
             catch (ArgumentException e)
             {
@@ -36,7 +36,7 @@ namespace Draugen.Data.QueryObjects
             const string expectedMessage = "Property Bogus in relation to Art does not exist";
             try
             {
-                new TestablePropertyQueryObject<Fangst>("Art.Bogus").TestValidate();
+                new TestablePropertyQuery<Fangst>("Art.Bogus").TestValidate();
             }
             catch (ArgumentException e)
             {
@@ -46,9 +46,9 @@ namespace Draugen.Data.QueryObjects
             Assert.Fail();
         }
 
-        private class TestablePropertyQueryObject<T> : PropertyQueryObject<T> where T : DomainObject
+        private class TestablePropertyQuery<T> : PropertyQuery<T> where T : DomainObject
         {
-            public TestablePropertyQueryObject(string propertyName) : base(propertyName) {}
+            public TestablePropertyQuery(string propertyName) : base(propertyName) {}
 
             public void TestValidate()
             {

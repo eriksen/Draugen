@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace Draugen.Data.QueryObjects
 {
-    internal abstract class PropertyQueryObject<T> where T : class
+    internal abstract class PropertyQuery<T> where T : DomainObject
     {
         private readonly string _propertyName;
         internal string PropertyName
@@ -13,7 +13,7 @@ namespace Draugen.Data.QueryObjects
             get { return _propertyName; }
         }
 
-        protected PropertyQueryObject(string propertyName)
+        protected PropertyQuery(string propertyName)
         {
             Contract.Requires(!string.IsNullOrWhiteSpace(propertyName));
             _propertyName = propertyName;

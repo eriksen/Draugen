@@ -1,12 +1,11 @@
-﻿using System;
-using System.Diagnostics.Contracts;
+﻿using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Linq.Dynamic;
 
 
 namespace Draugen.Data.QueryObjects
 {
-    internal class Sort<T> : PropertyQueryObject<T>, IQueryObject<T> where T : DomainObject
+    internal class SortQuery<T> : PropertyQuery<T>, IQueryObject<T> where T : DomainObject
     {
         private readonly SortDirection _direction;
         internal SortDirection Direction
@@ -14,7 +13,7 @@ namespace Draugen.Data.QueryObjects
             get { return _direction; }
         }
 
-        internal Sort(string propertyName, SortDirection direction)
+        internal SortQuery(string propertyName, SortDirection direction)
             : base(propertyName)
         {
             Contract.Requires(!string.IsNullOrWhiteSpace(propertyName));

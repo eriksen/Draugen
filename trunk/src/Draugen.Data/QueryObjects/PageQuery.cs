@@ -1,14 +1,14 @@
-﻿using System.Diagnostics.Contracts;
+﻿﻿using System.Diagnostics.Contracts;
 using System.Linq;
 
 namespace Draugen.Data.QueryObjects
 {
-    internal class Page<T> : IQueryObject<T> where T : DomainObject
+    internal class PageQuery<T> : IQueryObject<T> where T : DomainObject
     {
-        private readonly int _number;
-        internal int Number
+        private readonly int _index;
+        internal int Index
         {
-            get { return _number; }
+            get { return _index; }
         }
 
         private readonly int _size;
@@ -17,22 +17,22 @@ namespace Draugen.Data.QueryObjects
             get { return _size; }
         }
 
-        internal Page(int number, int size)
+        internal PageQuery(int index, int size)
         {
-            Contract.Requires(number > 0);
+            Contract.Requires(index > 0);
             Contract.Requires(size > 0);
-            _number = number;
+            _index = index;
             _size = size;
         }
 
         public IQueryable<T> Query(IQueryable<T> queryable)
         {
-            return queryable.Skip((Number - 1) * Size).Take(Size);
+            return queryable.Skip((Index - 1) * Size).Take(Size);
         }
 
         public void Validate()
         {
-            
+
         }
     }
 }

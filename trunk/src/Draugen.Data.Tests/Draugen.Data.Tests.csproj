@@ -54,7 +54,8 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PagedListTests.cs" />
+    <Compile Include="Paging\PageBuilderTests.cs" />
+    <Compile Include="Paging\PageTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueryObjects\FilterTests.cs" />
     <Compile Include="QueryObjects\PageTests.cs" />

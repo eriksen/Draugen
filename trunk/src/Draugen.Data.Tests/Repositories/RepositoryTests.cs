@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using Draugen.Data.Paging;
 using Draugen.Data.QueryObjects;
 using Draugen.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -14,14 +15,18 @@ namespace Draugen.Data.Repositories
         private Repository<Sted> _repository;
         private Mock<ISession> _sessionMock;
         private Mock<IQueryManager<Sted>> _queryContainer;
+        private Mock<IPageBuilder<Sted>> _pageBuilder;
 
         [TestInitialize]
         public void Initialize()
         {
             _sessionMock = MyMocks.Session();
-            _repository = new Repository<Sted>(_sessionMock.Object);
+            _pageBuilder = new Mock<IPageBuilder<Sted>>();
+            _pageBuilder.Setup(p => p.Build(It.IsAny<IQueryManager<Sted>>(), It.IsAny<IQueryable<Sted>>()))
+                .Returns(new Page<Sted>());
+            _repository = new Repository<Sted>(_sessionMock.Object, _pageBuilder.Object);
             _queryContainer = new Mock<IQueryManager<Sted>>();
-            _queryContainer.Setup(q => q.CountTotalItems(It.IsAny<IQueryable<Sted>>())).Returns(1);
+            
         }
 
         [TestMethod]
