@@ -3,12 +3,12 @@ using Draugen.Services.Dtos.Requests;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 
-namespace Draugen.Services.Builders
+namespace Draugen.Services.Builders.Responses
 {
     [TestClass]
     public class GetFangsterResponseBuilderTests
     {
-        private Mock<IListBuilder<FangstListDto>> _fangstBuilder;
+        private Mock<IListBuilder<FangstListDto>> _fangstListBuilder;
         private GetFangsterResponseBuilder _builder;
         private FangstListDto _fangstList;
         private GetFangsterRequest _request;
@@ -16,12 +16,14 @@ namespace Draugen.Services.Builders
         [TestInitialize]
         public void InitializeTest()
         {
-            _fangstBuilder = new Mock<IListBuilder<FangstListDto>>();
-            
-            _builder = new GetFangsterResponseBuilder(_fangstBuilder.Object);
+            var header = new ServiceHeader();
             _fangstList = new FangstListDto(new FangstDto[]{});
-            _request = new GetFangsterRequest { Header = new ServiceHeader() };
-            //_fangstBuilder.Setup(f => f.Build(_request.Header)).Returns(_fangstList);
+
+            _fangstListBuilder = new Mock<IListBuilder<FangstListDto>>();
+            _fangstListBuilder.Setup(f => f.Build(header)).Returns(_fangstList);
+            
+            _builder = new GetFangsterResponseBuilder(_fangstListBuilder.Object);
+            _request = new GetFangsterRequest { Header = header };
         }
 
         [TestMethod]

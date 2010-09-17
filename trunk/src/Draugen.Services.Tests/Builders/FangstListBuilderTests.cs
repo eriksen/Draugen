@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using Draugen.Data.Paging;
 using Draugen.Data.QueryObjects;
 using Draugen.Data.Repositories;
 using Draugen.Services.Assemblers;
@@ -13,36 +14,51 @@ namespace Draugen.Services.Builders
     [TestClass]
     public class FangstListBuilderTests
     {
+        private string _culture;
+        private FangstDto _fangstDto;
         private FangstListBuilder _builder;
         private ServiceHeader _header;
-        private FangstDto _fangstDto;
+        private PageInfoDto _pageInfo;
 
         [TestInitialize]
         public void InitializeTest()
         {
-            _header = new ServiceHeader { Culture = "no" };
-            _fangstDto = new FangstDto();
-
-            var queryObjects = new QueryManager<Fangst>();
             var queryBuilder = new Mock<IQueryBuilder<Fangst>>();
-            queryBuilder.Setup(q => q.Build()).Returns(queryObjects);
-
-            var fangst = new Fangst();
-            var fangster = new[] { fangst };
             var fangstRepository = new Mock<IRepository<Fangst>>();
-            //fangstRepository.Setup(f => f.FindAll(queryObjects)).Returns(fangster);
-
             var fangstAssembler = new Mock<IAssembler<FangstDto, Fangst>>();
-            fangstAssembler.Setup(a => a.WriteDto(fangst, It.Is<CultureInfo>(c => c.Name == "no"))).Returns(_fangstDto);
+            var pageInfoAssembler = new Mock<IAssembler<PageInfoDto, IPageInfo>>();
 
-            _builder = new FangstListBuilder(queryBuilder.Object, fangstRepository.Object, fangstAssembler.Object);
+            var queryObject = new Mock<IQueryManager<Fangst>>();
+            var fangst = new Fangst();
+            var fangstPage = new Page<Fangst> {fangst};
+            _culture = "no";
+            _fangstDto = new FangstDto();
+            _pageInfo = new PageInfoDto();
+
+            queryBuilder.Setup(q => q.Build()).Returns(queryObject.Object);
+            fangstRepository.Setup(r => r.FindAll(queryObject.Object)).Returns(fangstPage);
+            fangstAssembler.Setup(a => a.WriteDto(fangst, It.Is<CultureInfo>(c => c.Name == _culture))).Returns(_fangstDto);
+            pageInfoAssembler.Setup(p => p.WriteDto(fangstPage, It.Is<CultureInfo>(c => c.Name == _culture))).Returns(_pageInfo);
+
+            _builder = new FangstListBuilder(
+                queryBuilder.Object, fangstRepository.Object, fangstAssembler.Object, pageInfoAssembler.Object);
+
+            _header = new ServiceHeader { Culture = _culture };
         }
 
         [TestMethod]
-        public void Build()
+        public void Build_MustAddFangstDtoPerFangstFromRepository()
         {
-            //var result = _builder.Build(_header);
-            //Assert.AreSame(_fangstDto, result[0]);
+            var result = _builder.Build(_header);
+            Assert.AreSame(_fangstDto, result[0]);
+            Assert.AreEqual(1, result.Count);
+        }
+
+        [TestMethod]
+        public void Build_MustAddPageInfoFromPageInfoAssembler()
+        {
+            var result = _builder.Build(_header);
+            Assert.AreSame(_pageInfo, result.PageInfo);
         }
     }
 }

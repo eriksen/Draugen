@@ -1,10 +1,12 @@
 ﻿using Draugen.Data;
+using Draugen.Data.Paging;
 using Draugen.Data.QueryObjects;
 using Draugen.Data.Repositories;
 using Draugen.Helpers;
 using Draugen.Services.Assemblers;
 using Draugen.Services.Builders;
 using Draugen.Services.Builders.Queries;
+using Draugen.Services.Builders.Responses;
 using Draugen.Services.Dtos;
 using Draugen.Services.Dtos.Requests;
 using Draugen.Services.Dtos.Responses;
@@ -47,11 +49,18 @@ namespace Draugen.Services.Configuration
         [TestMethod]
         public void Ctor_MustRegisterAllTypes()
         {
-            Assert.IsInstanceOfType(_container.Resolve<IRepository<Fangst>>(), typeof(FangstRepository));
-            Assert.IsInstanceOfType(_container.Resolve<IAssembler<FangstDto, Fangst>>(), typeof(FangstAssembler));
-            Assert.IsInstanceOfType(_container.Resolve<IListBuilder<FangstListDto>>(), typeof(FangstListBuilder));
-            Assert.IsInstanceOfType(_container.Resolve<IQueryBuilder<Fangst>>(), typeof(FangstQueryBuilder));
             Assert.IsInstanceOfType(_container.Resolve<IResponseBuilder<GetFangsterResponse, GetFangsterRequest>>(), typeof(GetFangsterResponseBuilder));
+            Assert.IsInstanceOfType(_container.Resolve<IListBuilder<FangstListDto>>(), typeof(FangstListBuilder));
+            Assert.IsInstanceOfType(_container.Resolve<IAssembler<FangstDto, Fangst>>(), typeof(FangstAssembler));
+            Assert.IsInstanceOfType(_container.Resolve<IAssembler<PageInfoDto, IPageInfo>>(), typeof(PageInfoAssembler));
+            Assert.IsInstanceOfType(_container.Resolve<IQueryBuilder<Fangst>>(), typeof(FangstQueryBuilder));
+        }
+
+        [TestMethod]
+        public void Ctor_MustRegisterAllDraugenDataDependencies()
+        {
+            Assert.IsInstanceOfType(_container.Resolve<IRepository<Fangst>>(), typeof(FangstRepository));
+            Assert.IsInstanceOfType(_container.Resolve<IPageBuilder<Fangst>>(), typeof(PageBuilder<Fangst>));
         }
     }
 }

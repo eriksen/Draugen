@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
+using Draugen.Services.Dtos;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Draugen.Services.Assemblers
@@ -16,6 +18,8 @@ namespace Draugen.Services.Assemblers
         {
             _culture = new CultureInfo("no");
             _assembler = new FangstAssembler();
+            var kommenterer = new List<Kommentar>();
+
             _fangst = new Fangst()
                           {
                               LegacyId = 2,
@@ -25,7 +29,8 @@ namespace Draugen.Services.Assemblers
                               Lengde = 2.1,
                               Poeng = 4.74523445,
                               Sted = new Sted {Navn = "stedsnavn"},
-                              Vekt = 4.35
+                              Vekt = 4.35,
+                              Kommentarer = kommenterer
                           };
         }
 
@@ -99,6 +104,20 @@ namespace Draugen.Services.Assemblers
             _fangst.Vekt = 0.006;
             var result = _assembler.WriteDto(_fangst, _culture);
             Assert.AreEqual("0,006", result.Vekt);
+        }
+
+        [TestMethod]
+        public void Write_Dto_MustSetKommenarToDomainKommentarInnhold()
+        {
+            var result = _assembler.WriteDto(_fangst, _culture);
+            Assert.AreEqual(result.Kommentar, _fangst.Kommentar.Innhold);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(NotImplementedException))]
+        public void Create_MustThrowNotIMplementedException()
+        {
+            _assembler.Create(new FangstDto());
         }
     }
 }

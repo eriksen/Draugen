@@ -2,7 +2,7 @@
 using Draugen.Services.Dtos.Requests;
 using Draugen.Services.Dtos.Responses;
 
-namespace Draugen.Services.Builders
+namespace Draugen.Services.Builders.Responses
 {
     public class GetFangsterResponseBuilder : IResponseBuilder<GetFangsterResponse, GetFangsterRequest>
     {
@@ -23,7 +23,7 @@ namespace Draugen.Services.Builders
 
         private GetFangsterResponseBody BuildBody(GetFangsterRequest request)
         {
-            return new GetFangsterResponseBody()
+            return new GetFangsterResponseBody
                        {
                            FangstList = _fangstListBuilder.Build(request.Header)
                        };

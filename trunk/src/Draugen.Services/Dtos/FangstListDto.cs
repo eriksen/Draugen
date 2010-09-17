@@ -8,7 +8,7 @@ namespace Draugen.Services.Dtos
         {
             AddRange(fangster);
         }
-        public int CurrentPage { get; set; }
-        public int Pages { get; set; }
+
+        public PageInfoDto PageInfo { get; set; }
     }
 }

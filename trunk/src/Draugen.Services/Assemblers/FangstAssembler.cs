@@ -19,17 +19,9 @@ namespace Draugen.Services.Assemblers
                            Poeng = Math.Floor(domain.Poeng).ToString(culture),
                            Sted = domain.Sted.Navn,
                            Vekt = domain.Vekt.ToString("0.000", culture),
-                           Kommentar = GetKommentar(domain)
+                           Kommentar = domain.Kommentar.Innhold
                        };
         }
-
-        private string GetKommentar(Fangst domain)
-        {
-            var kommentar = domain.Kommentarer.Where(k => k.Forfatter == domain.Fisker).FirstOrDefault();
-            if (kommentar == null) { return "..."; }
-            return kommentar.Innhold;
-        }
-
         public Fangst Create(FangstDto dto)
         {
             throw new NotImplementedException();

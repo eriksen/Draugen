@@ -98,6 +98,7 @@
     <Compile Include="Mappings\TeamMap.cs" />
     <Compile Include="Paging\IPage.cs" />
     <Compile Include="Paging\IPageBuilder.cs" />
+    <Compile Include="Paging\IPageInfo.cs" />
     <Compile Include="Paging\PageBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Paging\Page.cs" />
