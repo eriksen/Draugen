@@ -121,9 +121,10 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\ImageHelpers.cs" />
+    <Compile Include="Helpers\PageHelpers.cs" />
     <Compile Include="Helpers\StringHelpers.cs" />
-    <Compile Include="Model\Factories\IModelFactory.cs" />
-    <Compile Include="Model\Factories\IndexFactory.cs" />
+    <Compile Include="ModelFactories\IModelFactory.cs" />
+    <Compile Include="ModelFactories\IndexFactory.cs" />
     <Compile Include="Model\Home\IndexModel.cs" />
     <Compile Include="Model\Shared\MasterModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Globalization;
-using System.Linq;
 using Draugen.Services.Dtos;
 
 namespace Draugen.Services.Assemblers

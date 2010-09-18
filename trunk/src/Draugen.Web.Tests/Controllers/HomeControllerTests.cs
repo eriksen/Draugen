@@ -1,5 +1,5 @@
-﻿using Draugen.Model.Factories;
-using Draugen.Model.Home;
+﻿using Draugen.Model.Home;
+using Draugen.ModelFactories;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 

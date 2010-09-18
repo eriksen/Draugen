@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics.Contracts;
-using Draugen.Model.Factories;
 using Draugen.Model.Home;
+using Draugen.ModelFactories;
 using Draugen.Services;
 using Draugen.Services.Configuration;
 using Microsoft.Practices.Unity;

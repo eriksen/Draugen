@@ -1,4 +1,4 @@
-﻿namespace Draugen.Model.Factories
+﻿namespace Draugen.ModelFactories
 {
     public interface IModelFactory<out T> where T : class
     {

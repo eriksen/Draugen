@@ -2,7 +2,7 @@
 using Draugen.Services;
 using Draugen.Services.Dtos.Requests;
 
-namespace Draugen.Model.Factories
+namespace Draugen.ModelFactories
 {
     public class IndexFactory : IModelFactory<IndexModel>
     {

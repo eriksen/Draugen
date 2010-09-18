@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BildeTests.cs" />
+    <Compile Include="KommentarTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="FangstTests.cs" />
     <Compile Include="TeamTest.cs" />

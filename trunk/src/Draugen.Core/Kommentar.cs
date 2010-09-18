@@ -4,7 +4,15 @@ namespace Draugen
 {
     public class Kommentar : DomainObject
     {
-        public virtual string Innhold { get; set; }
+        private string _innhold;
+        public virtual string Innhold
+        {
+            get { return _innhold; }
+            set {
+                _innhold = string.IsNullOrWhiteSpace(value) ? "..." : value;
+            }
+        }
+
         public virtual Fisker Forfatter { get; set; }
         public virtual DateTime Opprettet { get; set; }
     }

@@ -1,8 +1,8 @@
 ﻿using System.Diagnostics.Contracts;
 using System.Web.Mvc;
-using Draugen.Model.Factories;
 using Draugen.Model.Home;
 using Draugen.Model.Shared;
+using Draugen.ModelFactories;
 using Draugen.Services;
 using Draugen.Services.Dtos.Requests;
 
