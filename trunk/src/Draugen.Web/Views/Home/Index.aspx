@@ -3,6 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
         <div id="sistefangster">
+        <h2><strong></strong></h2>
         <h2><strong>Draugens siste fangster</strong></h2>
         <div id="l1">
             <% Html.RenderPartial("FangstList", Model.Fangster); %>

@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics.Contracts;
 using System.Web.Mvc;
+using Draugen.Model.Factories;
 using Draugen.Model.Home;
 using Draugen.Model.Shared;
 using Draugen.Services;
@@ -9,34 +10,25 @@ namespace Draugen.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IFangstService _fangstService;
+        private readonly IModelFactory<IndexModel> _modelFactory;
 
-        public HomeController(IFangstService fangstService)
+        public HomeController(IModelFactory<IndexModel> modelFactory)
         {
-            Contract.Requires(fangstService != null);
-            _fangstService = fangstService;
+            Contract.Requires(modelFactory != null);
+            _modelFactory = modelFactory;
         }
 
         [ContractInvariantMethod]
         private void ObjectInvariant()
         {
-            Contract.Invariant(_fangstService != null);
+            Contract.Invariant(_modelFactory != null);
         }
-
 
         public ActionResult Index()
         {
             Contract.Ensures(Contract.Result<ActionResult>() != null);
-            var request = new GetFangsterRequest()
-                              {
-                                  Header = new ServiceHeader() {Culture = "no"}
-                              };
-            var response = _fangstService.GetFangster(request);
-            var model = new IndexModel
-                            {
-                                //Fangster = new FangstList(response.Body.FangstList)
-                            };
-            return View(model);
+            return View(_modelFactory.Create());
         }
+
     }
 }

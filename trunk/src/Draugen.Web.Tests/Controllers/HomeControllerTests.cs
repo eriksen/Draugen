@@ -1,5 +1,5 @@
-﻿using System.Web.Mvc;
-using Draugen.Services;
+﻿using Draugen.Model.Factories;
+using Draugen.Model.Home;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 
@@ -8,14 +8,13 @@ namespace Draugen.Controllers
     [TestClass]
     public class HomeControllerTests
     {
-        private Mock<IFangstService> _serviceMock;
         private HomeController _controller;
 
         [TestInitialize]
         public void InitializeTest()
         {
-            _serviceMock = new Mock<IFangstService>();
-            _controller = new HomeController(_serviceMock.Object);
+            var modelFactory = new Mock<IModelFactory<IndexModel>>();
+            _controller = new HomeController(modelFactory.Object);
         }
 
         [TestMethod]
