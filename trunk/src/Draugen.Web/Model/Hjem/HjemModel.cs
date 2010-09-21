@@ -1,9 +1,9 @@
 using Draugen.Model.Shared;
 using Draugen.Services.Dtos;
 
-namespace Draugen.Model.Home
+namespace Draugen.Model.Hjem
 {
-    public class IndexModel : MasterModel
+    public class HjemModel : MasterModel
     {
         public FangstListDto Fangster { get; set; }
     }

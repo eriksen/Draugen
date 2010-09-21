@@ -1,4 +1,4 @@
-﻿using Draugen.Model.Home;
+﻿using Draugen.Model.Hjem;
 using Draugen.ModelFactories;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
@@ -8,13 +8,13 @@ namespace Draugen.Controllers
     [TestClass]
     public class HomeControllerTests
     {
-        private HomeController _controller;
+        private HjemController _controller;
 
         [TestInitialize]
         public void InitializeTest()
         {
-            var modelFactory = new Mock<IModelFactory<IndexModel>>();
-            _controller = new HomeController(modelFactory.Object);
+            var modelFactory = new Mock<IFangsterFactory<HjemModel>>();
+            _controller = new HjemController(modelFactory.Object);
         }
 
         [TestMethod]

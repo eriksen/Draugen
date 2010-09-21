@@ -23,7 +23,9 @@
             <% Html.RenderPartial("TocData", Model); %>
         </div>
         <div id="logo">
-            <a href="http://www.draugen.org/"><img src="http://www.draugen.org/img/draugen.jpg" alt="Draugen" /></a>
+            <img src="http://www.draugen.org/img/draugen.jpg" alt="Draugen" />
+            <%= Html.ActionLink("Hjem", "fangster", "hjem", new RouteValueDictionary() {{"culture", "no"}, {"page", "1"}}, new Dictionary<string, object>(){}) %>
+            
         </div>	
     </body>
 </html>

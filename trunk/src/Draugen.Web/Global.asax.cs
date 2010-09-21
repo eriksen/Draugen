@@ -2,6 +2,7 @@
 using System.Web.Routing;
 using Draugen.Configuration;
 using Draugen.Data;
+using Draugen.Routes;
 using Microsoft.Practices.Unity;
 using NHibernate;
 
@@ -14,21 +15,11 @@ namespace Draugen
     {
         protected static IUnityContainer Container;
 
-        public static void RegisterRoutes(RouteCollection routes)
-        {
-            routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-            routes.MapRoute(
-                "Default", // Route name
-                "{controller}/{action}/{id}", // URL with parameters
-                new { controller = "Home", action = "Index", id = UrlParameter.Optional } // Parameter defaults
-            );
-
-        }
-
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
-            RegisterRoutes(RouteTable.Routes);
+            var routeBuilder = new RouteBuilder();
+            routeBuilder.Build(RouteTable.Routes);
 
             ConfigureDraugen();
         }

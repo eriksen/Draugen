@@ -89,6 +89,7 @@
     <Compile Include="Initialize\DraugenWebFormViewEngineTests.cs" />
     <Compile Include="MvcApplicationTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Routes\RouteBuilderTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.config" />
