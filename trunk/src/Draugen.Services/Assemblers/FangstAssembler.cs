@@ -12,7 +12,7 @@ namespace Draugen.Services.Assemblers
                        {
                            Art = domain.Art.Navn,
                            Bilde = domain.Bilde.Navn,
-                           Dato =  domain.Dato.Date.ToString("d. MMMM", culture),
+                           Dato =  domain.Dato.Date.ToString("d. MMMM yy", culture),
                            Fisker = domain.Fisker.Navn,
                            Lengde = domain.Lengde.ToString(culture),
                            Poeng = Math.Floor(domain.Poeng).ToString(culture),

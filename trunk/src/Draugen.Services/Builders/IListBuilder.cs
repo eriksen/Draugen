@@ -15,7 +15,6 @@ namespace Draugen.Services.Builders
         public T Build(string culture, int page)
         {
             Contract.Requires(culture != null);
-            Contract.Requires(culture.Culture != null);
 
             Contract.Ensures(Contract.Result<T>() != null);
 
