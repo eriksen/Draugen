@@ -49,7 +49,7 @@ namespace Draugen.Services.Builders
         [TestMethod]
         public void Build_MustAddFangstDtoPerFangstFromRepository()
         {
-            var result = _builder.Build(_header);
+            var result = _builder.Build(_header, 1);
             Assert.AreSame(_fangstDto, result[0]);
             Assert.AreEqual(1, result.Count);
         }
@@ -57,7 +57,7 @@ namespace Draugen.Services.Builders
         [TestMethod]
         public void Build_MustAddPageInfoFromPageInfoAssembler()
         {
-            var result = _builder.Build(_header);
+            var result = _builder.Build(_header, 1);
             Assert.AreSame(_pageInfo, result.PageInfo);
         }
     }

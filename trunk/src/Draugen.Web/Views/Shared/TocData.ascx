@@ -1,6 +1,6 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<Draugen.Model.Shared.MasterModel>" %>
 <div id="toc">
-    <%= Html.ActionLink("Art", "Detaljer", "Art", new RouteValueDictionary { {"name","torsk"}}, new Dictionary<string, object>{})   %>
+    <%= Html.ActionLink("Sted", "Detaljer", "Sted", new RouteValueDictionary { {"name","torsk"}}, new Dictionary<string, object>{})   %>
     <a href="/" title="Draugens siste fangster">Fangster</a><br />
     <a href="#" title="Draugens forum">Draugprat</a><br />
     <a href="#" title="Draugens rekorder">Rekorder</a><br />

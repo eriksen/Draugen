@@ -23,11 +23,39 @@ image
     border: 0;    
 }
 
+.fangst
+{
+    border-left: 1px solid black;
+    border-top: 1px solid black;
+    margin: 0 0 5px 0;
+}
+
 td
 {
-    padding: 2 0 2 5;
+    padding: 0 2 2 2;
 }
 table
 {
    
+}
+.thumbnail
+{
+    width: 120px;
+    vertical-align: top;
+}
+.kommentar
+{
+    vertical-align: top;
+}
+.detail
+{
+    width: 80px;
+    height: 20px;
+    vertical-align: top;
+}
+.numericdetail
+{
+    width: 80px;
+    text-align: right;
+    vertical-align: top;
 }

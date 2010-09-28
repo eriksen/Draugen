@@ -6,16 +6,16 @@ namespace Draugen.Services.Builders
     [ContractClass(typeof(ListBuilderContract<>))]
     public interface IListBuilder<out T> where T : class
     {
-        T Build(ServiceHeader header);
+        T Build(string culture, int page);
     }
 
     [ContractClassFor(typeof(IListBuilder<>))]
     public abstract class ListBuilderContract<T> : IListBuilder<T> where T : class
     {
-        public T Build(ServiceHeader header)
+        public T Build(string culture, int page)
         {
-            Contract.Requires(header != null);
-            Contract.Requires(header.Culture != null);
+            Contract.Requires(culture != null);
+            Contract.Requires(culture.Culture != null);
 
             Contract.Ensures(Contract.Result<T>() != null);
 

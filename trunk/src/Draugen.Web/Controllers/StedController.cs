@@ -1,15 +1,16 @@
 ﻿using System.Diagnostics.Contracts;
 using System.Web.Mvc;
 using Draugen.Model.Hjem;
+using Draugen.Model.Sted;
 using Draugen.ModelFactories;
 
 namespace Draugen.Controllers
 {
-    public class HjemController : Controller
+    public class StedController : Controller
     {
         private readonly IFangsterFactory<HjemModel> _fangsterFactory;
 
-        public HjemController(IFangsterFactory<HjemModel> fangsterFactory)
+        public StedController(IFangsterFactory<HjemModel> fangsterFactory)
         {
             Contract.Requires(fangsterFactory != null);
             _fangsterFactory = fangsterFactory;
@@ -21,10 +22,10 @@ namespace Draugen.Controllers
             Contract.Invariant(_fangsterFactory != null);
         }
 
-        public ActionResult Fangster(int page, string period)
+        public ActionResult Detaljer (int page)
         {
             Contract.Ensures(Contract.Result<ActionResult>() != null);
-            return View(_fangsterFactory.Create(page));
+            return View(new DetaljerModel());
         }
 
     }

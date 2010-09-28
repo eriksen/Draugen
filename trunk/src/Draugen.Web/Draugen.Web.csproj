@@ -116,7 +116,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\ArtController.cs" />
+    <Compile Include="Controllers\StedController.cs" />
     <Compile Include="Controllers\HjemController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -126,7 +126,7 @@
     <Compile Include="Helpers\StringHelpers.cs" />
     <Compile Include="ModelFactories\IFangsterFactory.cs" />
     <Compile Include="ModelFactories\Home\FangsterFactory.cs" />
-    <Compile Include="Model\Art\DetaljerModel.cs" />
+    <Compile Include="Model\Sted\DetaljerModel.cs" />
     <Compile Include="Model\Hjem\HjemModel.cs" />
     <Compile Include="Model\Shared\MasterModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -138,7 +138,8 @@
   <ItemGroup>
     <Content Include="Global.asax" />
     <Content Include="Content\Css\Old.css" />
-    <Content Include="Views\Art\Detaljer.aspx" />
+    <Content Include="Views\Hjem\Sted.aspx" />
+    <Content Include="Views\Sted\Detaljer.aspx" />
     <Content Include="Views\Hjem\Fangster.aspx" />
     <Content Include="Views\Shared\FangstList.ascx" />
     <Content Include="Views\Shared\PageNavigation.ascx" />

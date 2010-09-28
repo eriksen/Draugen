@@ -20,7 +20,7 @@ namespace Draugen.Services.Builders.Responses
             _fangstList = new FangstListDto(new FangstDto[]{});
 
             _fangstListBuilder = new Mock<IListBuilder<FangstListDto>>();
-            _fangstListBuilder.Setup(f => f.Build(header)).Returns(_fangstList);
+            _fangstListBuilder.Setup(f => f.Build(header, 1)).Returns(_fangstList);
             
             _builder = new GetFangsterResponseBuilder(_fangstListBuilder.Object);
             _request = new GetFangsterRequest { Header = header };

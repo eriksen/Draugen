@@ -29,11 +29,11 @@ namespace Draugen.Services.Builders
             _fangstAssembler = fangstAssembler;
         }
 
-        public FangstListDto Build(ServiceHeader header)
+        public FangstListDto Build(string culture1, int page)
         {
             var queryObject = _fangstQueryBuilder.Build();
             var fangstPage = _fangstRepository.FindAll(queryObject);
-            var culture = new CultureInfo(header.Culture);
+            var culture = new CultureInfo(culture1.Culture);
             return new FangstListDto(fangstPage.Select(f => _fangstAssembler.WriteDto(f, culture)).ToList())
                                 {
                                     PageInfo = _pageInfoAssembler.WriteDto(fangstPage, culture)

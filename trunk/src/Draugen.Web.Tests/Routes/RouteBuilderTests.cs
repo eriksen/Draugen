@@ -20,42 +20,45 @@ namespace Draugen.Routes
         }
 
         #region Default
+
         [TestMethod]
         public void TestDefaultRoute()
         {
             VerifyDefaultRoute("~/");
-            VerifyDefaultRoute("~/no/Hjem/Fangster/22", page: "22");
+            VerifyDefaultRoute("~/no/hjem/fangster/1/");
         }
 
-        private void VerifyDefaultRoute(string url, string culture = "no", string controller = "Hjem", string action = "Fangster", string page = "1")
+        private void VerifyDefaultRoute(string url, string culture = "no", string controller = "hjem", string action = "fangster", string page = "1", string period = "alltid")
         {
             var routeData = GetRouteDataForUrl(url, _routes);
-            Assert.AreEqual(((Route)routeData.Route).Url, "{culture}/{controller}/{action}/{page}");
+            Assert.AreEqual(((Route)routeData.Route).Url, "{culture}/{controller}/{action}/{page}/{period}");
             Assert.AreEqual(culture, routeData.Values["culture"]);
             Assert.AreEqual(controller, routeData.Values["controller"]);
             Assert.AreEqual(action, routeData.Values["action"]);
             Assert.AreEqual(page, routeData.Values["page"]);
-            Assert.AreEqual(4, routeData.Values.Count);
+            Assert.AreEqual(period, routeData.Values["period"]);
+            Assert.AreEqual(5, routeData.Values.Count);
         }
         #endregion
 
-        #region Art
+        #region Sted
         [TestMethod]
-        public void ArtRouteTest()
+        public void StedRouteTest()
         {
-            VerifyArtRoute("~/no/Art/Torsk/");
+            VerifyStedRoute("~/no/sted/detaljer/torsk/1/");
         }
 
-        private void VerifyArtRoute(string url, string culture = "no", string controller = "Art", string name = "Torsk", string page = "1")
+        private void VerifyStedRoute(string url, string culture = "no", string controller = "sted", string action = "fangster", string name = "torsk", string page = "1", string period = "alltid")
         {
             var routeData = GetRouteDataForUrl(url, _routes);
-            Assert.AreEqual("{culture}/{controller}/{name}/{page}", ((Route)routeData.Route).Url);
+            Assert.AreEqual("{culture}/{controller}/{action}/{name}/{page}/{period}", ((Route)routeData.Route).Url);
             Assert.AreEqual(culture, routeData.Values["culture"]);
             Assert.AreEqual(controller, routeData.Values["controller"]);
-            Assert.AreEqual("Detaljer", routeData.Values["action"]);
+            Assert.AreEqual(action, routeData.Values["action"]);
             Assert.AreEqual(name, routeData.Values["name"]);
             Assert.AreEqual(page, routeData.Values["page"]);
-            Assert.AreEqual(5, routeData.Values.Count);
+            Assert.AreEqual(period, routeData.Values["period"]);
+            Assert.AreEqual(6, routeData.Values.Count);
         }
 
         #endregion

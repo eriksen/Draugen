@@ -5,19 +5,27 @@
     <table cellspacing="0" width="600px">
         <tr>
             <td rowspan="2" class="thumbnail"> <%= Html.Image(Url.Content("~/Content/Images/Fangstbilder/Thumbnail/draug100.jpg")) %></td>
-            <td>
+            <td class="detail">
                 <%= fangst.Dato %>
             </td>
-            <td>
-                <%= fangst.Art %> av <%= fangst.Fisker %>. <%= fangst.Sted %>
+            <td class="detail">
+                <%= fangst.Art %>
+            </td>
+            <td class="detail">
+                <%= fangst.Fisker %>
+            </td>
+            <td class="detail">
+                <%= fangst.Sted %>
+            </td>
+            <td class="numericdetail">
+                <%= fangst.Vekt %> kg
+            </td>
+            <td class="numericdetail">
+                <%= fangst.Poeng %> poeng
             </td>
         </tr>
         <tr>
-            <td>
-                <%= fangst.Vekt %>&nbsp;kg<br />
-                <%= fangst.Poeng %>&nbsp;poeng
-            </td>
-            <td>
+            <td colspan="6" class="kommentar">
                 <%= Html.KommentarExtract(fangst.Kommentar) %>
             </td>
         </tr>

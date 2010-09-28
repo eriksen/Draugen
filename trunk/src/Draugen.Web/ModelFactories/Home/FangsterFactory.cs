@@ -14,10 +14,13 @@ namespace Draugen.ModelFactories.Home
 
         public HjemModel Create(int page)
         {
-            var request = new GetFangsterRequest()
+            var request = new GetFangsterRequest
                               {
-                                  Header = new ServiceHeader() {Culture = "no"},
-                                  Body = new GetFangsterRequestBody()
+                                  Header = new ServiceHeader {Culture = "no"},
+                                  Body = new GetFangsterRequestBody
+                                             {
+                                                 Page = page
+                                             }
                            
             };
             var response = _fangstService.GetFangster(request);

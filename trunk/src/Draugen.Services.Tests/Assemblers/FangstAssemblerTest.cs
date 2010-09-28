@@ -52,7 +52,7 @@ namespace Draugen.Services.Assemblers
         public void WriteDto_MustSetDatoToFormattedString()
         {
             var result = _assembler.WriteDto(_fangst, _culture);
-            Assert.AreEqual("01.01.2010", result.Dato);
+            Assert.AreEqual("1. januar", result.Dato);
         }
 
         [TestMethod]
