@@ -48,7 +48,7 @@ namespace Draugen.Routes
             VerifyStedRoute("~/no/sted/detaljer/torsk/1/");
         }
 
-        private void VerifyStedRoute(string url, string culture = "no", string controller = "sted", string action = "fangster", string name = "torsk", string page = "1", string period = "alltid")
+        private void VerifyStedRoute(string url, string culture = "no", string controller = "sted", string action = "detaljer", string name = "torsk", string page = "1", string period = "alltid")
         {
             var routeData = GetRouteDataForUrl(url, _routes);
             Assert.AreEqual("{culture}/{controller}/{action}/{name}/{page}/{period}", ((Route)routeData.Route).Url);

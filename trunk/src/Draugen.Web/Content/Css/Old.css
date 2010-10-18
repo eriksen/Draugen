@@ -59,3 +59,16 @@ table
     text-align: right;
     vertical-align: top;
 }
+
+a.pagelink
+{
+    border: 1px solid black;
+    padding: 1px 2px 1px 2px;
+    text-decoration: none;
+    color: Black;
+}
+div.paging5
+{
+    text-align: center;
+    width: 100%;
+}

@@ -84,6 +84,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\HomeControllerTests.cs" />
+    <Compile Include="Helpers\PageHelpersTests.cs" />
     <Compile Include="Initialize\DraugenControllerFactoryTest.cs" />
     <Compile Include="Initialize\GlobalContainerTests.cs" />
     <Compile Include="Initialize\DraugenWebFormViewEngineTests.cs" />
@@ -94,9 +95,7 @@
   <ItemGroup>
     <Content Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Helpers\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Draugen.Core\Draugen.Core.csproj">
       <Project>{3B92FD2D-B32B-436D-9635-B44B64AD3589}</Project>
